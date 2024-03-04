@@ -1,0 +1,2 @@
+npx tailwindcss -i ./src/main/resources/static/input.css -o ./src/main/resources/static/output.css --watch # run tailwind
+./mvnw spring-boot:run #run spring
