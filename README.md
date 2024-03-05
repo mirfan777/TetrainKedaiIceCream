@@ -1,3 +1,4 @@
 - npm install
-- npx tailwindcss -i ./src/main/resources/static/input.css -o ./src/main/resources/static/output.css --watch 
+- npx tailwindcss -i ./src/main/resources/static/input.css -o ./src/main/resources/static/output.css --watch
+- mvn -N io.takari:maven:wrapper
 - ./mvnw spring-boot:run #run spring
