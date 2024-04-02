@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kelompok1.KedaiIceCream.model.model.LoginUser;
-import kelompok1.KedaiIceCream.model.model.RegisterUser;
 import kelompok1.KedaiIceCream.model.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 

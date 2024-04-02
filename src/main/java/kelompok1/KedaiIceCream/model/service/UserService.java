@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import jakarta.validation.Validator;
 import kelompok1.KedaiIceCream.model.entity.User;
 import kelompok1.KedaiIceCream.model.model.LoginUser;
 import kelompok1.KedaiIceCream.model.model.RegisterUser;
@@ -20,9 +19,6 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private Validator validator;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
