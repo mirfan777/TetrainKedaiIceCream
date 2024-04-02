@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="output.css">
+
+</head>
+<body>
+    <form method="POST" th:action="@{/test}">
+        <input name="username" type="input">
+        <input name="name" type="input">
+        <button type="submit">test</button>
+    </form>
+    <!-- Open the modal using ID.showModal() method -->
+
+    <div class="flex justify-center items-center h-full">
+      <form method="POST" th:action="@{/test}">
+        <div class="card w-96 bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title flex justify-center mb-5">Register</h2>
+            <label class="form-control w-full max-w-xs">
+              <div class="label">
+                <span class="label-text">Username</span>
+              </div>
+              <input name="username" type="text" placeholder="Username" class="input input-bordered w-full max-w-xs " />
+              <div class="label hidden">
+                <span class="label-text-alt ">Bottom Left label</span>
+              </div>
+            </label>
+            <label class="form-control w-full max-w-xs">
+              <div class="label">
+                <span class="label-text ">Name</span>
+              </div>
+              <input name="name" type="text" placeholder="Name" class="input input-bordered w-full max-w-xs" />
+              <div class="label hidden">
+                <span class="label-text-alt ">Bottom Left label</span>
+              </div>
+            </label>
+            <label class="form-control w-full max-w-xs">
+              <div class="label">
+                <span class="label-text">Email</span>
+              </div>
+              <input name="email" type="text" placeholder="Email" class="input input-bordered w-full max-w-xs" />
+              <div class="label hidden">
+                <span class="label-text-alt ">Bottom Left label</span>
+              </div>
+            </label>
+            <label class="form-control w-full max-w-xs">
+              <div class="label">
+                <span class="label-text">Password</span>
+              </div>
+              <input name="password" type="text" placeholder="Password" class="input input-bordered w-full max-w-xs" />
+              <div class="label hidden">
+                <span class="label-text-alt ">Bottom Left label</span>
+              </div>
+            </label>
+            <label class="form-control w-full max-w-xs">
+              <div class="label">
+                <span class="label-text">Confirm Password</span>
+              </div>
+              <input name="confirmpass" type="text" placeholder="Confrim Password" class="input input-bordered w-full max-w-xs" />
+              <div class="label hidden">
+                <span class="label-text-alt ">Bottom Left label</span>
+              </div>
+            </label>
+              <button type="submit" class="btn btn-outline btn-success mt-5">Submit</button>
+              <a href="#" class="text-sm text-blue-500 hover:text-blue-700">Already have an account?</a>
+          </div>
+        </div>
+      </form>
+  </div>
+</body>
+</html>
