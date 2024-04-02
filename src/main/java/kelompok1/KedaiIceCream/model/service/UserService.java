@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Validator;
 import kelompok1.KedaiIceCream.model.entity.User;
+import kelompok1.KedaiIceCream.model.model.LoginUser;
 import kelompok1.KedaiIceCream.model.model.RegisterUser;
 import kelompok1.KedaiIceCream.model.repository.UserRepository;
 import kelompok1.KedaiIceCream.security.BCrypt;
@@ -48,6 +49,21 @@ public class UserService {
         user.setRole(0);
 
         userRepository.save(user);
+    }
+
+    @Transactional
+    public void login(LoginUser request) {
+        log.info(request.getUsername());
+
+        User user = userRepository.findByUsername(request.getUsername());
+
+        if (BCrypt.checkpw(request.getPassword(), user.getPassword())) {
+            log.info("login berhasil");
+        }else {
+            log.info("login gagal");
+        }
+
+
     }
 
     // Get all users

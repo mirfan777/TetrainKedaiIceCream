@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import kelompok1.KedaiIceCream.model.model.LoginUser;
 import kelompok1.KedaiIceCream.model.model.RegisterUser;
 import kelompok1.KedaiIceCream.model.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,11 +28,10 @@ public class LoginController {
     }
 
     @PostMapping
-    public RegisterUser login(@ModelAttribute RegisterUser user ) {
-        userService.register(user);
+    public LoginUser login(@ModelAttribute LoginUser user ) {
+        userService.login(user);
         log.info("test");
         log.info(user.getUsername());
-        log.info(user.getEmail());
         return user;
     }
 }
