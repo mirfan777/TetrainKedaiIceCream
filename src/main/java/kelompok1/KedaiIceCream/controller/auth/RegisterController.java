@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kelompok1.KedaiIceCream.model.model.RegisterUser;
-import kelompok1.KedaiIceCream.model.service.UserService;
+import kelompok1.KedaiIceCream.model.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/auth/register")
 public class RegisterController {
     @Autowired
-    private UserService userService;
+    private AuthService userService;
 
     @GetMapping
     public ModelAndView view() {

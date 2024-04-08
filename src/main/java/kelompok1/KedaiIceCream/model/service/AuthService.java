@@ -3,7 +3,9 @@ package kelompok1.KedaiIceCream.model.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.Null;
 import kelompok1.KedaiIceCream.model.entity.User;
 import kelompok1.KedaiIceCream.model.model.LoginUser;
 import kelompok1.KedaiIceCream.model.model.RegisterUser;
@@ -16,11 +18,14 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class UserService {
+public class AuthService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    @Autowired
+    private HttpSession session;
+
+    public AuthService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -48,18 +53,18 @@ public class UserService {
     }
 
     @Transactional
-    public void login(LoginUser request) {
+    public User authenticate(LoginUser request ) {
         log.info(request.getUsername());
 
         User user = userRepository.findByUsername(request.getUsername());
 
+        // return it except password and other important data
+
         if (BCrypt.checkpw(request.getPassword(), user.getPassword())) {
-            log.info("login berhasil");
+            return user;
         }else {
-            log.info("login gagal");
+            return null;
         }
-
-
     }
 
     // Get all users

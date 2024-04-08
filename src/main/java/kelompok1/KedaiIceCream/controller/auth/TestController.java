@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpSession;
+import kelompok1.KedaiIceCream.model.entity.User;
 import kelompok1.KedaiIceCream.model.model.RegisterUser;
-import kelompok1.KedaiIceCream.model.service.UserService;
+import kelompok1.KedaiIceCream.model.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +27,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class TestController {
 
     @Autowired
-    private UserService userService;
+    private HttpSession session;
+
+    @Autowired
+    private AuthService userService;
 
     @GetMapping
     public ModelAndView view() {
         ModelAndView modelAndView = new ModelAndView("pages/landing");
-        log.info("test");
+        User user = (User) session.getAttribute("user");
+        modelAndView.addObject("user", user);
         return modelAndView;
     }
 
