@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -32,7 +34,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public void login(@ModelAttribute LoginUser user , HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public RedirectView login(@ModelAttribute LoginUser user , HttpServletRequest request, HttpServletResponse response , RedirectAttributes redirectAttrs) throws IOException {
         User authUser = userService.authenticate(user);
 
         HttpSession session = request.getSession();
@@ -40,11 +42,11 @@ public class LoginController {
         if (authUser != null) {
             log.info("authentikasi berhasil");
             session.setAttribute("user", authUser);
-            
+            return new RedirectView("/");
         }else {
             log.info("authentikasi gagal");
-            session.setAttribute("kontol", "john_doe");
-            response.sendRedirect("/auth/login");
+            redirectAttrs.addFlashAttribute("error_message", "Password or username is incorrect");
+            return new RedirectView("/auth/login");
         }
     }
 }
