@@ -1,52 +1,54 @@
 package kelompok1.KedaiIceCream.controller.auth;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
-
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import kelompok1.KedaiIceCream.model.entity.User;
 import kelompok1.KedaiIceCream.model.model.LoginUser;
 import kelompok1.KedaiIceCream.model.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RestController
+@Controller
 @RequestMapping("/auth/login")
 public class LoginController {
     @Autowired
     private AuthService userService;
 
     @GetMapping
-    public ModelAndView view() {
+    public ModelAndView view( @ModelAttribute("user") LoginUser user , Model model , BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView("pages/auth/login");
+        
         return modelAndView;
     }
 
     @PostMapping
-    public RedirectView login(@ModelAttribute LoginUser user , HttpServletRequest request, HttpServletResponse response , RedirectAttributes redirectAttrs) throws IOException {
-        User authUser = userService.authenticate(user);
+    public String login(@Valid @ModelAttribute("user") LoginUser user ,BindingResult bindingResult, Model model , HttpServletRequest request , RedirectAttributes redirectAttrs) {
+        User authUser = null;
 
-        HttpSession session = request.getSession();
+        authUser = userService.authenticate(user);
+
+        if (bindingResult.hasErrors() && authUser == null) {
+            return "pages/auth/login";
+        }
         
         if (authUser != null) {
-            log.info("authentikasi berhasil");
-            session.setAttribute("user", authUser);
-            return new RedirectView("/");
-        }else {
-            log.info("authentikasi gagal");
+            log.info("Authentication successful");
+            request.getSession().setAttribute("user", authUser);
+            return "redirect:/";
+        } else {
             redirectAttrs.addFlashAttribute("error_message", "Password or username is incorrect");
-            return new RedirectView("/auth/login");
+            return "redirect:/auth/login";
         }
+    
     }
 }

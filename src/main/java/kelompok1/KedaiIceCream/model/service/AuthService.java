@@ -19,6 +19,9 @@ import java.util.Optional;
 @Slf4j
 @Service
 public class AuthService {
+
+    private  User user;
+    
     @Autowired
     private UserRepository userRepository;
 
@@ -54,17 +57,15 @@ public class AuthService {
 
     @Transactional
     public User authenticate(LoginUser request ) {
-        log.info(request.getUsername());
 
-        User user = userRepository.findByUsername(request.getUsername());
+        user = userRepository.findByUsername(request.getUsername());
 
-        // return it except password and other important data
-
-        if (BCrypt.checkpw(request.getPassword(), user.getPassword())) {
+        if (user != null && BCrypt.checkpw(request.getPassword(), user.getPassword())) {
             return user;
         }else {
             return null;
         }
+        
     }
 
     // Get all users
