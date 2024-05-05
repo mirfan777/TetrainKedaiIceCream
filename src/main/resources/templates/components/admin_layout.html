@@ -28,9 +28,10 @@
             </div>
             <div class="drawer-side ">
                 <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-                <ul class="menu menu-lg p-4 w-80 min-h-full shadow-lg border border-solid rounded-tr-3xl rounded-br-3xl bg-white lg:rounded-3xl lg:min-h-0  lg:backdrop-blur-sm text-base-content">
+                <ul class="menu p-4 w-80 min-h-full shadow-lg border border-solid rounded-tr-3xl rounded-br-3xl bg-white lg:rounded-3xl lg:min-h-0  lg:backdrop-blur-sm text-base-content">
                     <!-- Sidebar content here -->
                     <h1 class="text-2xl font-bold">HELLO ADMON</h1>
+                    <p class="text-xs font-thin pb-5">admin@gmail.com</p>
                     <li>
                       <details open>
                       <summary>Main</summary>
@@ -46,7 +47,7 @@
                         <summary>Blogs</summary>
                         <ul>
                             <li><a th:classappend="${activeUrl == '/'} ? 'active'" href="/">list blogs</a></li>
-                            <li><a th:classappend="${activeUrl == '/admin/blog/post'} ? 'active'">+ create new blog</a></li>
+                            <li><a th:classappend="${activeUrl == '/admin/blog/post'} ? 'active'" href="/admin/blog/post">+ create new blog</a></li>
                         </ul>
                         </details>
                     </li>

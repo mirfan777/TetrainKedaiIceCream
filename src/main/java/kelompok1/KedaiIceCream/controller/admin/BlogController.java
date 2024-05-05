@@ -1,17 +1,17 @@
 package kelompok1.KedaiIceCream.controller.admin;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
-@RestController
-@RequestMapping("/admin/blog/post")
+@Controller
+@RequestMapping("/admin/blog")
 public class BlogController {
-    
-    @GetMapping
-    public ModelAndView view() {
-        ModelAndView modelAndView = new ModelAndView("pages/admin/post");
-        return modelAndView;
+
+    @GetMapping("/post")
+    public String viewBlog(Model model){
+        model.addAttribute("activeUrl", "/admin/blog/post");
+        return "pages/admin/blog/post";
     }
 }
