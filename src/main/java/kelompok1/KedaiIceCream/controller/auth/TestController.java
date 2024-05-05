@@ -37,6 +37,7 @@ public class TestController {
         ModelAndView modelAndView = new ModelAndView("pages/landing");
         User user = (User) session.getAttribute("user");
         modelAndView.addObject("user", user);
+        modelAndView.addObject("activeUrl", "/");
         return modelAndView;
     }
 

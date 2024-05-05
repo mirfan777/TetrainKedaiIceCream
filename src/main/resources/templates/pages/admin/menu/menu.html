@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+ <html lang="en" class="">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link th:href="@{/output.css}" rel="stylesheet">
 </head>
 <body>
+    <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
+        <content class="px-10">
+            <div class="card lg:card-side bg-base-100 shadow-xl lg:h-36">
+                <figure><img class="lg:w-36" src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album"/></figure>
+                <div class="card-body p-2 lg:w-fit">
+                  <h2 class="card-title">Ice Cream One Scoop</h2>
+                  <p class="overflow-y-auto font-light text-sm ">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti dolorum qui numquam soluta odit recusandae autem ipsam sit quae in exercitationem ullam vel inventore, aliquam incidunt veritatis impedit et ex!</p>
+                  <div class="card-actions justify-between">
+                    <h2 class="font-bold">RP 12.000</h2>
+                    <div class="flex gap-2">
+                        <button class="btn btn-sm btn-primary">Edit</button>
+                        <button class="btn btn-sm btn-primary">Delee</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </content>
+    </div>
+
     
 </body>
 </html>

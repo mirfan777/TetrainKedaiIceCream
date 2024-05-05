@@ -4,7 +4,7 @@
     <div th:fragment="adminLayout(content)" class="lg:px-24 lg:pt-12">
         <div class="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-            <div class="drawer-content flex flex-col items-center ">
+            <div class="drawer-content flex flex-col">
                 <!-- Navbar -->
                 <div class="navbar bg-base-100">
                     <div class="flex-none">
@@ -35,9 +35,9 @@
                       <details open>
                       <summary>Main</summary>
                       <ul>
-                          <li><a>landing page</a></li>
-                          <li><a>about</a></li>
-                          <li><a>contact</a></li>
+                          <li><a th:classappend="${activeUrl == '/admin/landing'} ? 'active'">landing page</a></li>
+                          <li><a th:classappend="${activeUrl == '/admin/about'} ? 'active'">about</a></li>
+                          <li><a th:classappend="${activeUrl == '/admin/contact'} ? 'active'">contact</a></li>
                       </ul>
                       </details>
                     </li>
@@ -45,13 +45,13 @@
                         <details open>
                         <summary>Blogs</summary>
                         <ul>
-                            <li><a>list blogs</a></li>
-                            <li><a>+ create new blog</a></li>
+                            <li><a th:classappend="${activeUrl == '/'} ? 'active'" href="/">list blogs</a></li>
+                            <li><a th:classappend="${activeUrl == '/admin/blog/post'} ? 'active'">+ create new blog</a></li>
                         </ul>
                         </details>
                     </li>
-                    <li><a>Menu</a></li>
-                    <li><a>Lowongan</a></li>
+                    <li><a th:classappend="${activeUrl == '/admin/menu'} ? 'active'" href="/admin/menu">Menu</a></li>
+                    <li><a th:classappend="${activeUrl == '/admin/career'} ? 'active'" href="/admin/career">Lowongan</a></li>
                 </ul>
             </div>
         </div>
