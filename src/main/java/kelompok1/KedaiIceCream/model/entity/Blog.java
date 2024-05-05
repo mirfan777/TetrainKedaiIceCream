@@ -2,7 +2,6 @@ package kelompok1.KedaiIceCream.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.Type;
 
 import java.time.LocalDateTime;
 
