@@ -9,8 +9,41 @@
 <body>
     <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
         <content class="px-10">
-            <div class="card lg:card-side bg-base-100 shadow-xl lg:h-36">
-                <figure><img class="lg:w-36" src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album"/></figure>
+          <button class="btn btn-primary mb-5"><a href="/admin/menu/tambah">+ tambah data</a></button>
+          <div class="flex flex-col gap-5 rounded-lg mb-5">
+            <div class="flex gap-5">
+              <input type="text" placeholder="Type here" class="input input-bordered w-full " />
+              <button class="btn btn-primary ">Search</button>
+            </div>
+            <div class="flex items-center gap-5">
+              <div class="flex gap-2">
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25"/>
+                </svg>
+                <p class="font-semibold">filter</p>
+              </div>
+              <select class="select select-bordered select-sm ">
+                <option disabled selected>Small</option>
+                <option>Small Apple</option>
+                <option>Small Orange</option>
+                <option>Small Tomato</option>
+              </select>
+              <select class="select select-bordered select-sm ">
+                <option disabled selected>Small</option>
+                <option>Small Apple</option>
+                <option>Small Orange</option>
+                <option>Small Tomato</option>
+              </select>
+              <select class="select select-bordered select-sm ">
+                <option disabled selected>Small</option>
+                <option>Small Apple</option>
+                <option>Small Orange</option>
+                <option>Small Tomato</option>
+              </select>
+            </div>
+          </div>
+            <div class="card lg:card-side bg-base-100 shadow-xl lg:h-40">
+                <figure><img class="lg:w-40" src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album"/></figure>
                 <div class="card-body p-2 lg:w-fit">
                   <h2 class="card-title">Ice Cream One Scoop</h2>
                   <p class="overflow-y-auto font-light text-sm ">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti dolorum qui numquam soluta odit recusandae autem ipsam sit quae in exercitationem ullam vel inventore, aliquam incidunt veritatis impedit et ex!</p>
