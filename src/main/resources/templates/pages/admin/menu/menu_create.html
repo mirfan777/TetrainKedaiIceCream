@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+ <html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/output.css}" rel="stylesheet">
+</head>
+<body>
+    <script>
+        let variantCounter = 1;
+        let totalVariants = 0;
+    
+        function addVariantMenu() {
+          const variantHTML = `
+            <div class="flex justify-center my-2">
+              <div class="card w-full bg-base-100 shadow-xl flex border border-solid">
+                <div class="card-body">
+                  <h2 class="card-title">Varian Menu ${variantCounter}</h2>
+                  <label class="form-control w-full">
+                    <div class="label">
+                      <span class="label-text">Nama</span>
+                      <span class="label-text-alt text-red-600">error</span>
+                    </div>
+                    <input name="name_varian_${variantCounter}" type="text" placeholder="Nama Produk" class="input input-bordered w-full" />
+                  </label>
+                  <label class="form-control w-full">
+                    <div class="label">
+                      <span class="label-text">Deskripsi</span>
+                      <span class="label-text-alt text-red-600">error</span>
+                    </div>
+                    <textarea name="description_varian_${variantCounter}" class="textarea textarea-bordered" placeholder="Deskripsi Produk"></textarea>
+                  </label>
+                  <label class="form-control w-full">
+                    <div class="label">
+                      <span class="label-text">Thumbnail</span>
+                      <span class="label-text-alt text-red-600">error</span>
+                    </div>
+                    <input type="file" class="file-input file-input-bordered w-full" />
+                  </label>
+                  <div class="card-actions justify-end">
+                    <button class="btn btn-primary delete-variant" id="delete-variant-${variantCounter}">hapus</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+    
+          const variantsContainer = document.getElementById('variants-container');
+          const variantDiv = document.createElement('div');
+          variantDiv.innerHTML = variantHTML;
+    
+          const deleteButton = variantDiv.querySelector(`#delete-variant-${variantCounter}`);
+          deleteButton.addEventListener('click', () => {
+            variantDiv.remove();
+            totalVariants--;
+            variantCounter = totalVariants + 1;
+            updateVariantCounters();
+          });
+    
+          variantsContainer.appendChild(variantDiv);
+          totalVariants++;
+          variantCounter++;
+        }
+    
+        function updateVariantCounters() {
+          const variantTitles = document.querySelectorAll('.card-title');
+          let counter = 1;
+          variantTitles.forEach(title => {
+            title.textContent = `Varian Menu ${counter}`;
+            counter++;
+          });
+        }
+      </script>
+    
+    <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
+        <content class="px-10">
+            <form action="" id="menu-form">
+              <!-- kategori -->
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text">Kategori</span>
+                  <span class="label-text-alt text-red-600">error</span>
+                </div>
+                <select class="select select-bordered w-full ">
+                  <option disabled selected>Who shot first?</option>
+                  <option>Han Solo</option>
+                  <option>Greedo</option>
+                </select>
+              </label>
+              <!-- nama -->
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text">Nama</span>
+                  <span class="label-text-alt text-red-600">error</span>
+                </div>
+                <input type="text" placeholder="Nama Produk" class="input input-bordered w-full" />
+              </label>
+              <!-- deskripsi -->
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text">Deskripsi</span>
+                  <span class="label-text-alt text-red-600">error</span>
+                </div>
+                <textarea class="textarea textarea-bordered" placeholder="Deskripsi Produk"></textarea>
+              </label>
+              <!-- upload file -->
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text">Thumbnail</span>
+                  <span class="label-text-alt text-red-600">error</span>
+                </div>
+                <div th:replace="~{components/upload_file_input :: uploadFile()}"></div>
+              </label>
+    
+              <h3 class="font-bold text-lg my-2">Variasi Menu</h3>
+    
+              <!-- variants -->
+              <div id="variants-container"></div>
+    
+              <div>
+                <button class="btn btn-primary" onclick="addVariantMenu()" type="button">Tambah Variasi Menu</button>
+                <button class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+        </content>
+    </div>
+
+    
+</body>
+</html>

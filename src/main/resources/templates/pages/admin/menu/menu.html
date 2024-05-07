@@ -9,7 +9,7 @@
 <body>
     <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
         <content class="px-10">
-          <button class="btn btn-primary mb-5"><a href="/admin/menu/tambah">+ tambah data</a></button>
+          <a class="btn btn-primary mb-5" href="menu/tambah">+ tambah data</a>
           <div class="flex flex-col gap-5 rounded-lg mb-5">
             <div class="flex gap-5">
               <input type="text" placeholder="Type here" class="input input-bordered w-full " />
@@ -54,6 +54,16 @@
                         <button class="btn btn-sm btn-primary">Delee</button>
                     </div>
                   </div>
+                </div>
+              </div>
+              
+              <!-- pagination -->
+              <div class="flex justify-center mt-5">
+                <div class="join">
+                  <button class="join-item btn btn-md">1</button>
+                  <button class="join-item btn btn-md btn-active">2</button>
+                  <button class="join-item btn btn-md">3</button>
+                  <button class="join-item btn btn-md">4</button>
                 </div>
               </div>
         </content>
