@@ -41,21 +41,21 @@
                         <details open>
                         <summary>Blogs</summary>
                         <ul>
-                            <li><a th:classappend="${activeUrl == '/'} ? 'active'" href="/">list blogs</a></li>
-                            <li><a th:classappend="${activeUrl == '/admin/blog/post'} ? 'active'" href="/admin/blog/post">+ create new blog</a></li>
+                            <li><a th:classappend="${activeUrl == '/admin/blog'} ? 'active'" href="/admin/blog">list blogs</a></li>
+                            <li><a th:classappend="${activeUrl == '/admin/blog/create'} ? 'active'" href="/admin/blog/create">+ create new blog</a></li>
                         </ul>
                         </details>
                     </li>
                     <li>
                       <details open>
-                      <summary>Blogs</summary>
+                      <summary>Menus</summary>
                       <ul>
                           <li><a th:classappend="${activeUrl == '/admin/menu'} ? 'active'" href="/admin/menu">Menu</a></li>
-                          <li><a th:classappend="${activeUrl == '/admin/menu/tambah'} ? 'active'" href="/admin/menu/tambah">+ Tambah Menu</a></li>
+                          <li><a th:classappend="${activeUrl == '/admin/menu/create'} ? 'active'" href="/admin/menu/create">+ Tambah Menu</a></li>
                       </ul>
                       </details>
                     </li>
-                    <li><a th:classappend="${activeUrl == '/admin/career'} ? 'active'" href="/admin/career">Lowongan</a></li>
+                    <li><a th:classappend="${activeUrl == '/admin/karir'} ? 'active'" href="/admin/karir">Lowongan</a></li>
                 </ul>
             </div>
         </div>

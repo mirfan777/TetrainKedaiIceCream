@@ -9,9 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/blog")
 public class BlogController {
 
-    @GetMapping("/post")
+    @GetMapping
     public String viewBlog(Model model){
-        model.addAttribute("activeUrl", "/admin/blog/post");
-        return "pages/admin/blog/post";
+        model.addAttribute("activeUrl", "/admin/blog");
+        model.addAttribute("pageTitle", "BLOGS");
+        return "pages/admin/blog/blog";
+    }
+
+    @GetMapping("create")
+    public String viewBlogCreate(Model model){
+        model.addAttribute("activeUrl", "/admin/blog/create");
+        model.addAttribute("pageTitle", "CREATE BLOG");
+        return "pages/admin/blog/create";
     }
 }

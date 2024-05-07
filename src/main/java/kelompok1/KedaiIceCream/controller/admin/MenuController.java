@@ -16,10 +16,10 @@ public class MenuController {
         return "pages/admin/menu/menu";
     }
 
-    @GetMapping("tambah")
+    @GetMapping("create")
     public String viewCreateMenu(Model model){
-        model.addAttribute("activeUrl", "/admin/menu/tambah");
+        model.addAttribute("activeUrl", "/admin/menu/create");
         model.addAttribute("pageTitle", "TAMBAH MENU");
-        return "pages/admin/menu/menu_create";
+        return "pages/admin/menu/create";
     }
 }
