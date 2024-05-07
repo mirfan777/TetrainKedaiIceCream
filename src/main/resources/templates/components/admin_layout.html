@@ -46,7 +46,15 @@
                         </ul>
                         </details>
                     </li>
-                    <li><a th:classappend="${activeUrl == '/admin/menu'} ? 'active'" href="/admin/menu">Menu</a></li>
+                    <li>
+                      <details open>
+                      <summary>Blogs</summary>
+                      <ul>
+                          <li><a th:classappend="${activeUrl == '/admin/menu'} ? 'active'" href="/admin/menu">Menu</a></li>
+                          <li><a th:classappend="${activeUrl == '/admin/menu/tambah'} ? 'active'" href="/admin/menu/tambah">+ Tambah Menu</a></li>
+                      </ul>
+                      </details>
+                    </li>
                     <li><a th:classappend="${activeUrl == '/admin/career'} ? 'active'" href="/admin/career">Lowongan</a></li>
                 </ul>
             </div>
