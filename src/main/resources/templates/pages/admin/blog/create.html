@@ -14,10 +14,29 @@
           
           <button class="btn btn-primary mb-5 btn-sm">+ Post</button>
 
+          <!-- nama -->
+          <label class="form-control w-full">
+            <div class="label">
+              <span class="label-text">Nama</span>
+              <span class="label-text-alt text-red-600">error</span>
+            </div>
+            <input type="text" placeholder="Nama Produk" class="input input-bordered w-full" />
+          </label>
+
           <div id="editor">
             <h2>Demo Content</h2>
             <p>Preset build with <code>snow</code> theme, and some common formats.</p>
           </div>
+
+          <label class="form-control w-full">
+            <div class="label">
+              <span class="label-text">Thumbnail</span>
+              <span class="label-text-alt text-red-600">error</span>
+            </div>
+            <div th:replace="~{components/upload_file_input :: uploadFile()}"></div>
+          </label>
+
+
           
           <script>
             var toolbarOptions = [
