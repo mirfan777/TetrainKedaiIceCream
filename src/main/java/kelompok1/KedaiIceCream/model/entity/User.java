@@ -1,6 +1,7 @@
 package kelompok1.KedaiIceCream.model.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -34,6 +35,20 @@ public class User implements Serializable{
 
     @Column(name = "token_expired_at", nullable = true)
     private Integer tokenExpiredAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Career> careers;
+
+    @OneToMany(mappedBy = "user")
+    private List<Menu> menus;
+
+    @OneToMany(mappedBy = "user")
+    private List<Blog> blogs;
+
+    @OneToMany(mappedBy = "user")
+    private List<MenuReply> menuReplies;
+
+    
 
     
 

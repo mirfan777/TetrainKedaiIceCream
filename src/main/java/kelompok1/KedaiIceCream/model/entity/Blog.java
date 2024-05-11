@@ -13,11 +13,13 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "created_by", referencedColumnName = "id")
+    private User user;
 
-    @Column(name = "thumbnail")
-    private String thumbnail;
+    @ManyToOne
+    @JoinColumn(name = "image_files", referencedColumnName = "id" , nullable = true)
+    private ImageFile imageFiles;
 
     @Column(name = "title")
     private String title;

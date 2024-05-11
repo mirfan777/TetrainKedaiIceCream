@@ -13,8 +13,9 @@ public class MenuComment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "menu_id")
-    private Long menuId;
+    @ManyToOne
+    @JoinColumn(name = "menu_id", referencedColumnName = "id")
+    private Menu menu;
 
     @Column(name = "name")
     private String name;
@@ -22,12 +23,15 @@ public class MenuComment {
     @Column(name = "body", columnDefinition = "TEXT")
     private String body;
 
-    @Column(name = "reply", columnDefinition = "TEXT")
-    private String reply;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "menu_reply_id", referencedColumnName = "id")
+    private MenuReply menuReply;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    
 }

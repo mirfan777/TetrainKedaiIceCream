@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "menus")
@@ -13,14 +15,17 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "created_by", referencedColumnName = "id")
+    private User user;
 
-    @Column(name = "category_id")
-    private Long categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private MenuCategory category;
 
-    @Column(name = "thumbnail")
-    private String thumbnail;
+    @ManyToOne
+    @JoinColumn(name = "image_files", referencedColumnName = "id" , nullable = true)
+    private ImageFile imageFiles;
 
     @Column(name = "title")
     private String title;
@@ -33,4 +38,13 @@ public class Menu {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "menu")
+    private List<MenuComment> menuComments;
+
+    @OneToMany(mappedBy = "menu")
+    private List<MenuVariant> menuVariants;
+
+    @OneToMany(mappedBy = "menu")
+    private List<MenuAdding> menuAddings;
 }

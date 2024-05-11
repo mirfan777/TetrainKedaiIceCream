@@ -31,9 +31,9 @@
                       <details open>
                       <summary>Main</summary>
                       <ul>
-                          <li><a th:classappend="${activeUrl == '/admin/landing'} ? 'active'">landing page</a></li>
-                          <li><a th:classappend="${activeUrl == '/admin/about'} ? 'active'">about</a></li>
-                          <li><a th:classappend="${activeUrl == '/admin/contact'} ? 'active'">contact</a></li>
+                          <li><a h:classappend="${activeUrl == '/admin/main/landing'} ? 'active'" href="/admin/main/landing">landing page</a></li>
+                          <li><a th:classappend="${activeUrl == '/admin/about'} ? 'active'" href="/admin/main/about">about</a></li>
+                          <li><a th:classappend="${activeUrl == '/admin/contact'} ? 'active'" href="/admin/main/contact">contact</a></li>
                       </ul>
                       </details>
                     </li>

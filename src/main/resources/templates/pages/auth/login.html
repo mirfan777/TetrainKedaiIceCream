@@ -17,14 +17,14 @@
               <span class="label-text">Username</span>
               <span class="label-text-alt text-red-600" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</span>
             </div>
-            <input th:field="*{username}" type="text" placeholder="Username" class="input input-bordered w-full max-w-xs " />
+            <input th:field="*{username}" th:classappend="${#fields.hasErrors('username') || error_message != null} ? input-error : none" type="text" placeholder="Username" class="input input-bordered w-full max-w-xs " />
           </label>
           <label class="form-control w-full max-w-xs">
             <div class="label">
-                <span class="label-text">Password</span>
+                <span class="label-text ">Password</span>
                 <span class="label-text-alt text-red-600" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</span>
             </div>
-            <input th:field="*{password}" type="password" placeholder="Password" class="input input-bordered w-full max-w-xs" />
+            <input th:field="*{password}" th:classappend="${#fields.hasErrors('password') || error_message != null} ? input-error : none" type="password" placeholder="Password" class="input input-bordered w-full max-w-xs" />
             <div th:if="${error_message != null}" class="label">
                 <span th:text="${error_message}" class="label-text-alt text-red-600"></span>
             </div>

@@ -12,12 +12,14 @@ public class MenuVariant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @ManyToOne
+    @JoinColumn(name = "menu_id", referencedColumnName = "id")
+    private Menu menu;
 
-    @Column(name = "menu_id")
-    private Long menuId;
-
-    @Column(name = "thumbnail")
-    private String thumbnail;
+    @ManyToOne
+    @JoinColumn(name = "image_files", referencedColumnName = "id" , nullable = true)
+    private ImageFile imageFiles;
 
     @Column(name = "title")
     private String title;

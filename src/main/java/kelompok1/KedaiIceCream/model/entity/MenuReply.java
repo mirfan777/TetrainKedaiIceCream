@@ -6,32 +6,28 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "careers")
+@Table(name = "menu_replies")
 @Data
-public class Career {
+public class MenuReply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne(mappedBy = "menuReply")
+    private MenuComment menuComment;
+
     @ManyToOne
-    @JoinColumn(name = "created_by", referencedColumnName = "id")
+    @JoinColumn(name = "replied_by", referencedColumnName = "id")
     private User user;
 
-    @Column(name = "title")
-    private String title;
-
-    @Column(name = "description", columnDefinition = "TEXT")
-    private String description;
-
-    @Column(name = "start_at")
-    private LocalDateTime startAt;
-
-    @Column(name = "close_at")
-    private LocalDateTime closeAt;
+    @Column(name = "body", columnDefinition = "TEXT")
+    private String body;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    
 }

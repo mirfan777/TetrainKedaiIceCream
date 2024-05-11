@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+ <html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/output.css}" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
+        <content class="px-10">
+            <form action="" id="menu-form">
+              <!-- kategori -->
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text">Kategori</span>
+                  <span class="label-text-alt text-red-600">error</span>
+                </div>
+                <select class="select select-bordered w-full ">
+                  <option disabled selected>Who shot first?</option>
+                  <option>Han Solo</option>
+                  <option>Greedo</option>
+                </select>
+              </label>
+              <!-- nama -->
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text">Nama</span>
+                  <span class="label-text-alt text-red-600">error</span>
+                </div>
+                <input type="text" placeholder="Nama Produk" class="input input-bordered w-full" />
+              </label>
+              <!-- deskripsi -->
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text">Deskripsi</span>
+                  <span class="label-text-alt text-red-600">error</span>
+                </div>
+                <textarea class="textarea textarea-bordered" placeholder="Deskripsi Produk"></textarea>
+              </label>
+              <!-- upload file -->
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text">Thumbnail</span>
+                  <span class="label-text-alt text-red-600">error</span>
+                </div>
+                <div th:replace="~{components/upload_file_input :: uploadFile()}"></div>
+              </label>
+    
+              <h3 class="font-bold text-lg my-2">Variasi Menu</h3>
+    
+
+    
+              <div>
+                <button class="btn btn-primary" onclick="addVariantMenu()" type="button">Tambah Variasi Menu</button>
+                <button class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+        </content>
+    </div>
+
+    
+</body>
+</html>
