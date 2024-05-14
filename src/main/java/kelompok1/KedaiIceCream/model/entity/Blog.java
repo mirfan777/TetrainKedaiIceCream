@@ -1,6 +1,8 @@
 package kelompok1.KedaiIceCream.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -21,9 +23,11 @@ public class Blog {
     @JoinColumn(name = "image_files", referencedColumnName = "id" , nullable = true)
     private ImageFile imageFiles;
 
+    @NotBlank(message = "title is required")
     @Column(name = "title")
     private String title;
 
+    @NotBlank(message = "content is required")
     @Column(name = "content", columnDefinition = "json")
     private Object content;
 

@@ -7,144 +7,72 @@
     <link th:href="@{/output.css}" rel="stylesheet">
 </head>
 <body>
-    <!-- modal -->
-    <dialog id="my_modal_2" class="modal">
-    <div class="modal-box">
-        <h3 class="font-bold text-lg">Tambah Lowongan Karir Baru</h3>
-        <form action="" id="menu-form">
-            <!-- nama -->
-            <label class="form-control w-full">
-              <div class="label">
-                <span class="label-text">Nama</span>
-                <span class="label-text-alt text-red-600">error</span>
-              </div>
-              <input type="text" placeholder="Nama Produk" class="input input-bordered w-full" />
-            </label>
-            <!-- deskripsi -->
-            <label class="form-control w-full">
-              <div class="label">
-                <span class="label-text">Deskripsi</span>
-                <span class="label-text-alt text-red-600">error</span>
-              </div>
-              <textarea class="textarea textarea-bordered" placeholder="Deskripsi Produk"></textarea>
-            </label>
-            <!-- open -->
-            <label class="form-control w-full">
-                <div class="label">
-                  <span class="label-text">Waktu mulai pendaftaran</span>
-                  <span class="label-text-alt text-red-600">error</span>
-                </div>
-                <input type="date" placeholder="Nama Produk" class="input input-bordered w-full" />
-            </label>
-            <!-- close -->
-            <label class="form-control w-full">
-                <div class="label">
-                  <span class="label-text">Waktu tutup pendaftaran</span>
-                  <span class="label-text-alt text-red-600">error</span>
-                </div>
-                <input type="date" placeholder="Nama Produk" class="input input-bordered w-full" />
-            </label>
-            <!-- upload file -->
-            <label class="form-control w-full">
-              <div class="label">
-                <span class="label-text">Thumbnail</span>
-                <span class="label-text-alt text-red-600">error</span>
-              </div>
-              <div th:replace="~{components/upload_file_input :: uploadFile()}"></div>
-            </label>
-            <div>
-              <button class="btn btn-primary">Submit</button>
-            </div>
-          </form>
-    </div>
-    <form method="dialog" class="modal-backdrop">
-        <button>close</button>
-    </form>
-    </dialog>
-
     <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
         <content class="px-10">
-          <button class="btn btn-primary mb-5" onclick="my_modal_2.showModal()">+ tambah data</button>
+          <a href="karir/create"  class="btn btn-primary mb-5">+ tambah data</a>
+          <!-- Search and Filter -->
           <div class="flex flex-col gap-5 rounded-lg mb-5">
             <div class="flex gap-5">
-              <input type="text" placeholder="Type here" class="input input-bordered w-full " />
-              <button class="btn btn-primary ">Search</button>
+                <input type="text" placeholder="Cari judul atau deskripsi" class="input input-bordered w-full" th:value="${searchTerm}" name="searchTerm" />
+                <button class="btn btn-primary" type="submit">Search</button>
             </div>
             <div class="flex items-center gap-5">
-              <div class="flex gap-2">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25"/>
-                </svg>
-                <p class="font-semibold">filter</p>
-              </div>
-              <select class="select select-bordered select-sm ">
-                <option disabled selected>Small</option>
-                <option>Small Apple</option>
-                <option>Small Orange</option>
-                <option>Small Tomato</option>
-              </select>
-              <select class="select select-bordered select-sm ">
-                <option disabled selected>Small</option>
-                <option>Small Apple</option>
-                <option>Small Orange</option>
-                <option>Small Tomato</option>
-              </select>
-              <select class="select select-bordered select-sm ">
-                <option disabled selected>Small</option>
-                <option>Small Apple</option>
-                <option>Small Orange</option>
-                <option>Small Tomato</option>
-              </select>
+                <div class="flex gap-2">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25" />
+                    </svg>
+                    <p class="font-semibold">Filter</p>
+                </div>
+                <input type="date" placeholder="Dibuka" th:value="${openFilter}" name="openFilter" class="input input-bordered" />
+                <input type="date" placeholder="Ditutup" th:value="${closeFilter}" name="closeFilter" class="input input-bordered" />
+                <input type="date" placeholder="Dibuat" th:value="${createdFilter}" name="createdFilter" class="input input-bordered" />
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="flex justify-center mt-5">
+            <div class="join">
+                <a th:href="@{/admin/karir(page=${currentPage - 1}, searchTerm=${searchTerm}, openFilter=${openFilter}, closeFilter=${closeFilter}, createdFilter=${createdFilter})}" th:if="${currentPage > 1}" class="join-item btn btn-md">Previous</a>
+                <span th:each="pageNum : ${#numbers.sequence(1, totalPages)}" class="join-item">
+                    <a th:href="@{/admin/karir(page=${pageNum}, searchTerm=${searchTerm}, openFilter=${openFilter}, closeFilter=${closeFilter}, createdFilter=${createdFilter})}" th:class="${currentPage == pageNum} ? 'btn btn-md btn-active' : 'btn btn-md'" th:text="${pageNum}"></a>
+                </span>
+                <a th:href="@{/admin/karir(page=${currentPage + 1}, searchTerm=${searchTerm}, openFilter=${openFilter}, closeFilter=${closeFilter}, createdFilter=${createdFilter})}" th:if="${currentPage < totalPages}" class="join-item btn btn-md">Next</a>
             </div>
           </div>
           <div class="overflow-x-auto">
-            <table class="table">
-              <!-- head -->
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- row 1 -->
-                <tr>
-                  <th>1</th>
-                  <td>Cy Ganderton</td>
-                  <td>Quality Control Specialist</td>
-                  <td>Blue</td>
-                </tr>
-                <!-- row 2 -->
-                <tr>
-                  <th>2</th>
-                  <td>Hart Hagerty</td>
-                  <td>Desktop Support Technician</td>
-                  <td>Purple</td>
-                </tr>
-                <!-- row 3 -->
-                <tr>
-                  <th>3</th>
-                  <td>Brice Swyre</td>
-                  <td>Tax Accountant</td>
-                  <td>Red</td>
-                </tr>
-              </tbody>
+            <table class="table w-full">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Judul</th>
+                        <th>Deskripsi</th>
+                        <th>Dibuka</th>
+                        <th>Ditutup</th>
+                        <th>Dibuat</th>
+                        <th>Diperbarui</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="career, iterStat : ${careers}">
+                        <th th:text="${career.id}">1</th>
+                        <td th:text="${career.title}">Judul Lowongan</td>
+                        <td th:text="${career.description}">Deskripsi Lowongan</td>
+                        <td th:text="${#temporals.format(career.startAt, 'dd-MM-yyyy')}">01-01-2023</td>
+                        <td th:text="${#temporals.format(career.closeAt, 'dd-MM-yyyy')}">31-12-2023</td>
+                        <td th:text="${#temporals.format(career.createdAt, 'dd-MM-yyyy HH:mm')}">01-01-2023 09:00</td>
+                        <td th:text="${#temporals.format(career.updatedAt, 'dd-MM-yyyy HH:mm')}">01-01-2023 10:00</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" th:href="@{'/admin/karir/edit/'+ ${career.id}}">Edit</a>
+                            <button class="btn bg-red-500 btn-sm text-white" th:attr="data-id=${career.id}" onclick="showDeleteConfirmation(this.getAttribute('data-id'))">Hapus</button>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-          </div>
-              
-              <!-- pagination -->
-              <div class="flex justify-center mt-5">
-                <div class="join">
-                  <button class="join-item btn btn-md">1</button>
-                  <button class="join-item btn btn-md btn-active">2</button>
-                  <button class="join-item btn btn-md">3</button>
-                  <button class="join-item btn btn-md">4</button>
-                </div>
-              </div>
+        </div>
         </content>
     </div>
+    <div th:replace="~{pages/admin/career/delete :: deleteConfirmation}"></div>
 
     
 </body>

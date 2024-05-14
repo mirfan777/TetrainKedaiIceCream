@@ -36,8 +36,6 @@ public class User implements Serializable{
     @Column(name = "token_expired_at", nullable = true)
     private Integer tokenExpiredAt;
 
-    @OneToMany(mappedBy = "user")
-    private List<Career> careers;
 
     @OneToMany(mappedBy = "user")
     private List<Menu> menus;

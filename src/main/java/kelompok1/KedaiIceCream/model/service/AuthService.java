@@ -73,8 +73,7 @@ public class AuthService {
         return userRepository.findAll();
     }
 
-    // Get user by ID
-
+    // Get user by ID 
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }

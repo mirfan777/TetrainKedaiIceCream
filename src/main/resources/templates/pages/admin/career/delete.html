@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="deleteConfirmation">
+<script>
+    function showDeleteConfirmation(id) {
+        const deleteConfirmation = document.getElementById("deleteConfirmation");
+        const deleteForm = deleteConfirmation.querySelector("form");
+        deleteForm.action = `/admin/karir/delete/${id}`;
+        deleteConfirmation.showModal();
+    }
+</script>
+<dialog id="deleteConfirmation" class="modal">
+    <div class="modal-box">
+        <form method="post">
+            <div class="flex flex-col items-center justify-center">
+                <h1 class="font-bold text-2xl text-center">Apakah anda yakin ingin menghapus data tersebut?</h1>
+                <button class="btn bg-red-500 text-white my-5" type="submit">delete</button>
+            </div>
+        </form>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+    </form>
+</dialog>
+</body>
+</html>

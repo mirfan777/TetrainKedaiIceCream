@@ -25,10 +25,8 @@ public class LoginController {
     private AuthService userService;
 
     @GetMapping
-    public ModelAndView view( @ModelAttribute("user") LoginUser user , Model model , BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView("pages/auth/login");
-        
-        return modelAndView;
+    public String view( @ModelAttribute("user") LoginUser user , Model model , BindingResult bindingResult) {
+        return "pages/auth/login";
     }
 
     @PostMapping

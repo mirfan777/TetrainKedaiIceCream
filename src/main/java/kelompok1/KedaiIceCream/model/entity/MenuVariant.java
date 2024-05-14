@@ -1,6 +1,8 @@
 package kelompok1.KedaiIceCream.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -21,9 +23,11 @@ public class MenuVariant {
     @JoinColumn(name = "image_files", referencedColumnName = "id" , nullable = true)
     private ImageFile imageFiles;
 
+    @NotBlank(message = "title is required")
     @Column(name = "title")
     private String title;
 
+    @NotBlank(message = "description is required")
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 

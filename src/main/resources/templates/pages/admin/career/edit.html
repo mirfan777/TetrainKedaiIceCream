@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Lowongan Karir</title>
+    <link th:href="@{/output.css}" rel="stylesheet">
+    
+</head>
+<body>
+<div th:replace="~{components/admin_layout :: adminLayout(~{::content})}">
+    <content class="px-10">
+        <form th:action="@{/admin/karir/edit/{id}(id=${career.id})}" th:object="${career}" method="post">
+            <!-- title -->
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Judul</span>
+                    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="label-text-alt text-red-600">Error</span>
+                </div>
+                <input type="text" th:field="*{title}" placeholder="Nama Lowongan" class="input input-bordered w-full"/>
+            </label>
+            <!-- deskripsi -->
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Deskripsi</span>
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="label-text-alt text-red-600">Error</span>
+                </div>
+                <textarea th:field="*{description}" class="textarea textarea-bordered" placeholder="Deskripsi Lowongan"></textarea>
+            </label>
+            <!-- open -->
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Waktu mulai pendaftaran</span>
+                    <span th:if="${#fields.hasErrors('startAt')}" th:errors="*{startAt}" class="label-text-alt text-red-600">Error</span>
+                </div>
+                <input type="date"  th:value="${career.startAt}" name="StartAt" placeholder="Tanggal Mulai" class="input input-bordered w-full"/>
+            </label>
+
+            <!-- close -->
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Waktu tutup pendaftaran</span>
+                    <span th:if="${#fields.hasErrors('closeAt')}" th:errors="*{closeAt}" class="label-text-alt text-red-600">Error</span>
+                </div>
+                <input type="date" th:value="${career.closeAt}" name="CloseAt"  placeholder="Tanggal Tutup" class="input input-bordered w-full"/>
+            </label>
+
+            <input type="text" th:value="${career.description}">
+            <div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </content>
+</div>
+</body>
+</html>

@@ -1,6 +1,8 @@
 package kelompok1.KedaiIceCream.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -16,9 +18,11 @@ public class ImageFile {
     private Long id;
 
     @Lob
+    @NotBlank(message = "image is required")
     @Column(name = "image", length = Integer.MAX_VALUE)
     private byte[] image;
 
+    @NotBlank(message = "title is required")
     @Column(name = "title")
     private String title;
 

@@ -1,6 +1,8 @@
 package kelompok1.KedaiIceCream.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -20,6 +22,7 @@ public class MenuReply {
     @JoinColumn(name = "replied_by", referencedColumnName = "id")
     private User user;
 
+    @NotBlank(message = "body is required")
     @Column(name = "body", columnDefinition = "TEXT")
     private String body;
 
