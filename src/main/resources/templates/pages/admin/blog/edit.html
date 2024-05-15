@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+ <html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/output.css}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.4/dist/quill.js"></script>
+</head>
+<body>
+    <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
+        <content class="px-10">
+
+          <form th:action="@{/admin/blog/edit/{id}(id=${blog.id})}" th:object="${blog}" method="post" onsubmit="" id="form">
+            <button class="btn btn-primary mb-5 btn-sm" type="submit">Save</button>
+            <button class="btn bg-red-500 btn-sm text-white" th:attr="data-id=${blog.id}" onclick="showDeleteConfirmation(this.getAttribute('data-id'))">Hapus</button>
+    
+            <!-- Category -->
+            <label class="form-control w-full mb-5">
+                <div class="label">
+                    <span class="label-text">Kategori</span>
+                    
+                </div>
+                <select name="category" id="category" class="select select-bordered w-full">
+                    <option th:value="null" readonly>Kategori</option>
+                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.title}" th:selected="${blog.category?.id == category.id}"></option>
+                </select>
+            </label>
+            <!-- Title -->
+            <label class="form-control w-full mb-5">
+                <div class="label">
+                    <span class="label-text">Judul</span>
+                    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="label-text-alt text-red-600"></span>
+                </div>
+                <input type="text" th:field="*{title}" placeholder="Masukan Judul Blog" class="input input-bordered w-full" />
+            </label>
+            <!-- description -->
+            <label class="form-control w-full mb-5">
+              <div class="label">
+                  <span class="label-text">Deskripsi</span>
+                  <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="label-text-alt text-red-600"></span>
+              </div>
+              <textarea th:field="*{description}" placeholder="Masukan Deskripsi Blog" class="textarea textarea-bordered h-24 w-full "></textarea>
+          </label>
+
+            <input type="hidden" th:field="*{content}" id="content-input">
+            <div id="editor" class="mb-5 min-h-96 "></div>
+        </form>
+
+
+          <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.4/dist/quill.snow.css" rel="stylesheet">
+          <script th:inline="javascript">   
+            
+                var quill = new Quill('#editor', {
+                    modules: {
+                        toolbar: [
+                            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                            ['blockquote'],
+
+                            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                            [{ 'direction': 'rtl' }],                         // text direction
+
+                            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                            [ 'link', 'image', 'video', 'formula' ],          // add's image support
+                            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                            [{ 'font': [] }],
+                            [{ 'align': [] }],
+
+                            ['clean']                                         // remove formatting button
+                        ]
+                    },
+
+                    theme: 'snow'
+                });
+
+                // jangan diubah coy udah bisa :')
+                var jsonContentString = /*[[${jsonContent}]]*/ null;
+                if (jsonContentString) {
+                    var jsonContent = JSON.parse(jsonContentString);
+                    quill.setContents(jsonContent);
+                }
+
+
+                var form = document.getElementById('form');
+                form.onsubmit = function() {
+                    var contentObj = quill.getContents();
+                    document.querySelector('input[name="content"]').value = JSON.stringify(contentObj);
+                };
+          </script>
+        </content>
+    </div>
+    <div th:replace="~{pages/admin/blog/delete :: deleteConfirmation}"></div>
+</body>
+</html>

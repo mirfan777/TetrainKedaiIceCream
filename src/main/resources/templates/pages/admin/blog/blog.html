@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- <html lang="en" class="">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,96 +7,60 @@
     <link th:href="@{/output.css}" rel="stylesheet">
 </head>
 <body>
-    <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
+    <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}">
         <content class="px-10">
-          <a class="btn btn-primary mb-5" href="menu/tambah">+ tambah data</a>
-          <div class="flex flex-col gap-5 rounded-lg mb-5">
-            <div class="flex gap-5">
-              <input type="text" placeholder="Type here" class="input input-bordered w-full " />
-              <button class="btn btn-primary ">Search</button>
+            <a class="btn btn-primary mb-5" th:href="@{/admin/blog/create}">+ tambah data</a>
+            <!-- Search and Filter -->
+            <div class="flex flex-col gap-5 rounded-lg mb-5">
+                <div class="flex gap-5">
+                    <input type="text" placeholder="Type here" class="input input-bordered w-full" />
+                    <button class="btn btn-primary">Search</button>
+                </div>
+                <div class="flex items-center gap-5">
+                    <div class="flex gap-2">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25" />
+                        </svg>
+                        <p class="font-semibold">filter</p>
+                    </div>
+                    <select class="select select-bordered select-sm">
+                        <option disabled selected>Small</option>
+                        <option>Small Apple</option>
+                        <option>Small Orange</option>
+                        <option>Small Tomato</option>
+                    </select>
+                    <!-- Add more filter dropdowns if needed -->
+                </div>
             </div>
-            <div class="flex items-center gap-5">
-              <div class="flex gap-2">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25"/>
-                </svg>
-                <p class="font-semibold">filter</p>
-              </div>
-              <select class="select select-bordered select-sm ">
-                <option disabled selected>Small</option>
-                <option>Small Apple</option>
-                <option>Small Orange</option>
-                <option>Small Tomato</option>
-              </select>
-              <select class="select select-bordered select-sm ">
-                <option disabled selected>Small</option>
-                <option>Small Apple</option>
-                <option>Small Orange</option>
-                <option>Small Tomato</option>
-              </select>
-              <select class="select select-bordered select-sm ">
-                <option disabled selected>Small</option>
-                <option>Small Apple</option>
-                <option>Small Orange</option>
-                <option>Small Tomato</option>
-              </select>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 lg:grid-cols-2 place-content-center place-items-center gap-5">
-            <div class="card w-full card-side lg:!card  card-compact lg:w-80 lg:h-96 bg-base-100 shadow-xl">
-                <figure><img class="h-full" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                <div class="card-body">
-                  <h2 class="card-title">Shoes!</h2>
-                  <p class="overflow-y-hidden h-14 text-ellipsis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, minus! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis eos voluptatem ut excepturi non! Vero commodi, harum ipsa debitis et sit ratione ducimus! Consectetur fuga vel molestias labore incidunt at?</p>
-                  <div class="card-actions justify-end">
-                    <button class="btn btn-sm btn-primary mt-5">Edit</button>
-                  </div>
-                </div>
-              </div>
-              <div class="card w-full card-side lg:!card  card-compact lg:w-80 lg:h-96 bg-base-100 shadow-xl">
-                <figure><img class="h-full" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                <div class="card-body">
-                  <h2 class="card-title">Shoes!</h2>
-                  <p class="overflow-y-hidden h-14 text-ellipsis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, minus! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis eos voluptatem ut excepturi non! Vero commodi, harum ipsa debitis et sit ratione ducimus! Consectetur fuga vel molestias labore incidunt at?</p>
-                  <div class="card-actions justify-end">
-                    <button class="btn btn-sm btn-primary mt-5">Edit</button>
-                  </div>
-                </div>
-              </div>
-              <div class="card w-full card-side lg:!card  card-compact lg:w-80 lg:h-96 bg-base-100 shadow-xl">
-                <figure><img class="h-full" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                <div class="card-body">
-                  <h2 class="card-title">Shoes!</h2>
-                  <p class="overflow-y-hidden h-14 text-ellipsis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, minus! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis eos voluptatem ut excepturi non! Vero commodi, harum ipsa debitis et sit ratione ducimus! Consectetur fuga vel molestias labore incidunt at?</p>
-                  <div class="card-actions justify-end">
-                    <button class="btn btn-sm btn-primary mt-5">Edit</button>
-                  </div>
-                </div>
-              </div>
-              <div class="card w-full card-side lg:!card  card-compact lg:w-80 lg:h-96 bg-base-100 shadow-xl">
-                <figure><img class="h-full" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                <div class="card-body">
-                  <h2 class="card-title">Shoes!</h2>
-                  <p class="overflow-y-hidden h-14 text-ellipsis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, minus! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis eos voluptatem ut excepturi non! Vero commodi, harum ipsa debitis et sit ratione ducimus! Consectetur fuga vel molestias labore incidunt at?</p>
-                  <div class="card-actions justify-end">
-                    <button class="btn btn-sm btn-primary mt-5">Edit</button>
-                  </div>
-                </div>
-              </div>
-          </div>
-              
-              <!-- pagination -->
-              <div class="flex justify-center mt-5">
+
+            <!-- Pagination -->
+            <div class="flex justify-center mt-5">
                 <div class="join">
-                  <button class="join-item btn btn-md">1</button>
-                  <button class="join-item btn btn-md btn-active">2</button>
-                  <button class="join-item btn btn-md">3</button>
-                  <button class="join-item btn btn-md">4</button>
+                    <a th:href="@{/admin/blog(page=${currentPage - 1})}" th:if="${currentPage > 1}" class="join-item btn btn-md">Previous</a>
+                    <span th:each="pageNum : ${#numbers.sequence(1, totalPages)}" class="join-item">
+                        <a th:href="@{/admin/blog(page=${pageNum})}" th:class="${currentPage == pageNum} ? 'btn btn-md btn-active' : 'btn btn-md'" th:text="${pageNum}"></a>
+                    </span>
+                    <a th:href="@{/admin/blog(page=${currentPage + 1})}" th:if="${currentPage < totalPages}" class="join-item btn btn-md">Next</a>
                 </div>
-              </div>
+            </div>
+
+            <!-- List of Blog Cards -->
+            <div class="flex justify-center w-full mt-5">
+                <div class="grid 2xl:grid-cols-4 place-content-center place-items-center 2xl gap-10 w-full">
+                    <div class="card w-full card-side lg:!card card-compact lg:w-72 lg:h-96 bg-base-100 shadow-xl" th:each="blog : ${blogs}">
+                        <figure><img class="h-full" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Blog Image" /></figure>
+                        <div class="card-body">
+                            <h2 class="card-title" th:text="${blog.title}">Blog Title</h2>
+                            <p class="overflow-y-hidden h-14 text-ellipsis" th:text="${blog.description}">Blog desc...</p>
+                            <div class="badge badge-neutral" th:text="${blog.category.title}">Category</div>
+                            <div class="card-actions justify-end">
+                                <a class="btn btn-sm btn-primary mt-5" th:href="@{'/admin/blog/edit/' + ${blog.id}}">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </content>
     </div>
-
-    
 </body>
 </html>

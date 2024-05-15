@@ -7,6 +7,8 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.ColumnTransformer;
+
 @Entity
 @Table(name = "blogs")
 @Data
@@ -19,6 +21,12 @@ public class Blog {
     @JoinColumn(name = "created_by", referencedColumnName = "id")
     private User user;
 
+    
+    @ManyToOne
+    @NotNull(message = "category is required")
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private BlogCategory category;
+
     @ManyToOne
     @JoinColumn(name = "image_files", referencedColumnName = "id" , nullable = true)
     private ImageFile imageFiles;
@@ -27,9 +35,14 @@ public class Blog {
     @Column(name = "title")
     private String title;
 
-    @NotBlank(message = "content is required")
-    @Column(name = "content", columnDefinition = "json")
-    private Object content;
+    @NotBlank(message = "description is required")
+    @Column(name = "description")
+    private String description;
+
+    @NotNull(message = "content is required")
+    @ColumnTransformer(write = "?::jsonb")
+    @Column(name = "content", columnDefinition = "jsonb")
+    private String content;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

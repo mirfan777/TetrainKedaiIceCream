@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
-import jakarta.validation.constraints.Null;
 import kelompok1.KedaiIceCream.model.entity.User;
 import kelompok1.KedaiIceCream.model.model.LoginUser;
 import kelompok1.KedaiIceCream.model.model.RegisterUser;
