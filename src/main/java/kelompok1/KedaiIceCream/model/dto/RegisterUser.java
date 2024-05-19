@@ -1,7 +1,6 @@
-package kelompok1.KedaiIceCream.model.model;
+package kelompok1.KedaiIceCream.model.dto;
 
-
-
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -15,15 +14,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class LoginUser {
+public class RegisterUser {
 
-    @NotBlank()
+    @NotBlank
     @Size(max = 100)
     private String username;
 
-    @NotBlank()
+    @NotBlank
+    @Size(max = 100)
+    private String name;
+
+    @NotBlank
+    @Email
+    private String email;
+
+    @NotBlank
     @Size(max = 100)
     private String password;
 
+    @NotBlank
+    @Size(max = 100)
+    private String password_confirm;
     
 }

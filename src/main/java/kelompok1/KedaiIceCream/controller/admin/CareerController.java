@@ -3,13 +3,7 @@ package kelompok1.KedaiIceCream.controller.admin;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import kelompok1.KedaiIceCream.model.entity.Career;
-import kelompok1.KedaiIceCream.model.entity.User;
-import kelompok1.KedaiIceCream.model.model.CareerDto;
-import kelompok1.KedaiIceCream.model.repository.UserRepository;
 import kelompok1.KedaiIceCream.model.service.CareerService;
-import lombok.extern.log4j.Log4j;
-import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,26 +11,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.net.http.HttpRequest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Optional;
 
-@Slf4j
 @Controller
 @RequestMapping("/admin/karir")
 public class CareerController {
 
     @Autowired
     private CareerService careerService;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @GetMapping
     public String viewCareers(

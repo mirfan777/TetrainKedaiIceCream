@@ -2,7 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body th:fragment="adminLayout(content)">
     <!-- alert -->
-    <div th:replace="~{components/alert_modal :: alert()}"></div>
+    <script>
+      
+    </script>
+
+
     <div class="lg:px-24 lg:pt-12">
         <div class="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
@@ -58,6 +62,7 @@
                       </details>
                     </li>
                     <li><a th:classappend="${activeUrl == '/admin/karir'} ? 'active'" href="/admin/karir">Lowongan</a></li>
+                    <li><a th:classappend="${activeUrl == '/admin/file/images'} ? 'active'" href="/admin/file/images">Images</a></li>
                 </ul>
             </div>
         </div>

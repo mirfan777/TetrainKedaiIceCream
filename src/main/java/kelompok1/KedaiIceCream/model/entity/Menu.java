@@ -2,12 +2,10 @@ package kelompok1.KedaiIceCream.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "menus")
@@ -25,9 +23,17 @@ public class Menu {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private MenuCategory category;
 
-    @ManyToOne
-    @JoinColumn(name = "image_files", referencedColumnName = "id" , nullable = true)
-    private ImageFile imageFiles;
+    @Column(name = "image")
+    private String image;
+
+    @Column(name = "price")
+    private Integer price;
+
+    @Column(name = "discount")
+    private Integer discount;
+
+    @Column(name = "promo")
+    private String promo;
 
     @NotBlank(message = "title is required")
     @Column(name = "title")
@@ -49,6 +55,4 @@ public class Menu {
     @OneToMany(mappedBy = "menu")
     private List<MenuVariant> menuVariants;
 
-    @OneToMany(mappedBy = "menu")
-    private List<MenuAdding> menuAddings;
 }

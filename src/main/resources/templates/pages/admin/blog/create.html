@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/output.css}" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.4/dist/quill.js"></script>
+    
 </head>
 <body>
     <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
         <content class="px-10">
 
-          <form th:action="@{/admin/blog/create}" th:object="${blog}" method="post" onsubmit="" id="form">
+          <form th:action="@{/admin/blog/create}" th:object="${blog}" method="post" enctype="multipart/form-data" onsubmit="" id="form">
             <button class="btn btn-primary mb-5 btn-sm" type="submit">Save</button>
 
             <!-- Category -->
@@ -22,7 +22,7 @@
                 </div>
                 <select name="category" id="category" class="select select-bordered w-full ">
                     <option value="null" disabled>Kategori</option>
-                    <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.title}"></option>
+                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.title}"></option>
                 </select>
             </label>
             <!-- Title -->
@@ -40,13 +40,27 @@
                   <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="label-text-alt text-red-600"></span>
               </div>
               <textarea th:field="*{description}" placeholder="Masukan Deskripsi Blog" class="textarea textarea-bordered h-24 w-full "></textarea>
-          </label>
-
-            <input type="hidden" th:field="*{content}" id="content-input">
-            <div id="editor" class="mb-5 min-h-96 flex"></div>
+            </label>
+            <!-- thumbnail -->
+            <label class="form-control w-full mb-5">
+                <div class="label">
+                    <span class="label-text">Thumbnail</span>
+                    <p th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="label-text-alt text-red-600"></p>
+                </div>
+                <input type="file" name="imageFile" id="imageFile" class="file-input file-input-bordered w-full" />
+            </label>
+        
+            <label class="form-control w-full mb-5">
+                <div class="label">
+                    <span class="label-text">Content</span>
+                </div>
+                <input type="hidden" th:field="*{content}" id="content-input">
+                <div id="editor" class="mb-5 min-h-96 flex"></div>
+            </label>
+            
         </form>
 
-
+          <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.4/dist/quill.js"></script>
           <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.4/dist/quill.snow.css" rel="stylesheet">
           <script>          
           var quill = new Quill('#editor', {
@@ -69,9 +83,8 @@
                 [{ 'align': [] }],
           
                 ['clean']                                         // remove formatting button
-            ]
-            },
-          
+            ],
+            }, 
             theme: 'snow'
           });
 

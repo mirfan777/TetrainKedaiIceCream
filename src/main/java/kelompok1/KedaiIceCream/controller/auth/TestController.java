@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
+import kelompok1.KedaiIceCream.model.dto.RegisterUser;
 import kelompok1.KedaiIceCream.model.entity.User;
-import kelompok1.KedaiIceCream.model.model.RegisterUser;
 import kelompok1.KedaiIceCream.model.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
 

@@ -3,11 +3,10 @@ package kelompok1.KedaiIceCream.model.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
+import kelompok1.KedaiIceCream.model.dto.LoginUser;
+import kelompok1.KedaiIceCream.model.dto.RegisterUser;
 import kelompok1.KedaiIceCream.model.entity.User;
-import kelompok1.KedaiIceCream.model.model.LoginUser;
-import kelompok1.KedaiIceCream.model.model.RegisterUser;
 import kelompok1.KedaiIceCream.model.repository.UserRepository;
 import kelompok1.KedaiIceCream.security.BCrypt;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +22,6 @@ public class AuthService {
     
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private HttpSession session;
 
     public AuthService(UserRepository userRepository) {
         this.userRepository = userRepository;

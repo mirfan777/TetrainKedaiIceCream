@@ -10,15 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.ObjectBuffer;
 
-import jakarta.validation.Valid;
+import jakarta.transaction.Transactional;
 import kelompok1.KedaiIceCream.model.entity.Blog;
 import kelompok1.KedaiIceCream.model.entity.BlogCategory;
-import kelompok1.KedaiIceCream.model.entity.Career;
 import kelompok1.KedaiIceCream.model.repository.BlogCategoryRepository;
 import kelompok1.KedaiIceCream.model.repository.BlogRepository;
-import kelompok1.KedaiIceCream.model.repository.CareerRepository;
 
 @Service
 public class BlogService {
@@ -39,6 +36,7 @@ public class BlogService {
             // You might want to throw a custom exception here
             }
             
+            blog.setImage(request.getImage());
             blog.setDescription(request.getDescription());
             blog.setCategory(request.getCategory());
             blog.setTitle(request.getTitle());
@@ -48,6 +46,7 @@ public class BlogService {
             return blogRepository.save(blog);
     }
 
+    @Transactional
     public Blog updateBlog(Blog request , Blog existingBlog) {
         ObjectMapper mapper = new ObjectMapper();
             try {
@@ -62,6 +61,7 @@ public class BlogService {
         existingBlog.setTitle(request.getTitle());
         existingBlog.setDescription(request.getDescription());
         existingBlog.setCategory(request.getCategory());
+        existingBlog.setImage(request.getImage());
         existingBlog.setUpdatedAt(LocalDateTime.now());
 
         return blogRepository.save(existingBlog);

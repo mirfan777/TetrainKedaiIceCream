@@ -8,6 +8,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.ColumnTransformer;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "blogs")
@@ -21,15 +22,13 @@ public class Blog {
     @JoinColumn(name = "created_by", referencedColumnName = "id")
     private User user;
 
-    
     @ManyToOne
     @NotNull(message = "category is required")
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private BlogCategory category;
 
-    @ManyToOne
-    @JoinColumn(name = "image_files", referencedColumnName = "id" , nullable = true)
-    private ImageFile imageFiles;
+    @Column(name = "image")
+    private String image;
 
     @NotBlank(message = "title is required")
     @Column(name = "title")

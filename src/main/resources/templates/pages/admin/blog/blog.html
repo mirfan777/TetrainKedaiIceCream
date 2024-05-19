@@ -46,12 +46,12 @@
 
             <!-- List of Blog Cards -->
             <div class="flex justify-center w-full mt-5">
-                <div class="grid 2xl:grid-cols-4 place-content-center place-items-center 2xl gap-10 w-full">
-                    <div class="card w-full card-side lg:!card card-compact lg:w-72 lg:h-96 bg-base-100 shadow-xl" th:each="blog : ${blogs}">
-                        <figure><img class="h-full" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Blog Image" /></figure>
+                <div class="grid 2xl:grid-cols-4 md:grid-cols-2 place-content-center place-items-center 2xl gap-10 w-full">
+                    <div class="card card-compact w-full lg:w-72 lg:h-96 bg-base-100 shadow-xl" th:each="blog : ${blogs}">
+                        <figure><img class="h-fit w-fit" th:src="${blog.image}" alt="Blog Image" /></figure>
                         <div class="card-body">
                             <h2 class="card-title" th:text="${blog.title}">Blog Title</h2>
-                            <p class="overflow-y-hidden h-14 text-ellipsis" th:text="${blog.description}">Blog desc...</p>
+                            <p class="overflow-y-hidden h-5 text-ellipsis" th:text="${blog.description}">Blog desc...</p>
                             <div class="badge badge-neutral" th:text="${blog.category.title}">Category</div>
                             <div class="card-actions justify-end">
                                 <a class="btn btn-sm btn-primary mt-5" th:href="@{'/admin/blog/edit/' + ${blog.id}}">Edit</a>

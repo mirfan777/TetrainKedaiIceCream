@@ -11,9 +11,9 @@
     <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
         <content class="px-10">
 
-          <form th:action="@{/admin/blog/edit/{id}(id=${blog.id})}" th:object="${blog}" method="post" onsubmit="" id="form">
+          <form th:action="@{/admin/blog/edit/{id}(id=${blog.id})}" th:object="${blog}" method="post"  enctype="multipart/form-data" onsubmit="" id="form">
             <button class="btn btn-primary mb-5 btn-sm" type="submit">Save</button>
-            <button class="btn bg-red-500 btn-sm text-white" th:attr="data-id=${blog.id}" onclick="showDeleteConfirmation(this.getAttribute('data-id'))">Hapus</button>
+            <button class="btn bg-red-500 btn-sm text-white" th:attr="data-id=${blog.id}" onclick="showDeleteConfirmation(this.getAttribute('data-id'))" type="button">Hapus</button>
     
             <!-- Category -->
             <label class="form-control w-full mb-5">
@@ -42,6 +42,14 @@
               </div>
               <textarea th:field="*{description}" placeholder="Masukan Deskripsi Blog" class="textarea textarea-bordered h-24 w-full "></textarea>
           </label>
+
+          <div class="form-control w-full mb-5">
+            <div class="label">
+                <span class="label-text">Existing Image</span>
+            </div>
+            <img th:src="@{${blog.image}}" alt="Blog Image" class="w-full h-auto" />
+            <input type="file" name="imageFile" id="imageFile" class="file-input file-input-bordered w-full" />
+        </div>
 
             <input type="hidden" th:field="*{content}" id="content-input">
             <div id="editor" class="mb-5 min-h-96 "></div>
