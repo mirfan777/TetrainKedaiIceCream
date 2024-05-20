@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body th:fragment="layout(content)">
+    <!-- loading -->
+    <script>
+      window.onload = function() {
+         hideLoader();
+         showContent();
+     }
+ 
+     function hideLoader() {
+         document.querySelector("#loader").style.display = "none";
+     }
+ 
+     function showContent() {
+         document.querySelector("#main").style.display = "block";
+     }
+     </script>
+ 
+     <div rel="preload" id="loader" class=" absolute min-h-screen w-full z-50 flex justify-center items-center" style="background-color: #f9728b">
+       <img rel="preload" width="100px" height="100px" th:src="@{/images/gif/tr-load.gif}" alt="" />
+     </div>
+
+
     <!-- alert -->
-    <div class="drawer">
+    <div class="drawer" id="main" style="display: none;">
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle" /> 
         <div class="drawer-content flex flex-col">
           <!-- Navbar -->
-          <div class="w-full navbar bg-base-300">
+          <div class="w-full navbar bg-[#e5c9ae]">
             <div class="flex-none lg:hidden">
               <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
               </label>
             </div> 
-            <div class="flex-1 px-2 mx-2">Navbar Title</div>
+            <img  th:src="@{/images/image/logo.png}" alt="">
               <!--  -->
-            <ul class="menu menu-horizontal invisible lg:visible">
+            <ul class="menu menu-lg menu-horizontal rounded-lg invisible lg:visible font-bold">
             <!-- Navbar menu content here -->
                 <li><a>menu</a></li>
                 <li><a>tentang kami</a></li>
@@ -25,7 +46,8 @@
           <!-- Page content here -->
           <th:block th:replace="${content}"/>
 
-          <footer class="footer p-10 bg-base-300 text-base-content ">
+          <!-- footer -->
+          <footer class="footer p-10 bg-base-300 text-base-content">
             <nav>
               <h6 class="footer-title">Services</h6> 
               <a class="link link-hover">Branding</a>
@@ -52,7 +74,7 @@
         </div> 
         <div class="drawer-side">
           <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> 
-          <ul class="menu p-4 w-80 min-h-full bg-white">
+          <ul class="menu menu-lg p-4 w-80 min-h-full bg-white">
             <!-- Sidebar content here -->
             <li><a>menu</a></li>
             <li><a>tentang kami</a></li>

@@ -1,38 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{/output.css}" rel="stylesheet" /> 
+    <link th:href="@{/output.css}" rel="stylesheet" />
     <title>Document</title>
 </head>
 <body>
-  <div class="flex justify-center items-center h-full">
+<div class="flex justify-center items-center w-full h-screen">
     <form method="post" th:action="@{/auth/login}" th:object="${user}">
-      <div class="card w-96 bg-base-100 shadow-xl">
-        <div class="card-body">
-          <h2 class="card-title flex justify-center mb-5">Login</h2>
-          <label class="form-control w-full max-w-xs">
-            <div class="label">
-              <span class="label-text">Username</span>
-              <span class="label-text-alt text-red-600" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</span>
+        <div class="card w-96 bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title flex justify-center mb-5">Login</h2>
+                <div th:if="${param.error}" class="alert alert-error">
+                    <div class="flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
+                        </svg>
+                        <label>Invalid username or password</label>
+                    </div>
+                </div>
+                <label class="form-control w-full max-w-xs">
+                    <div class="label">
+                        <span class="label-text">Username</span>
+                        <span class="label-text-alt text-red-600" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</span>
+                    </div>
+                    <input th:field="*{username}" th:classappend="${#fields.hasErrors('username')} ? input-error : ''" type="text" placeholder="Username" class="input input-bordered w-full max-w-xs" />
+                </label>
+                <label class="form-control w-full max-w-xs">
+                    <div class="label">
+                        <span class="label-text">Password</span>
+                        <span class="label-text-alt text-red-600" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</span>
+                    </div>
+                    <input th:field="*{password}" th:classappend="${#fields.hasErrors('password')} ? input-error : ''" type="password" placeholder="Password" class="input input-bordered w-full max-w-xs" />
+                </label>
+                <button class="btn btn-outline btn-success mt-5">Submit</button>
+                <a href="#" class="text-sm text-blue-500 hover:text-blue-700">Doesn't have account?</a>
             </div>
-            <input th:field="*{username}" th:classappend="${#fields.hasErrors('username') || error_message != null} ? input-error : none" type="text" placeholder="Username" class="input input-bordered w-full max-w-xs " />
-          </label>
-          <label class="form-control w-full max-w-xs">
-            <div class="label">
-                <span class="label-text ">Password</span>
-                <span class="label-text-alt text-red-600" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</span>
-            </div>
-            <input th:field="*{password}" th:classappend="${#fields.hasErrors('password') || error_message != null} ? input-error : none" type="password" placeholder="Password" class="input input-bordered w-full max-w-xs" />
-            <div th:if="${error_message != null}" class="label">
-                <span th:text="${error_message}" class="label-text-alt text-red-600"></span>
-            </div>
-        </label>
-            <button class="btn btn-outline btn-success mt-5">Submit</button>
-            <a href="#" class="text-sm text-blue-500 hover:text-blue-700">Doesn't have account?</a>
         </div>
-    </div>
     </form>
 </div>
 </body>

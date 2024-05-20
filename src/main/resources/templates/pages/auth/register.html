@@ -7,14 +7,16 @@
     <link th:href="@{/output.css}" rel="stylesheet" /> 
 </head>
 <body>
-  <form method="POST" th:action="@{/test}">
-    <input name="username" type="input">
-    <input name="name" type="input">
-    <button type="submit">test</button>
-  </form>
-  <!-- Open the modal using ID.showModal() method -->
-
-  <div class="flex justify-center items-center h-full">
+  <div class="flex justify-center items-center w-full h-screen">
+    <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title flex justify-center mb-5">Oops! Something went wrong.</h2>
+            <p th:text="${message}">Error message</p>
+            <a href="/" class="btn btn-primary mt-5">Go to Home</a>
+        </div>
+    </div>
+</div>
+  <div class="flex justify-center items-center w-full h-screen">
     <form method="POST" >
       <div class="card w-96 bg-base-100 shadow-xl">
         <div class="card-body">

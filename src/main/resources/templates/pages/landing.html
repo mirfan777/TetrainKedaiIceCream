@@ -5,55 +5,104 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
+    
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // Simulate an API request or any async operation
-        setTimeout(() => {
-          hideLoader();
-          showContent();
-        }, 3000);
-
-        function hideLoader() {
-          document.querySelector("body").style.visibility = "hidden";
-          document.querySelector("body").style.overflow = "hidden";
-          document.querySelector("#loader").style.display = "block";
-        }
-
-        function showContent() {
-            document.querySelector("#loader").style.display = "none";
-            document.querySelector("body").style.visibility = "visible";
-            document.querySelector("body").style.overflow = "visible"; // Wait for the animation to complete (0.5s)
-        }
-      });
-    </script>
-
-    <div rel="preload" id="loader" class=" absolute w-full h-full z-50 flex justify-center items-center" style="background-color: #f9728b">
-      <img rel="preload" width="100px" height="100px" th:src="@{/images/gif/tr-load.gif}" alt="" />
-    </div>
-
-    <div th:replace="~{components/layout :: layout(~{::content})}">
-      <content class="">
-        <!-- hero -->
-        <div class="hero min-h-screen bg-base-200">
-          <div class="hero-content flex-col lg:flex-row-reverse">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-              class="max-w-sm rounded-lg shadow-2xl"
-            />
-            <div>
-              <h1 class="text-5xl font-bold">Box Office News!</h1>
-              <p class="py-6">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In
-                deleniti eaque aut repudiandae et a id nisi.
-              </p>
-              <button class="btn btn-primary">Get Started</button>
+      <div  th:replace="~{components/layout :: layout(~{::content})}">
+        <content >
+          <!-- hero -->
+          <div class="flex lg:flex-row justify-center items-center pt-16 lg:gap-52 flex-col-reverse bg-[#e58a94]">
+            <div class="flex flex-col justify-center lg:items-start items-center w-[600px] gap-10 text-black">
+              <h1 class="text font-bold text-7xl">Hello World</h1>
+              <p class="text-wrap text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, iste. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam, aspernatur.</p>
+              <button class="btn btn-primary font-bold">Hubungi Kami</button>
+            </div>
+            <div class="">
+              <img width="400" height="400" th:src="@{/images/image/hero.png}" alt="">
             </div>
           </div>
-        </div>
-        <!-- endHero -->
-      </content>
-    </div>
+          <img class="w-full absolute" th:src="@{/images/svg/wave-haikei.svg}" alt="">
+          <!-- endHero -->
+
+          <!-- promo -->
+          <div class="pt-80 pb-56 bg-[#f5c475]">
+            <div class="flex justify-center mb-28">
+              <h2 class="text-3xl font-bold">Lagi ada promo nih!</h2>
+            </div>
+            <div  class="relative flex flex-col lg:flex-row items-center justify-center gap-5 ">
+              <div class="indicator card w-96 bg-base-100 shadow-xl">
+                <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+                <div class="card-body">
+                  <h2 class="card-title">Shoes!</h2>
+                  <p>If a dog chews shoes whose shoes does he choose?</p>
+                  <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Buy Now</button>
+                  </div>
+                </div>
+                <span class="indicator-item indicator-top indicator-start badge badge-secondary h-12 font-bold">PROMO BELI 1 GRATIS 1</span>
+              </div>
+              <div class="relative lg:bottom-10 lg:z-50 card w-96 bg-base-100 shadow-xl ">
+                <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+                <div class="card-body">
+                  <h2 class="card-title">Shoes!</h2>
+                  <p>If a dog chews shoes whose shoes does he choose?</p>
+                  <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Buy Now</button>
+                  </div>
+                </div>
+              </div>
+              <div class="card w-96 bg-base-100 shadow-xl ">
+                <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+                <div class="card-body">
+                  <h2 class="card-title">Shoes!</h2>
+                  <p>If a dog chews shoes whose shoes does he choose?</p>
+                  <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Buy Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center pt-16">
+              <a class="text-2xl font-bold" href="menu" >Lihat Produk Selengkapnya...</a>
+            </div>
+          </div>
+
+
+          <!-- testimoni -->
+          <div class="flex justify-center gap-16 p-20">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/watch?v=UHi5tqwf_sE" frameborder="0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/watch?v=8Qbax_1szSs" frameborder="0" allowfullscreen></iframe>
+          </div>
+          
+
+
+          <!-- <div class="carousel carousel-center rounded-box">
+            <div class="carousel-item">
+              <img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg" alt="Pizza" />
+            </div> 
+            <div class="carousel-item">
+              <img src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg" alt="Pizza" />
+            </div> 
+            <div class="carousel-item">
+              <img src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg" alt="Pizza" />
+            </div> 
+            <div class="carousel-item">
+              <img src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.jpg" alt="Pizza" />
+            </div> 
+            <div class="carousel-item">
+              <img src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.jpg" alt="Pizza" />
+            </div> 
+            <div class="carousel-item">
+              <img src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.jpg" alt="Pizza" />
+            </div> 
+            <div class="carousel-item">
+              <img src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.jpg" alt="Pizza" />
+            </div>
+          </div> -->
+          
+        </content>
+      </div>
   </body>
 </html>

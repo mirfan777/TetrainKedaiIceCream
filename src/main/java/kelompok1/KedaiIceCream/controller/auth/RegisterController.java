@@ -29,9 +29,6 @@ public class RegisterController {
     @PostMapping
     public RegisterUser register(@ModelAttribute RegisterUser user ) {
         userService.register(user);
-        log.info("test");
-        log.info(user.getUsername());
-        log.info(user.getEmail());
         return user;
     }
 }

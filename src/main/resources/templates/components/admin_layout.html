@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body th:fragment="adminLayout(content)">
+    <!-- loading
+    <script>
+      window.onload = function() {
+         hideLoader();
+         showContent();
+     }
+ 
+     function hideLoader() {
+         document.querySelector("#loader").style.display = "none";
+     }
+ 
+     function showContent() {
+         document.querySelector("#main").style.display = "block";
+     }
+     </script>
+ 
+     <div rel="preload" id="loader" class=" absolute min-h-screen w-full z-50 flex justify-center items-center" style="background-color: #f9728b">
+       <img rel="preload" width="100px" height="100px" th:src="@{/images/gif/tr-load.gif}" alt="" />
+     </div> -->
+
     <!-- alert -->
     <div th:replace="~{components/alert_modal :: alert()}"></div>
-    <div class="lg:px-24 lg:pt-12">
+    <div id="main" class="lg:px-24 lg:pt-12">
         <div class="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content flex flex-col">
