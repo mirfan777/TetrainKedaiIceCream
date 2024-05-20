@@ -29,7 +29,6 @@ import kelompok1.KedaiIceCream.util.FileUploadUtil;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -64,9 +63,7 @@ public class BlogController {
     }
 
     @PostMapping("/create")
-    public String blogCreate(@Valid @ModelAttribute("blog") Blog blog, BindingResult bindingResult,
-                             @RequestParam("imageFile") MultipartFile file, Model model,
-                             RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    public String blogCreate(@Valid @ModelAttribute("blog") Blog blog, BindingResult bindingResult, @RequestParam("imageFile") MultipartFile file, Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("activeUrl", "/admin/blog/create");
             model.addAttribute("pageTitle", "CREATE BLOG");
@@ -74,24 +71,25 @@ public class BlogController {
             return "pages/admin/blog/create.html";
         }
 
-        // Generate unique filename
-        String fileName = FileUploadUtil.generateUniqueFileName(file.getOriginalFilename());
+        if (!file.isEmpty()) {
+            // Generate unique filename
+            String fileName = FileUploadUtil.generateUniqueFileName(file.getOriginalFilename());
 
-        // Get the ServletContext to get the real path of the project
-        ServletContext servletContext = request.getServletContext();
+            // Get the ServletContext to get the real path of the project
+            ServletContext servletContext = request.getServletContext();
 
-        // Set the upload directory to "public/images/" relative to the real path of the project
-        String uploadDir = servletContext.getRealPath("") + File.separator + "images";
+            // Set the upload directory to "public/images/" relative to the real path of the project
+            String uploadDir = servletContext.getRealPath("") + File.separator + "images";
 
-        try {
-            FileUploadUtil.saveFile( uploadDir, fileName, file);
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Handle the exception appropriately
+            try {
+                FileUploadUtil.saveFile( uploadDir, fileName, file);
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Handle the exception appropriately
+            }
+            // Set the image path in the Blog entity
+            blog.setImage("/images/" + fileName);
         }
-
-        // Set the image path in the Blog entity
-        blog.setImage("/images/" + fileName);
 
         redirectAttributes.addFlashAttribute("status", true);
         redirectAttributes.addFlashAttribute("statusMessage", "blog berhasil dipost");
@@ -137,7 +135,7 @@ public class BlogController {
             return "pages/admin/blog/edit"; // Return the same view to display errors
         }
 
-        if (file != null) {
+        if (file != null    ) {
             // Generate unique filename
             String fileName = FileUploadUtil.generateUniqueFileName(file.getOriginalFilename());
 

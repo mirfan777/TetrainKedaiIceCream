@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -52,7 +53,7 @@ public class Menu {
     @OneToMany(mappedBy = "menu")
     private List<MenuComment> menuComments;
 
-    @OneToMany(mappedBy = "menu")
-    private List<MenuVariant> menuVariants;
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MenuVariant> variants = new ArrayList<>();
 
 }

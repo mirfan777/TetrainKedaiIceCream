@@ -8,7 +8,6 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.ColumnTransformer;
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "blogs")

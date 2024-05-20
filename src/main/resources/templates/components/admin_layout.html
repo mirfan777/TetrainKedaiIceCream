@@ -2,11 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body th:fragment="adminLayout(content)">
     <!-- alert -->
-    <script>
-      
-    </script>
-
-
+    <div th:replace="~{components/alert_modal :: alert()}"></div>
     <div class="lg:px-24 lg:pt-12">
         <div class="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
