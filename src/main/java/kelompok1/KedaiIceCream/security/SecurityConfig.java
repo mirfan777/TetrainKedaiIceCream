@@ -39,7 +39,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/**","/auth/register").permitAll() // Allow access to static resources for all paths
+                .requestMatchers("/**").permitAll() // Allow access to static resources for all paths
                 .requestMatchers("/admin/**").hasRole("ADMIN") // Restrict access to /admin/** paths to users with ROLE_ADMIN
                 .anyRequest().permitAll() // Allow access to all other paths without authentication
             )
@@ -47,7 +47,8 @@ public class SecurityConfig {
                 .loginPage("/auth/login")
                 .defaultSuccessUrl("/")
                 .permitAll()
-            )
+                .failureHandler(new AuthenticationFailureHandlerUtil())
+)
             .logout(logout -> logout.permitAll());
 
         return http.build();

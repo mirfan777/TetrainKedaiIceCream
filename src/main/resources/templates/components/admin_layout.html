@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body th:fragment="adminLayout(content)">
-    <!-- loading
-    <script>
+    <!-- loading -->
+    <!-- <script>
       window.onload = function() {
          hideLoader();
          showContent();
@@ -15,15 +15,15 @@
      function showContent() {
          document.querySelector("#main").style.display = "block";
      }
-     </script>
+     </script> -->
  
-     <div rel="preload" id="loader" class=" absolute min-h-screen w-full z-50 flex justify-center items-center" style="background-color: #f9728b">
+     <!-- <div rel="preload" id="loader" class=" absolute min-h-screen w-full z-50 flex justify-center items-center" style="background-color: #f9728b">
        <img rel="preload" width="100px" height="100px" th:src="@{/images/gif/tr-load.gif}" alt="" />
      </div> -->
 
     <!-- alert -->
     <div th:replace="~{components/alert_modal :: alert()}"></div>
-    <div id="main" class="lg:px-24 lg:pt-12">
+    <div class="">
         <div class="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content flex flex-col">
@@ -45,40 +45,43 @@
             </div>
             <div class="drawer-side ">
                 <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-                <ul class="menu p-4 w-80 min-h-full shadow-lg border border-solid rounded-tr-3xl rounded-br-3xl bg-white lg:rounded-3xl lg:min-h-0  lg:backdrop-blur-sm text-base-content">
+                <ul class="menu border-0 p-4 pr-0 w-80 min-h-full shadow-lg border-solid bg-[#E58A94] lg:backdrop-blur-sm  text-white  [&_li>*:not(ul):not(.menu-title):not(details):active]:bg-white [&_li>*:not(ul):not(.menu-title):not(details):active]:text-[#E58A94] [&_li>*:not(ul):not(.menu-title):not(details).active]:bg-white [&_li>*:not(ul):not(.menu-title):not(details).active]:text-[#E58A94] [&_li>details>summary:active]:bg-white [&_li>details>summary:active]:text-[#E58A94]" >
                     <!-- Sidebar content here -->
-                    <h1 class="text-2xl font-bold">HELLO ADMON</h1>
-                    <p class="text-xs font-thin pb-5">admin@gmail.com</p>
+                   <div class="flex justify-center active">
+                    <img width="150" th:src="@{/images/image/logo.png}" alt="">
+                   </div>
+                    <div class="flex flex-col my-3">
+                      <h1 class="text-2xl font-bold">HELLO ADMON</h1>
+                      <p class="text-xs font-thin pb-5 ">admin@gmail.com</p>
+                    </div>
                     <li>
                       <details open>
-                      <summary>Main</summary>
+                      <summary class="rounded-tr-none rounded-br-none font-bold">Main</summary>
                       <ul>
-                          <li><a h:classappend="${activeUrl == '/admin/main/landing'} ? 'active'" href="/admin/main/landing">landing page</a></li>
-                          <li><a th:classappend="${activeUrl == '/admin/about'} ? 'active'" href="/admin/main/about">about</a></li>
-                          <li><a th:classappend="${activeUrl == '/admin/contact'} ? 'active'" href="/admin/main/contact">contact</a></li>
+                          <li><a class="rounded-tr-none rounded-br-none" h:classappend="${activeUrl == '/admin/main/landing'} ? 'active bg-white'" href="/admin/main/landing">landing page</a></li>
+                          <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/about'} ? 'active'" href="/admin/main/about">about</a></li>
+                          <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/contact'} ? 'active'" href="/admin/main/contact">contact</a></li>
                       </ul>
                       </details>
                     </li>
-                    <li>
+                    <li >
                         <details open>
-                        <summary>Blogs</summary>
+                        <summary class="rounded-tr-none rounded-br-none font-bold">Blogs</summary>
                         <ul>
-                            <li><a th:classappend="${activeUrl == '/admin/blog'} ? 'active'" href="/admin/blog">list blogs</a></li>
-                            <li><a th:classappend="${activeUrl == '/admin/blog/create'} ? 'active'" href="/admin/blog/create">+ create new blog</a></li>
+                            <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/blog'} ? 'active'" href="/admin/blog">list blogs</a></li>
+                            <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/blog/create'} ? 'active'" href="/admin/blog/create">+ create new blog</a></li>
                         </ul>
                         </details>
                     </li>
                     <li>
                       <details open>
-                      <summary>Menus</summary>
+                      <summary class="rounded-tr-none rounded-br-none font-bold" >Menus</summary>
                       <ul>
-                          <li><a th:classappend="${activeUrl == '/admin/menu'} ? 'active'" href="/admin/menu">Menu</a></li>
-                          <li><a th:classappend="${activeUrl == '/admin/menu/create'} ? 'active'" href="/admin/menu/create">+ Tambah Menu</a></li>
+                          <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/menu'} ? 'active'" href="/admin/menu">Menu</a></li>
+                          <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/menu/create'} ? 'active'" href="/admin/menu/create">+ Tambah Menu</a></li>
                       </ul>
                       </details>
                     </li>
-                    <li><a th:classappend="${activeUrl == '/admin/karir'} ? 'active'" href="/admin/karir">Lowongan</a></li>
-                    <li><a th:classappend="${activeUrl == '/admin/file/images'} ? 'active'" href="/admin/file/images">Images</a></li>
                 </ul>
             </div>
         </div>

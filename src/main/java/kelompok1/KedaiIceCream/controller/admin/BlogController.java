@@ -102,7 +102,6 @@ public class BlogController {
         Blog existingBlog = blogService.getBlogById(id);
 
         try {
-            
             String existingContent = existingBlog.getContent();
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(existingContent);

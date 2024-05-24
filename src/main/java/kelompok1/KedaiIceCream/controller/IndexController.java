@@ -17,18 +17,20 @@ public class IndexController {
 
     @GetMapping("about")
     public String viewAbout() {
-        return "pages/landing";
+        return "pages/guest/about";
     }
 
     @GetMapping("contact")
     public String viewContact() {
-        return "pages/landing";
+        return "pages/guest/about";
     }
 
-    @GetMapping("Menus")
-    public String view() {
-        return "pages/landing";
+    @GetMapping("menus")
+    public String viewMenus() {
+        return "pages/guest/about";
     }
+
+
 
 
     

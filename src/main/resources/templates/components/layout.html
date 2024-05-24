@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<body th:fragment="layout(content)">
+<body class="overflow-x-hidden" th:fragment="layout(content)">
     <!-- loading -->
     <script>
       window.onload = function() {
@@ -23,7 +23,7 @@
 
 
     <!-- alert -->
-    <div class="drawer" id="main" style="display: none;">
+    <div class="drawer overflow-x-hidden" id="main" style="display: none; ">
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle" /> 
         <div class="drawer-content flex flex-col">
           <!-- Navbar -->
@@ -33,15 +33,14 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
               </label>
             </div> 
-            <img  th:src="@{/images/image/logo.png}" alt="">
-              <!--  -->
-            <ul class="menu menu-lg menu-horizontal rounded-lg invisible lg:visible font-bold">
-            <!-- Navbar menu content here -->
-                <li><a>menu</a></li>
-                <li><a>tentang kami</a></li>
-                <li><a>berita terbaru</a></li>
-                <li><a>hubungi kami</a></li>
-            </ul>
+            <img width="150" th:src="@{/images/image/logo.png}" alt="">
+            <ul class="grow justify-center menu menu-lg menu-horizontal rounded-lg invisible lg:visible font-bold">
+              <!-- Navbar menu content here -->
+                  <li><a>menu</a></li>
+                  <li><a>tentang kami</a></li>
+                  <li><a>berita terbaru</a></li>
+                  <li><a>hubungi kami</a></li>
+              </ul>
           </div>
           <!-- Page content here -->
           <th:block th:replace="${content}"/>
@@ -74,7 +73,7 @@
         </div> 
         <div class="drawer-side">
           <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> 
-          <ul class="menu menu-lg p-4 w-80 min-h-full bg-white">
+          <ul class="menu menu-lg p-4 w-80 min-h-full bg-latte-900">
             <!-- Sidebar content here -->
             <li><a>menu</a></li>
             <li><a>tentang kami</a></li>

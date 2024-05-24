@@ -104,14 +104,14 @@
                 </div>
                 <textarea class="textarea textarea-bordered" placeholder="Deskripsi Produk"></textarea>
               </label>
-              <!-- upload file -->
-              <label class="form-control w-full">
+              <!-- thumbnail -->
+              <label class="form-control w-full mb-5">
                 <div class="label">
-                  <span class="label-text">Thumbnail</span>
-                  <span class="label-text-alt text-red-600">error</span>
+                    <span class="label-text">Thumbnail</span>
+                    <!-- <p th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="label-text-alt text-red-600"></p> -->
                 </div>
-                <div th:replace="~{components/upload_file_input :: uploadFile()}"></div>
-              </label>
+                <input type="file" name="imageFile" id="imageFile" class="file-input file-input-bordered w-full" />
+            </label>
     
               <h3 class="font-bold text-lg my-2">Variasi Menu</h3>
     

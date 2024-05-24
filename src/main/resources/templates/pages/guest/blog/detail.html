@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/output.css}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.4/dist/quill.js"></script>
+</head>
+<body>
+    <div th:replace="~{components/layout :: layout(~{::content})}" >
+        <content>
+            <div class="flex flex-col px-24">
+                <div class="flex justify-center">
+                    <div class="w-1/2">
+                        <h1 class="text-5xl font-bold mt-5" th:text="${blog.title}"></h1>
+                        <p class="text-2xl font-bold mt-5" th:text="${blog.category.title}"></p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div ><img th:src="@{${blog.image}}" alt="Blog Image" class="w-full h-[300px] object-contain object-center mt-16" /></div>
+                    <div id="preview-container" class="w-1/2 my-5"></div>
+                    <div id="dummy-container" style="display: none;"></div> <!-- Add this dummy container -->
+                    <script th:inline="javascript">
+                        var jsonContentString = /*[[${jsonContent}]]*/ null;
+                        console.log(jsonContentString); 
+                        if (jsonContentString) {
+                            var jsonContent = JSON.parse(jsonContentString);
+                            // Create a new div element to display the HTML content
+                            var previewDiv = document.createElement('div');
+                            previewDiv.innerHTML = quillGetHTMLFromJSON(jsonContent);
+        
+                            // Append the previewDiv to the preview-container
+                            var previewContainer = document.getElementById('preview-container');
+                            previewContainer.appendChild(previewDiv);
+                        }
+        
+                        function quillGetHTMLFromJSON(jsonContent) {
+                            var quill = new Quill('#dummy-container'); // Use the dummy container ID
+                            quill.setContents(jsonContent);
+                            return quill.root.innerHTML;
+                        }
+                    </script>
+                </div>
+            </div>
+        </content>
+    </div>
+</body>
+</html>

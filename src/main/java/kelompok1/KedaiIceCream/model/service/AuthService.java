@@ -11,6 +11,7 @@ import kelompok1.KedaiIceCream.model.dto.LoginUser;
 import kelompok1.KedaiIceCream.model.dto.RegisterUser;
 import kelompok1.KedaiIceCream.model.entity.User;
 import kelompok1.KedaiIceCream.model.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class AuthService implements UserDetailsService {
 
@@ -44,11 +46,17 @@ public class AuthService implements UserDetailsService {
     @Transactional
     public User authenticate(LoginUser request) {
         User user = userRepository.findByUsername(request.getUsername());
-        if (user != null && passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            return user;
-        } else {
-            return null;
+        if (user != null) {
+            boolean matches = passwordEncoder.matches(request.getPassword(), user.getPassword());
+            log.info("Entered password: {}", request.getPassword());
+            log.info("Stored password: {}", user.getPassword());
+            log.info("Matches: {}", matches);
+            if (matches) {
+                return user;
+            }
         }
+        log.info(request.getUsername());
+        return null;
     }
 
     // Get all users
