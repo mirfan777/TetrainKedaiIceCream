@@ -25,12 +25,17 @@ import jakarta.validation.Valid;
 import kelompok1.KedaiIceCream.model.entity.Blog;
 import kelompok1.KedaiIceCream.model.service.BlogService;
 import kelompok1.KedaiIceCream.util.FileUploadUtil;
+import lombok.extern.slf4j.Slf4j;
 
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.springframework.web.multipart.MultipartFile;
 
+@Slf4j
 @Controller
 @RequestMapping("/admin/blog")
 public class BlogController {
@@ -119,7 +124,7 @@ public class BlogController {
 
         model.addAttribute("blog", existingBlog);
         model.addAttribute("activeUrl", "/admin/blog/edit");
-        model.addAttribute("pageTitle", "edit BLOG");
+        model.addAttribute("pageTitle", "EDIT BLOG");
         model.addAttribute("categories", blogService.getAllBlogCategories());
         return "pages/admin/blog/edit";
     }
@@ -127,14 +132,26 @@ public class BlogController {
     @PostMapping("/edit/{id}")
     public String editBlog(@PathVariable("id") Long id, @Valid @ModelAttribute("blog") Blog blog, BindingResult bindingResult, @RequestParam(value = "imageFile", required = false) MultipartFile file, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
         Blog existingBlog = blogService.getBlogById(id);
-        
+
         if (bindingResult.hasErrors()) {
             // Add categories to the model
             model.addAttribute("categories", blogService.getAllBlogCategories());
             return "pages/admin/blog/edit"; // Return the same view to display errors
         }
 
-        if (file != null    ) {
+        String currentImagePath = existingBlog.getImage();
+
+        if (file != null && !file.isEmpty()) {
+            // Delete the current image file if it exists
+            if (currentImagePath != null && !currentImagePath.isEmpty()) {
+                String fullImagePath = request.getServletContext().getRealPath("") + File.separator + currentImagePath.substring(1);
+                try {
+                    Files.deleteIfExists(Paths.get(fullImagePath));
+                } catch (IOException e) {
+                    log.error("Failed to delete current image file: " + fullImagePath, e);
+                }
+            }
+
             // Generate unique filename
             String fileName = FileUploadUtil.generateUniqueFileName(file.getOriginalFilename());
 
@@ -159,16 +176,43 @@ public class BlogController {
         }
 
         redirectAttributes.addFlashAttribute("status", true);
-        redirectAttributes.addFlashAttribute("statusMessage", "data berhasil diupdate");
-        blogService.updateBlog(blog , existingBlog);
+        redirectAttributes.addFlashAttribute("statusMessage", "Data berhasil diupdate");
+        blogService.updateBlog(blog, existingBlog);
         return "redirect:/admin/blog";
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteBlog    (@PathVariable("id") Long id,  Model model ,RedirectAttributes redirectAttributes ) {        
-        redirectAttributes.addFlashAttribute("status", true);
-        redirectAttributes.addFlashAttribute("statusMessage", "data berhasil dihapus");
-        blogService.deleteById(id);
+    public String deleteBlog(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        Blog existingBlog = blogService.getBlogById(id);
+
+        if (existingBlog != null) {
+            // Get the image path from the existing blog
+            String imagePath = existingBlog.getImage();
+
+            if (imagePath != null && !imagePath.isEmpty()) {
+                // Get the ServletContext to get the real path of the project
+                ServletContext servletContext = request.getServletContext();
+
+                // Construct the full path of the image file
+                String fullImagePath = servletContext.getRealPath("") + File.separator + imagePath.substring(1);
+
+                // Delete the image file
+                try {
+                    Files.deleteIfExists(Paths.get(fullImagePath));
+                } catch (IOException e) {
+                    log.error("Failed to delete image file: " + fullImagePath, e);
+                }
+            }
+
+            // Delete the blog post
+            blogService.deleteById(id);
+            redirectAttributes.addFlashAttribute("status", true);
+            redirectAttributes.addFlashAttribute("statusMessage", "Data berhasil dihapus");
+        } else {
+            redirectAttributes.addFlashAttribute("status", false);
+            redirectAttributes.addFlashAttribute("statusMessage", "Data gagal ditemukan");
+        }
+
         return "redirect:/admin/blog";
     }
 }

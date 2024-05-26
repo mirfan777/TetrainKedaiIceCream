@@ -6,19 +6,16 @@
     <link th:href="@{/output.css}" rel="stylesheet" />
     <title>Document</title>
 </head>
-<body>
+<body >
 <div class="flex justify-center items-center w-full h-screen">
     <form method="post" th:action="@{/auth/login}" th:object="${user}">
       <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-        <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card w-96 bg-base-100 shadow-xl border ">
             <div class="card-body">
                 <h2 class="card-title flex justify-center mb-5">Login</h2>
                 <div th:if="${session?.error_message}" class="alert alert-error">
                   <div class="flex">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
-                      </svg>
-                      <label th:text="${session?.error_message}"></label>
+                      <label th:text="${session?.error_message}" class="text-white"></label>
                   </div>
               </div>
                 <label class="form-control w-full max-w-xs">

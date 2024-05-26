@@ -15,75 +15,66 @@
      function showContent() {
          document.querySelector("#main").style.display = "block";
      }
-     </script> -->
+     </script>
  
-     <!-- <div rel="preload" id="loader" class=" absolute min-h-screen w-full z-50 flex justify-center items-center" style="background-color: #f9728b">
+     <div rel="preload" id="loader" class=" absolute min-h-screen w-full z-50 flex justify-center items-center" style="background-color: #f9728b">
        <img rel="preload" width="100px" height="100px" th:src="@{/images/gif/tr-load.gif}" alt="" />
      </div> -->
 
     <!-- alert -->
     <div th:replace="~{components/alert_modal :: alert()}"></div>
-    <div class="">
-        <div class="drawer lg:drawer-open">
-            <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-            <div class="drawer-content flex flex-col">
-                <!-- Navbar -->
-                <div class="navbar bg-base-100 p-0 ">
-                    <div class="flex">
-                      <label class="btn btn-square btn-ghost lg:hidden " for="my-drawer-2" >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                      </label>
-                    </div>
-                    <div class="flex justify-center w-full lg:w-fit">
-                      <label class="lg:px-10 text-xl font-bold" th:text="${pageTitle}"></label>
-                    </div>
-                  </div>
-                <!-- endNavbar -->
 
-                <!-- Page content here -->
-                <th:block th:replace="${content}"/>
-            </div>
-            <div class="drawer-side ">
-                <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-                <ul class="menu border-0 p-4 pr-0 w-80 min-h-full shadow-lg border-solid bg-[#E58A94] lg:backdrop-blur-sm  text-white  [&_li>*:not(ul):not(.menu-title):not(details):active]:bg-white [&_li>*:not(ul):not(.menu-title):not(details):active]:text-[#E58A94] [&_li>*:not(ul):not(.menu-title):not(details).active]:bg-white [&_li>*:not(ul):not(.menu-title):not(details).active]:text-[#E58A94] [&_li>details>summary:active]:bg-white [&_li>details>summary:active]:text-[#E58A94]" >
-                    <!-- Sidebar content here -->
-                   <div class="flex justify-center active">
-                    <img width="150" th:src="@{/images/image/logo.png}" alt="">
-                   </div>
-                    <div class="flex flex-col my-3">
-                      <h1 class="text-2xl font-bold">HELLO ADMON</h1>
-                      <p class="text-xs font-thin pb-5 ">admin@gmail.com</p>
-                    </div>
-                    <li>
-                      <details open>
-                      <summary class="rounded-tr-none rounded-br-none font-bold">Main</summary>
-                      <ul>
-                          <li><a class="rounded-tr-none rounded-br-none" h:classappend="${activeUrl == '/admin/main/landing'} ? 'active bg-white'" href="/admin/main/landing">landing page</a></li>
-                          <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/about'} ? 'active'" href="/admin/main/about">about</a></li>
-                          <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/contact'} ? 'active'" href="/admin/main/contact">contact</a></li>
-                      </ul>
-                      </details>
-                    </li>
-                    <li >
-                        <details open>
-                        <summary class="rounded-tr-none rounded-br-none font-bold">Blogs</summary>
-                        <ul>
-                            <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/blog'} ? 'active'" href="/admin/blog">list blogs</a></li>
-                            <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/blog/create'} ? 'active'" href="/admin/blog/create">+ create new blog</a></li>
-                        </ul>
-                        </details>
-                    </li>
-                    <li>
-                      <details open>
-                      <summary class="rounded-tr-none rounded-br-none font-bold" >Menus</summary>
-                      <ul>
-                          <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/menu'} ? 'active'" href="/admin/menu">Menu</a></li>
-                          <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/menu/create'} ? 'active'" href="/admin/menu/create">+ Tambah Menu</a></li>
-                      </ul>
-                      </details>
-                    </li>
-                </ul>
-            </div>
+    <div class="drawer lg:drawer-open overflow-x-hidden " >
+        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col">
+            <!-- Navbar -->
+            <div class="navbar bg-base-100 p-0 ">
+                <div class="flex">
+                  <label class="btn btn-square btn-ghost lg:hidden " for="my-drawer-2" >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                  </label>
+                </div>
+                <div class="flex justify-center w-full lg:w-fit">
+                  <label class="lg:px-10 text-xl font-bold" th:text="${pageTitle}"></label>
+                </div>
+              </div>
+            <!-- endNavbar -->
+
+            <!-- Page content here -->
+            <th:block th:replace="${content}"/>
+        </div>
+        <div class="drawer-side min-h-full">
+            <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
+            <ul class="sticky menu menu-lg border-0 p-4 pr-0 w-96 h-full shadow-lg border-solid bg-cherry-900 lg:backdrop-blur-sm  text-white stroke-black  [&_li>*:not(ul):not(.menu-title):not(details):active]:bg-white [&_li>*:not(ul):not(.menu-title):not(details):active]:text-cherry-900 [&_li>*:not(ul):not(.menu-title):not(details).active]:bg-white [&_li>*:not(ul):not(.menu-title):not(details).active]:text-[#E58A94] [&_li>details>summary:active]:bg-white [&_li>details>summary:active]:text-[#E58A94]" >
+                <!-- Sidebar content here -->
+                <div class="flex justify-center active">
+                <img width="150" th:src="@{/images/image/logo.png}" alt="">
+                </div>
+                <div class="flex flex-col my-3">
+                  <h1 class="text-2xl font-bold">HELLO ADMON</h1>
+                  <p class="text-xs font-thin pb-5 ">admin@gmail.com</p>
+                </div>
+                <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/main'} ? 'active bg-white'" href="/admin/main">landing page</a></li>
+                <li >
+                    <details open>
+                    <summary class="rounded-tr-none rounded-br-none">Blogs</summary>
+                    <ul>
+                        <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/blog'} ? 'active'" href="/admin/blog">list blogs</a></li>
+                        <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/blog/create'} ? 'active'" href="/admin/blog/create">+ create new blog</a></li>
+                    </ul>
+                    </details>
+                </li>
+                <li>
+                  <details open>
+                  <summary class="rounded-tr-none rounded-br-none" >Menus</summary>
+                  <ul>
+                      <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/menu/create'} ? 'active'" href="/admin/menu/create">+ Tambah Menu</a></li>
+                      <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/menu'} ? 'active'" href="/admin/menu">Menu</a></li>
+                      <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/menu/review '} ? 'active'" href="/admin/menu/review">Review</a></li>
+                  </ul>
+                  </details>
+                </li>
+            </ul>
         </div>
     </div>
 </body>

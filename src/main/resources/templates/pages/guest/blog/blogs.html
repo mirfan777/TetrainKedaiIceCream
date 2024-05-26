@@ -48,10 +48,10 @@
     
                 <!-- List of Blog Cards -->
                 <div class="grid 2xl:grid-cols-2 grid-cols-1 place-content-center place-items-center gap-10 w-full">
-                    <div class="card lg:card-side bg-base-100 shadow-xl lg:h-40 lg:w-96" th:each="blog : ${blogs}">
-                        <figure><img class=" object-cover" th:src="${blog.image}" alt="Blog Image" /></figure>
+                    <div class="card lg:card-side bg-base-100 shadow-xl lg:h-40 lg:w-full" th:each="blog : ${blogs}">
+                        <figure  th:style="'background-image: url(' + ${blog.image} + '); background-size: cover; background-repeat: no-repeat;'"><img class="h-40 w-96 object-contain backdrop-blur-xl" th:src="${blog.image}" alt="Blog Image" /></figure>
                         <div class="card-body p-2 lg:w-fit">
-                            <span class="badge " th:text="${blog.category.title}"></span>
+                            <span class="badge text-white bg-mocha-900" th:text="${blog.category.title}"></span>
                             <h2 class="card-title text-ellipsis text-nowrap" th:text="${blog.title}">Ice Cream One Scoop</h2>
                             <p class="overflow-y-auto font-light text-sm th:text="${blog.description}"">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti dolorum qui numquam soluta odit recusandae autem ipsam sit quae in exercitationem ullam vel inventore, aliquam incidunt veritatis impedit et ex!</p>
                             <div class="card-actions justify-end">

@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body th:fragment="alert()">
-    <!-- <script type="module" th:src="@{/sweetalert2.all.js}"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
     <script th:inline="javascript">
         /*<![CDATA[*/
         window.onload = function() {
             const status = /*[[${status}]]*/ null;
-            const statusMessage = /*[[${statusMessage}]]*/ "no message";
             const modal = document.getElementById('status_modal');
 
-            if(status != null){
-                if(status == true){
-                Swal.fire({
-                    icon: "success",
-                    title: "Success",
-                    text: statusMessage,
-                    });
-            }else{
-                Swal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: statusMessage,
-                    });
-            }
+            if (status) {
+                // Open the modal if there are validation errors
+                modal.showModal();
             }
         }
         /*]]>*/
     </script>
+
+    <dialog id="status_modal" class="modal">
+        <div class="modal-box">
+                <div th:if="${status}" class="flex flex-col justify-center items-center gap-5 my-5">
+                    <img class="w-[200px] h-[200px]" th:src="@{/images/gif/success.gif}" alt="success">
+                    <p th:text="${statusMessage}" class="text-3xl font-bold my-5"></p>
+                </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
 </body>
 </html>

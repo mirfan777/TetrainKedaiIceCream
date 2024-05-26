@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/main")
 public class MainController {
 
-    @GetMapping("/landing")
+    @GetMapping
     public String viewBlog(Model model){
-        model.addAttribute("activeUrl", "/admin/main/landing");
+        model.addAttribute("activeUrl", "/admin/main");
         model.addAttribute("pageTitle", "LANDING PAGE");
-        return "pages/admin/main/landing";
+        return "pages/admin/main/main";
     }
 
 }

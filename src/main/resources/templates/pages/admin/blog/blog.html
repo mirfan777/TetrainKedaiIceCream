@@ -48,7 +48,7 @@
             <div class="flex justify-center w-full mt-5">
                 <div class="grid 2xl:grid-cols-4 md:grid-cols-2 place-content-center place-items-center 2xl gap-10 w-full">
                     <div class="card card-compact w-full lg:w-72 lg:h-96 bg-base-100 shadow-xl" th:each="blog : ${blogs}">
-                        <figure><img class="h-fit w-fit" th:src="${blog.image}" alt="Blog Image" /></figure>
+                        <figure  th:style="'background-image: url(' + ${blog.image} + '); background-size: cover; background-repeat: no-repeat;'"><img class="h-40 w-full object-contain backdrop-blur-xl" th:src="${blog.image}" alt="Blog Image" /></figure>
                         <div class="card-body">
                             <h2 class="card-title" th:text="${blog.title}">Blog Title</h2>
                             <p class="overflow-y-hidden h-5 text-ellipsis" th:text="${blog.description}">Blog desc...</p>

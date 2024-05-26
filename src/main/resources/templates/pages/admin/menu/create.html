@@ -25,12 +25,34 @@
                     <input name="name_varian_${variantCounter}" type="text" placeholder="Nama Produk" class="input input-bordered w-full" />
                   </label>
                   <label class="form-control w-full">
+                  <div class="label">
+                      <span class="label-text">Harga</span>
+                      <span class="label-text-alt text-red-600">error</span>
+                    </div>
+                    <input type="number" placeholder="Harga" name="price_varian_${variantCounter}" class="input input-bordered w-full" />
+                  </label>
+                  <label class="form-control w-full">
+                    <div class="label">
+                      <span class="label-text">Discount</span>
+                      <!-- <span class="label-text-alt text-red-600">error</span> -->
+                    </div>
+                    <input type="number" placeholder="discount"  name="discount_varian_${variantCounter}" class="input input-bordered w-full" />
+                  </label>
+                  <label class="form-control w-full">
+                    <div class="label">
+                      <span class="label-text">Promo</span>
+                      <span class="label-text-alt text-red-600">error</span>
+                    </div>
+                    <input type="text" placeholder="Promo" name="promo_varian_${variantCounter}" class="input input-bordered w-full" />
+                  </label>
+                  <label class="form-control w-full">
                     <div class="label">
                       <span class="label-text">Deskripsi</span>
                       <span class="label-text-alt text-red-600">error</span>
                     </div>
                     <textarea name="description_varian_${variantCounter}" class="textarea textarea-bordered" placeholder="Deskripsi Produk"></textarea>
                   </label>
+                  
                   <label class="form-control w-full">
                     <div class="label">
                       <span class="label-text">Thumbnail</span>
@@ -39,7 +61,7 @@
                     <input type="file" class="file-input file-input-bordered w-full" />
                   </label>
                   <div class="card-actions justify-end">
-                    <button class="btn btn-primary delete-variant" id="delete-variant-${variantCounter}">hapus</button>
+                    <button class="btn btn bg-red-600 text-white delete-variant" id="delete-variant-${variantCounter}">hapus</button>
                   </div>
                 </div>
               </div>
@@ -75,32 +97,67 @@
     
     <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
         <content class="px-10">
+          
             <form action="" id="menu-form">
+              <div>
+                <button class="btn btn-primary" onclick="addVariantMenu()" type="button">Tambah Variasi Menu</button>
+                <button class="btn btn-primary">Submit</button>
+              </div>
               <!-- kategori -->
               <label class="form-control w-full">
                 <div class="label">
                   <span class="label-text">Kategori</span>
-                  <span class="label-text-alt text-red-600">error</span>
+                  <!-- <span class="label-text-alt text-red-600">error</span> -->
                 </div>
                 <select class="select select-bordered w-full ">
-                  <option disabled selected>Who shot first?</option>
-                  <option>Han Solo</option>
-                  <option>Greedo</option>
+                  <option disabled selected>kategori menu</option>
+                  <option>ice cream</option>
+                  <option>minuman</option>
                 </select>
               </label>
               <!-- nama -->
               <label class="form-control w-full">
                 <div class="label">
                   <span class="label-text">Nama</span>
-                  <span class="label-text-alt text-red-600">error</span>
+                  <!-- <span class="label-text-alt text-red-600">error</span> -->
                 </div>
                 <input type="text" placeholder="Nama Produk" class="input input-bordered w-full" />
+              </label>
+              <!-- price -->
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text">Harga</span>
+                  <!-- <span class="label-text-alt text-red-600">error</span> -->
+                </div>
+                <label class="input input-bordered flex items-center gap-2">
+                  RP
+                  <input type="number" placeholder="Harga" class="grow" />
+                </label>
+              </label>
+              <!-- discount -->
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text">Discount</span>
+                  <!-- <span class="label-text-alt text-red-600">error</span> -->
+                </div>
+                <label class="input input-bordered flex items-center gap-2">
+                  %
+                  <input type="number" placeholder="discount" class="grow" />
+                </label>
+              </label>
+              <!-- promo -->
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text">Promo</span>
+                  <!-- <span class="label-text-alt text-red-600">error</span> -->
+                </div>
+                <input type="number" placeholder="Promo" class="input input-bordered w-full" />
               </label>
               <!-- deskripsi -->
               <label class="form-control w-full">
                 <div class="label">
                   <span class="label-text">Deskripsi</span>
-                  <span class="label-text-alt text-red-600">error</span>
+                  <!-- <span class="label-text-alt text-red-600">error</span> -->
                 </div>
                 <textarea class="textarea textarea-bordered" placeholder="Deskripsi Produk"></textarea>
               </label>
@@ -117,11 +174,6 @@
     
               <!-- variants -->
               <div id="variants-container"></div>
-    
-              <div>
-                <button class="btn btn-primary" onclick="addVariantMenu()" type="button">Tambah Variasi Menu</button>
-                <button class="btn btn-primary">Submit</button>
-              </div>
             </form>
         </content>
     </div>
