@@ -10,68 +10,83 @@
     <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
         <content class="px-10">
           <a class="btn btn-primary mb-5" href="menu/create">+ tambah data</a>
-          <div class="flex flex-col gap-5 rounded-lg mb-5">
-            <div class="flex gap-5">
-              <input type="text" placeholder="Type here" class="input input-bordered w-full " />
-              <button class="btn btn-primary ">Search</button>
-            </div>
-            <div class="flex items-center gap-5">
-              <div class="flex gap-2">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <div class="flex w-full mb-10">
+            <div class="join">
+              <div class="indicator">
+                <button class="btn btn-outline btn-success join-item">Search</button>
+              </div>
+              <div>
+                <div>
+                  <input class="input input-bordered join-item w-96 lg:w-[1000px]" placeholder="Search"/>
+                </div>
+              </div>
+              <div class="dropdown dropdown-bottom dropdown-end">
+                <div tabindex="0" role="button" class="btn join-item">
+                  <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25"/>
                 </svg>
                 <p class="font-semibold">filter</p>
+                </div>
+                <ul tabindex="0" class="dropdown-content z-[1] menu p-5 gap-2 shadow bg-base-100 rounded-box w-64">
+                  <li>
+                    <select class="select select-bordered ">
+                      <option disabled selected>Small</option>
+                      <option>Small Apple</option>
+                      <option>Small Orange</option>
+                      <option>Small Tomato</option>
+                    </select>
+                  </li>
+                  <li>
+                    <select class="select select-bordered ">
+                      <option disabled selected>Small</option>
+                      <option>Small Apple</option>
+                      <option>Small Orange</option>
+                      <option>Small Tomato</option>
+                    </select>
+                  </li>
+                  <li>
+                    <select class="select select-bordered ">
+                      <option disabled selected>Small</option>
+                      <option>Small Apple</option>
+                      <option>Small Orange</option>
+                      <option>Small Tomato</option>
+                    </select>
+                  </li>
+                </ul>
               </div>
-              <select class="select select-bordered select-sm ">
-                <option disabled selected>Small</option>
-                <option>Small Apple</option>
-                <option>Small Orange</option>
-                <option>Small Tomato</option>
-              </select>
-              <select class="select select-bordered select-sm ">
-                <option disabled selected>Small</option>
-                <option>Small Apple</option>
-                <option>Small Orange</option>
-                <option>Small Tomato</option>
-              </select>
-              <select class="select select-bordered select-sm ">
-                <option disabled selected>Small</option>
-                <option>Small Apple</option>
-                <option>Small Orange</option>
-                <option>Small Tomato</option>
-              </select>
             </div>
           </div>
-            <div class="card lg:card-side bg-base-100 shadow-xl lg:h-40">
-                <figure><img class="lg:w-40" src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album"/></figure>
-                <div class="card-body p-2 lg:w-fit">
-                  <h2 class="card-title">Ice Cream One Scoop</h2>
-                  <p class="overflow-y-auto font-light text-sm ">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, at. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed voluptatem blanditiis obcaecati saepe iste quas consequatur optio, mollitia suscipit tenetur, laborum voluptate ratione facere ut dolorem, quo itaque vitae? Quasi quaerat veniam exercitationem voluptatibus dicta. Doloremque optio illo officia consequatur blanditiis vel ipsam esse, alias dolorem aperiam ullam facilis hic expedita quaerat. Debitis veritatis provident tempore, cumque laudantium eos reiciendis perspiciatis ad omnis numquam expedita iusto? Accusamus non repellat facilis dicta laboriosam error adipisci consequatur itaque? Qui reprehenderit maxime libero voluptatem odio excepturi, inventore voluptates fuga sapiente illum animi itaque ducimus ab aut fugit, asperiores distinctio esse voluptate laboriosam corporis. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti dolorum qui numquam soluta odit recusandae autem ipsam sit quae in exercitationem ullam vel inventore, aliquam incidunt veritatis impedit et ex!</p>
-                  
-                  <div class="rating">
-                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" disabled/>
-                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" disabled selected/>
-                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" disabled/>
-                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" disabled/>
-                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" disabled/>
-                  </div>
-                  <div class="flex justify-between">
-                    <div class="flex gap-2 items-center">
-                      <h2 class="font-bold line-through">RP 12.000</h2>
-                      <h2 class="font-bold text-red-600">RP 6.000</h2>
-                      <div class="badge bg-red-600 text-white gap-2">
-                        Diskon 50%
-                      </div>
-                    </div>
-                  <div class="card-actions justify-between">
-                    <div class="flex gap-2">
-                        <button class="btn btn-sm btn-primary">Edit</button>
-                    </div>
-                  </div>
-                  </div>
-                  
+          <!-- list menu cards  -->
+          <div th:each="menu : ${menus}" class="card lg:card-side bg-base-100 shadow-xl h-96 lg:h-40 my-10 border">
+            <figure  th:style="'background-image: url(' + ${menu.image} + '); background-size: cover; background-repeat: no-repeat;'"><img class="h-56 w-full lg:w-80 object-contain backdrop-blur-xl" th:src="${menu.image}" alt="Menu Image" /></figure>
+            <div class="card-body p-2 lg:w-fit">
+                <h2 class="card-title" th:text="${menu.title}">Menu Title</h2>
+                <p class="overflow-y-auto font-light text-sm" th:text="${menu.description}">Menu Description</p>                 
+                <div class="rating">
+                  <input type="radio" th:name="'rating-' + ${menu.id}" class="hidden" th:checked="${menu.averageRating >= 0}" disabled />
+                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 1}" disabled />
+                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 2}" disabled />
+                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 3}" disabled />
+                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 4}" disabled />
+                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 5}" disabled />
                 </div>
-              </div>
+                <div class="flex justify-between">
+                    <div class="flex gap-2 items-center">
+                        <h2 class="font-bold line-through" th:text="${'Rp ' + menu.price}">Rp 12.000</h2>
+                        <h2 class="font-bold text-red-600" th:if="${menu.discount != null}" th:text="${'Rp ' + (menu.price - (menu.price * menu.discount / 100))}">Rp 6.000</h2>
+                        <div class="badge bg-red-600 text-white gap-2" th:if="${menu.discount > 0}" th:text="${'Diskon ' + menu.discount + '%'}">
+                            Diskon 50%
+                        </div>
+                    </div>
+                    <div class="card-actions justify-between">
+                        <div class="flex gap-2">
+                            <a th:href="@{/admin/menu/{id}/review(id=${menu.id})}" class="btn btn-sm btn-outline">Lihat Review</a>
+                            <a th:href="@{/admin/menu/{id}/edit(id=${menu.id})}" class="btn btn-sm btn-outline">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
               
               <!-- pagination -->
               <div class="flex justify-center mt-5">

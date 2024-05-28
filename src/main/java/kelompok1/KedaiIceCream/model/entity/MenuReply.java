@@ -15,7 +15,7 @@ public class MenuReply {
     private Long id;
 
     @OneToOne(mappedBy = "menuReply")
-    private MenuComment menuComment;
+    private MenuReview menuReview;
 
     @ManyToOne
     @JoinColumn(name = "replied_by", referencedColumnName = "id")
@@ -30,6 +30,7 @@ public class MenuReply {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
 
     
 }

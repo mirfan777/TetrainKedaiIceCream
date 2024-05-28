@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- <html lang="en" class="">
+<html lang="en" class="" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,48 +7,70 @@
     <link th:href="@{/output.css}" rel="stylesheet">
 </head>
 <body>
-    <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
-        <content class="px-10">
-            <form action="" id="menu-form">
-              <!-- kategori -->
-              <label class="form-control w-full">
+<div th:replace="~{components/admin_layout :: adminLayout(~{::content})}">
+    <content class="px-10">
+        <form th:action="@{/admin/main}" th:object="${mainData}" method="post" id="menu-form">
+            <!-- contact_phone -->
+            <label class="form-control w-full">
                 <div class="label">
-                  <span class="label-text">Kategori</span>
-                  <span class="label-text-alt text-red-600">error</span>
+                    <span class="label-text">Nomor Telepon</span>
                 </div>
-                <select class="select select-bordered w-full ">
-                  <option disabled selected>Who shot first?</option>
-                  <option>Han Solo</option>
-                  <option>Greedo</option>
-                </select>
-              </label>
-              <!-- nama -->
-              <label class="form-control w-full">
+                <input type="text" placeholder="Nomor Telepon" class="input input-bordered w-full"
+                       th:field="*{contact_phone}" th:value="${mainData.contact_phone}"/>
+            </label>
+            <!-- gmap_link -->
+            <label class="form-control w-full">
                 <div class="label">
-                  <span class="label-text">Nama</span>
-                  <span class="label-text-alt text-red-600">error</span>
+                    <span class="label-text">Link Google Maps</span>
                 </div>
-                <input type="text" placeholder="Nama Produk" class="input input-bordered w-full" />
-              </label>
-              <!-- deskripsi -->
-              <label class="form-control w-full">
+                <input type="text" placeholder="Link Google Maps" class="input input-bordered w-full"
+                       th:field="*{gmap_link}" th:value="${mainData.gmap_link}"/>
+            </label>
+            <!-- address -->
+            <label class="form-control w-full">
                 <div class="label">
-                  <span class="label-text">Deskripsi</span>
-                  <span class="label-text-alt text-red-600">error</span>
+                    <span class="label-text">Alamat</span>
                 </div>
-                <textarea class="textarea textarea-bordered" placeholder="Deskripsi Produk"></textarea>
-              </label>
-    
-
-    
-              <div>
-                <button class="btn btn-primary" onclick="addVariantMenu()" type="button">Tambah Variasi Menu</button>
-                <button class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-        </content>
-    </div>
-
-    
+                <textarea class="textarea textarea-bordered" placeholder="Alamat"
+                          th:field="*{address}" th:text="${mainData.address}"></textarea>
+            </label>
+            <!-- instagram_link -->
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Link Instagram</span>
+                </div>
+                <input type="text" placeholder="Link Instagram" class="input input-bordered w-full"
+                       th:field="*{instagram_link}" th:value="${mainData.instagram_link}"/>
+            </label>
+            <!-- twitter_link -->
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Link Twitter</span>
+                </div>
+                <input type="text" placeholder="Link Twitter" class="input input-bordered w-full"
+                       th:field="*{twitter_link}" th:value="${mainData.twitter_link}"/>
+            </label>
+            <!-- facebook_link -->
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Link Facebook</span>
+                </div>
+                <input type="text" placeholder="Link Facebook" class="input input-bordered w-full"
+                       th:field="*{facebook_link}" th:value="${mainData.facebook_link}"/>
+            </label>
+            <!-- youtube_link -->
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Link YouTube</span>
+                </div>
+                <input type="text" placeholder="Link YouTube" class="input input-bordered w-full"
+                       th:field="*{youtube_link}" th:value="${mainData.youtube_link}"/>
+            </label>
+            <div>
+                <button class="btn btn-primary mt-10">Submit</button>
+            </div>
+        </form>
+    </content>
+</div>
 </body>
-</html>
+</html> 

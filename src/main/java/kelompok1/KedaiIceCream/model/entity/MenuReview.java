@@ -7,9 +7,9 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "menu_comments")
+@Table(name = "menu_reviews")
 @Data
-public class MenuComment {
+public class MenuReview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,6 +21,10 @@ public class MenuComment {
     @NotBlank(message = "name is required")
     @Column(name = "name")
     private String name;
+
+    @NotBlank(message = "rating is required")
+    @Column(name = "rating")
+    private Integer rating;
 
     @NotBlank(message = "body is required")
     @Column(name = "body", columnDefinition = "TEXT")

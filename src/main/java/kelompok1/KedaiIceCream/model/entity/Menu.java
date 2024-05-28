@@ -7,6 +7,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "menus")
@@ -50,10 +51,28 @@ public class Menu {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "menu")
-    private List<MenuComment> menuComments;
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    private List<MenuReview> menuReviews;
 
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MenuVariant> variants = new ArrayList<>();
+    public int getAverageRating() {
+        if (menuReviews == null || menuReviews.isEmpty()) {
+            return 0; // Return 0 if there are no comments
+        }
 
+        List<Integer> ratings = menuReviews.stream()
+                .filter(comment -> comment.getRating() != null)
+                .map(comment -> comment.getRating())
+                .collect(Collectors.toList());
+
+        if (ratings.isEmpty()) {
+            return 0; // Return 0 if there are no ratings
+        }
+
+        double averageRating = ratings.stream()
+                .mapToInt(Integer::intValue)
+                .average()
+                .orElse(0.0);
+
+        return (int) Math.round(averageRating);
+    }
 }

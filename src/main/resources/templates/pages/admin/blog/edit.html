@@ -50,7 +50,7 @@
             </div>
             <figure class="h-1/4 w-1/4"  th:style="'background-image: url(' + ${blog.image} + '); background-size: cover; background-repeat: no-repeat;'"><img class=" object-contain backdrop-blur-xl" th:src="${blog.image}" alt="Blog Image" /></figure>
             <input type="file" name="imageFile" id="imageFile" class="file-input file-input-bordered w-full" />
-        </div>
+          </div>
 
             <input type="hidden" th:field="*{content}" id="content-input">
             <div id="editor" class="mb-5 min-h-96 "></div>
