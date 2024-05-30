@@ -15,7 +15,7 @@ public class MainData {
     private String gmap_link;
     private String address;
     private String instagram_link;
-    private String twitter_link;
+    private String email;
     private String facebook_link;
     private String youtube_link;
 }

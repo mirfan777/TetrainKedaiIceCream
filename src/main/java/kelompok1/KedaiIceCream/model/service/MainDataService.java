@@ -34,7 +34,7 @@ public class MainDataService {
             existingMainData.setGmap_link(mainData.getGmap_link());
             existingMainData.setAddress(mainData.getAddress());
             existingMainData.setInstagram_link(mainData.getInstagram_link());
-            existingMainData.setTwitter_link(mainData.getTwitter_link());
+            existingMainData.setEmail(mainData.getEmail());
             existingMainData.setFacebook_link(mainData.getFacebook_link());
             existingMainData.setYoutube_link(mainData.getYoutube_link());
             mainDataRepository.save(existingMainData);

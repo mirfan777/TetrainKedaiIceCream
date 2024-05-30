@@ -110,7 +110,7 @@
                       </div>
                       <div th:if="${review.menuReply == null}">
                         <!-- Form untuk membalas review sebagai admin -->
-                        <!-- <form th:action="@{/menu/review/reply}" th:object="${newReply}" method="post">
+                        <form th:action="@{/menu/review/reply}" th:object="${newReply}" method="post">
                           <input type="hidden" th:field="*{menuReview.id}" />
                           <div class="form-control">
                             <label class="label">
@@ -119,7 +119,7 @@
                             <textarea th:field="*{body}" class="textarea textarea-bordered" placeholder="Write your reply"></textarea>
                           </div>
                           <button type="submit" class="btn btn-primary mt-2">Reply</button>
-                        </form> -->
+                        </form>
                       </div>
                       <div class="divider"></div>
                     </div>

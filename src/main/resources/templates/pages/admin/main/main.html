@@ -34,6 +34,14 @@
                 <textarea class="textarea textarea-bordered" placeholder="Alamat"
                           th:field="*{address}" th:text="${mainData.address}"></textarea>
             </label>
+            <!-- EMAIL -->
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Email</span>
+                </div>
+                <input type="text" placeholder="Email" class="input input-bordered w-full"
+                       th:field="*{email}" th:value="${mainData.email}"/>
+            </label>
             <!-- instagram_link -->
             <label class="form-control w-full">
                 <div class="label">
@@ -41,14 +49,6 @@
                 </div>
                 <input type="text" placeholder="Link Instagram" class="input input-bordered w-full"
                        th:field="*{instagram_link}" th:value="${mainData.instagram_link}"/>
-            </label>
-            <!-- twitter_link -->
-            <label class="form-control w-full">
-                <div class="label">
-                    <span class="label-text">Link Twitter</span>
-                </div>
-                <input type="text" placeholder="Link Twitter" class="input input-bordered w-full"
-                       th:field="*{twitter_link}" th:value="${mainData.twitter_link}"/>
             </label>
             <!-- facebook_link -->
             <label class="form-control w-full">

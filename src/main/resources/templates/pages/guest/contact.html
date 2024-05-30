@@ -19,25 +19,31 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="rounded-lg overflow-hidden">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11672.945750644447!2d-122.42107853750231!3d37.7730507907087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858070cc2fbd55%3A0xa71491d736f62d5c!2sGolden%20Gate%20Bridge!5e0!3m2!1sen!2sus!4v1619524992238!5m2!1sen!2sus"
+                                th:src="${mainData.gmap_link}"
                                 width="100%" height="480" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                         <div>
                             <div class="max-w-full mx-auto rounded-lg overflow-hidden">
                                 <div class="px-6 py-4">
-                                    <h3 class="text-lg font-medium text-gray-900">Our Address</h3>
-                                    <p class="mt-1 text-gray-600">123 Main St, San Francisco, CA 94105</p>
+                                    <h3 class="text-lg font-medium text-gray-900" >Alamat Kami</h3>
+                                    <p class="mt-1 text-gray-600" th:text="${mainData.address}">123 Main St, San Francisco, CA 94105</p>
                                 </div>
                                 <div class="border-t border-gray-200 px-6 py-4">
-                                    <h3 class="text-lg font-medium text-gray-900">Hours</h3>
-                                    <p class="mt-1 text-gray-600">Monday - Friday: 9am - 5pm</p>
-                                    <p class="mt-1 text-gray-600">Saturday: 10am - 4pm</p>
-                                    <p class="mt-1 text-gray-600">Sunday: Closed</p>
+                                    <h3 class="text-lg font-medium text-gray-900">Email</h3>
+                                    <p class="mt-1 text-gray-600" th:text="${mainData.email}"></p>
                                 </div>
                                 <div class="border-t border-gray-200 px-6 py-4">
-                                    <h3 class="text-lg font-medium text-gray-900">Contact</h3>
-                                    <p class="mt-1 text-gray-600">Email: info@example.com</p>
-                                    <p class="mt-1 text-gray-600">Phone: +1 23494 34993</p>
+                                    <h3 class="text-lg font-medium text-gray-900">Contact Phone</h3>
+                                    <p class="mt-1 text-gray-600" th:text="${mainData.contact_phone}"></p>
+                                </div>
+                                <div class="border-t border-gray-200 px-6 py-4">
+                                    <h3 class="text-lg font-medium text-gray-900">Media Social</h3>
+                                    <div class="flex gap-5">
+                                        <a th:href="${mainData.instagram_link}"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24"><path d="M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z"></path></svg></a>
+                                        <a th:href="${mainData.youtube_link}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path></svg></a>
+                                        <a th:href="${mainData.facebook_link}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

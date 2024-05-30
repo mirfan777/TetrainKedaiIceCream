@@ -1,14 +1,22 @@
 package kelompok1.KedaiIceCream.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import kelompok1.KedaiIceCream.model.entity.MainData;
+import kelompok1.KedaiIceCream.model.service.MainDataService;
 
 
 
 @Controller
 @RequestMapping("/")
 public class IndexController {
+
+    @Autowired
+    private MainDataService mainDataService;
 
     @GetMapping
     public String viewLanding() {
@@ -21,14 +29,13 @@ public class IndexController {
     }
 
     @GetMapping("contact")
-    public String viewContact() {
+    public String viewContact(Model model) {
+        MainData mainData = mainDataService.getMainData();
+        model.addAttribute("mainData", mainData);
+
         return "pages/guest/contact";
     }
 
-    @GetMapping("menus")
-    public String viewMenus() {
-        return "pages/guest/menus/menu";
-    }
 
 
 
