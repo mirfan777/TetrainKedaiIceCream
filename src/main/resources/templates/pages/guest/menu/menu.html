@@ -4,38 +4,85 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./output.css" rel="stylesheet" />
+    <link th:href="@{/output.css}"  rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
       <div  th:replace="~{components/layout :: layout(~{::content})}">
         <content >
-            <div class="dark:bg-gray-100 dark:text-gray-900">
-                <div class="container grid grid-cols-12 mx-auto dark:bg-gray-50">
-                    <div class="bg-no-repeat bg-cover dark:bg-gray-300 col-span-full lg:col-span-4" style="background-image: url('https://source.unsplash.com/random/640x480'); background-position: center center; background-blend-mode: multiply; background-size: cover;"></div>
-                    <div class="flex flex-col p-6 col-span-full row-span-full lg:col-span-8 lg:p-10">
-                        <div class="flex justify-start">
-                            <span class="px-2 py-1 text-xs rounded-full dark:bg-violet-600 dark:text-gray-50">Label</span>
-                        </div>
-                        <h1 class="text-3xl font-semibold">Lorem ipsum dolor sit.</h1>
-                        <p class="flex-1 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, reprehenderit adipisci tempore voluptas laborum quod.</p>
-                        <a rel="noopener noreferrer" href="#" class="inline-flex items-center pt-2 pb-6 space-x-2 text-sm dark:text-violet-600">
-                            <span>Read more</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
-                                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                        <div class="flex items-center justify-between pt-2">
-                            <div class="flex space-x-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 dark:text-gray-600">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="self-center text-sm">by Leroy Jenkins</span>
-                            </div>
-                            <span class="text-xs">3 min read</span>
-                        </div>
-                    </div>
+        <!-- banner -->
+        <div class="flex flex-col items-center justify-start mt-28">
+            <div class="flex justify-center lg:w-3/4 w-full p-2">
+                <div class=" w-full">
+                    <a class="text-5xl font-bold mt-5 hover:text-blue-500 underline visited:via-violet-500" th:href="@{'/menu/'+ ${menus[0].id}}" th:text="${menus[0].title}"></a>
+                    <p class="text-2xl font-bold mt-5" th:text="${#temporals.format( menus[0].createdAt , 'dd-MMM-yyyy')}"></p>
                 </div>
             </div>
+            <div class="flex justify-center lg:w-3/4 w-full h-[50vw] lg:h-[20vw]">
+                <figur class="w-full h-full" th:style="'background-image: url(' + ${menus[0].image} + '); background-size: cover; background-repeat: no-repeat;'"><img class="w-full h-full  object-scale-down backdrop-blur-xl" th:src="${menus[0].image}" alt="menu Image" /></figure>
+            </div>
+        </div>
+        <h1 class="flex justify-center font-bold text-black text-center text-4xl mt-10">Produk kita</h1>
+        <div class="flex flex-col lg:flex-row justify-center items-center gap-5 mt-10">
+            <div class="flex flex-col items-center">
+                <div class="flex w-3/4 mb-10">
+                    <div class="w-full">
+                       <div class="">
+                          <div class="join w-full">
+                             <div class="w-full">
+                                <input type="text" id="searchInput" placeholder="Search..." class="input input-bordered join-item w-full  focus:border-black " style="outline: none; outline-offset: 2px;"/>
+                             </div>
+                             <div class="dropdown dropdown-bottom dropdown-end flex items-center w-24">
+                                <div tabindex="0" role="button" class="btn join-item ">
+                                   <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="00 24 24">
+                                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25" />
+                                   </svg>
+                                   <p class="font-semibold">filter</p>
+                                </div>
+                                <ul tabindex="0" class="dropdown-content z-[1] menu p-5 gap-2 shadow bg-base-100 rounded-box w-80">
+                                   <li>
+                                      <select id="satuanFilter" class="select select-bordered">
+                                         <option value="">Satuan</option>
+                                         <!-- Opsi satuan akan diisi secara dinamis -->
+                                      </select>
+                                   </li>
+                                </ul>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+    
+                <!-- Pagination -->
+                <div class="flex justify-center mt-5">
+                    <div class="join">
+                        <a th:href="@{/admin/menu(page=${currentPage - 1})}" th:if="${currentPage > 1}" class="join-item btn btn-md">Previous</a>
+                        <span th:each="pageNum : ${#numbers.sequence(1, totalPages)}" class="join-item"  th:if="${currentPage > 1}">
+                            <a th:href="@{/admin/menu(page=${pageNum})}" th:class="${currentPage == pageNum} ? 'btn btn-md btn-active' : 'btn btn-md'" th:text="${pageNum}"></a>
+                        </span>
+                        <a th:href="@{/menu(page=${currentPage + 1})}" th:if="${currentPage < totalPages}" class="join-item btn btn-md">Next</a>
+                    </div>
+                </div>
+
+
+                <!-- List of menu Cards -->
+                <div class="flex justify-center">
+                    <div class="grid 2xl:grid-cols-2 grid-cols-1 place-content-center place-items-center gap-16 w-3/4">
+                        <div class="card lg:card-side bg-base-100 lg:h-72 lg:w-full flex items-center" th:each="menu : ${menus}">
+                            <figure class="rounded-lg w-96 h-56"  th:style="'background-image: url(' + ${menu.image} + '); background-size: cover; background-repeat: no-repeat;'"><img class="w-full h-full object-contain backdrop-blur-xl" th:src="${menu.image}" alt="menu Image" /></figure>
+                            <div class="card-body p-2 lg:w-fit">
+                                <div class=" text-white bg-slate-500  rounded-lg p-2 " style="width: 100px; height: 40px; text-align: center;" th:text="${menu.category.title}"></div>
+                                <a class="card-title text-ellipsis text-nowrap underline hover:text-black visited:text-violet-500 text-blue-500 "  th:href="@{'/menu/'+ ${menu.id}}" th:text="${menu.title}">Ice Cream One Scoop</a>
+                                <p class="overflow-y-auto font-light text-sm th:text="${menu.description}"">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti dolorum qui numquam soluta odit recusandae autem ipsam sit quae in exercitationem ullam vel inventore, aliquam incidunt veritatis impedit et ex!</p>
+                                <div class="card-actions justify-end">
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+        
+            </div>
+        </div>
         </content>
       </div>
   </body>

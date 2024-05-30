@@ -1,105 +1,302 @@
 <!DOCTYPE html>
- <html lang="en" class="">
+<html lang="en" class="">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link th:href="@{/output.css}" rel="stylesheet">
 </head>
 <body>
-    <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}" >
-        <content class="px-10">
-          <a class="btn btn-primary mb-5" href="menu/create">+ tambah data</a>
-          <div class="flex w-full mb-10">
+  <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}">
+    <content class="px-10">
+    <div class="px-10">
+        <div class="flex w-full mb-10">
             <div class="join">
-              <div class="indicator">
-                <button class="btn btn-outline btn-success join-item">Search</button>
-              </div>
-              <div>
                 <div>
-                  <input class="input input-bordered join-item w-96 lg:w-[1000px]" placeholder="Search"/>
+                    <input class="input input-bordered join-item w-96 lg:w-[1000px]" id="searchInput" placeholder="Search" />
                 </div>
-              </div>
-              <div class="dropdown dropdown-bottom dropdown-end">
-                <div tabindex="0" role="button" class="btn join-item">
-                  <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25"/>
-                </svg>
-                <p class="font-semibold">filter</p>
-                </div>
-                <ul tabindex="0" class="dropdown-content z-[1] menu p-5 gap-2 shadow bg-base-100 rounded-box w-64">
-                  <li>
-                    <select class="select select-bordered ">
-                      <option disabled selected>Small</option>
-                      <option>Small Apple</option>
-                      <option>Small Orange</option>
-                      <option>Small Tomato</option>
-                    </select>
-                  </li>
-                  <li>
-                    <select class="select select-bordered ">
-                      <option disabled selected>Small</option>
-                      <option>Small Apple</option>
-                      <option>Small Orange</option>
-                      <option>Small Tomato</option>
-                    </select>
-                  </li>
-                  <li>
-                    <select class="select select-bordered ">
-                      <option disabled selected>Small</option>
-                      <option>Small Apple</option>
-                      <option>Small Orange</option>
-                      <option>Small Tomato</option>
-                    </select>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <!-- list menu cards  -->
-          <div th:each="menu : ${menus}" class="card lg:card-side bg-base-100 shadow-xl h-96 lg:h-40 my-10 border">
-            <figure  th:style="'background-image: url(' + ${menu.image} + '); background-size: cover; background-repeat: no-repeat;'"><img class="h-56 w-full lg:w-80 object-contain backdrop-blur-xl" th:src="${menu.image}" alt="Menu Image" /></figure>
-            <div class="card-body p-2 lg:w-fit">
-                <h2 class="card-title" th:text="${menu.title}">Menu Title</h2>
-                <p class="overflow-y-auto font-light text-sm" th:text="${menu.description}">Menu Description</p>                 
-                <div class="rating">
-                  <input type="radio" th:name="'rating-' + ${menu.id}" class="hidden" th:checked="${menu.averageRating >= 0}" disabled />
-                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 1}" disabled />
-                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 2}" disabled />
-                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 3}" disabled />
-                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 4}" disabled />
-                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 5}" disabled />
-                </div>
-                <div class="flex justify-between">
-                    <div class="flex gap-2 items-center">
-                        <h2 class="font-bold line-through" th:text="${'Rp ' + menu.price}">Rp 12.000</h2>
-                        <h2 class="font-bold text-red-600" th:if="${menu.discount != null}" th:text="${'Rp ' + (menu.price - (menu.price * menu.discount / 100))}">Rp 6.000</h2>
-                        <div class="badge bg-red-600 text-white gap-2" th:if="${menu.discount > 0}" th:text="${'Diskon ' + menu.discount + '%'}">
-                            Diskon 50%
-                        </div>
+                <div class="dropdown dropdown-bottom dropdown-end">
+                    <div tabindex="0" role="button" class="btn join-item">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25" />
+                        </svg>
+                        <p class="font-semibold">Filter</p>
                     </div>
-                    <div class="card-actions justify-between">
-                        <div class="flex gap-2">
-                            <a th:href="@{/admin/menu/{id}/review(id=${menu.id})}" class="btn btn-sm btn-outline">Lihat Review</a>
-                            <a th:href="@{/admin/menu/{id}/edit(id=${menu.id})}" class="btn btn-sm btn-outline">Edit</a>
-                        </div>
-                    </div>
+                    <ul tabindex="0" class="dropdown-content z-[1] menu p-5 gap-2 shadow bg-base-100 rounded-box w-64">
+                        <li>
+                            <select class="select select-bordered" id="ratingFilter">
+                                <option value="">All Ratings</option>
+                                <option value="5">5 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="2">2 Stars</option>
+                                <option value="1">1 Star</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select class="select select-bordered" id="discountFilter">
+                                <option value="">All Discounts</option>
+                                <option value="true">With Discount</option>
+                                <option value="false">Without Discount</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select class="select select-bordered" id="promoFilter">
+                                <option value="">All Promos</option>
+                                <option value="true">With Promo</option>
+                                <option value="false">Without Promo</option>
+                            </select>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-              
-              <!-- pagination -->
-              <div class="flex justify-center mt-5">
-                <div class="join">
-                  <button class="join-item btn btn-md">1</button>
-                  <button class="join-item btn btn-md btn-active">2</button>
-                  <button class="join-item btn btn-md">3</button>
-                  <button class="join-item btn btn-md">4</button>
-                </div>
-              </div>
-        </content>
+        <table class="table-auto w-full">
+            <thead>
+                <tr class="w-full">
+                    <th class="px-4 py-2 cursor-pointer" onclick="sortTable(0)">
+                        <div class="flex items-center">
+                            Id
+                            <svg id="titleSort" class="ml-2 w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 15l-6-6-6 6"></path>
+                            </svg>
+                        </div>
+                    </th>
+                    <th class="px-4 py-2 cursor-pointer" onclick="sortTable(0)">
+                        <div class="flex items-center">
+                            Title
+                            <svg id="titleSort" class="ml-2 w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 15l-6-6-6 6"></path>
+                            </svg>
+                        </div>
+                    </th>
+                    <th class="px-4 py-2 cursor-pointer" onclick="sortTable(1)">
+                        <div class="flex items-center">
+                            Description
+                            <svg id="descriptionSort" class="ml-2 w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 15l-6-6-6 6"></path>
+                            </svg>
+                        </div>
+                    </th>
+                    <th class="px-4 py-2 cursor-pointer" onclick="sortTable(2)">
+                        <div class="flex items-center">
+                            Rating
+                            <svg id="ratingSort" class="ml-2 w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 15l-6-6-6 6"></path>
+                            </svg>
+                        </div>
+                    </th>
+                    <th class="px-4 py-2 cursor-pointer" onclick="sortTable(3)">
+                        <div class="flex items-center">
+                            Price
+                            <svg id="priceSort" class="ml-2 w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 15l-6-6-6 6"></path>
+                            </svg>
+                        </div>
+                    </th>
+                    <th class="px-4 py-2 cursor-pointer" onclick="sortTable(4)">
+                        <div class="flex items-center">
+                            Discount
+                            <svg id="discountSort" class="ml-2 w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 15l-6-6-6 6"></path>
+                            </svg>
+                        </div>
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+              <tr th:each="menu : ${menus}" class="card lg:card-side bg-base-100 shadow-xl h-96 lg:h-40 my-10 border">
+                  <td class="border px-4 py-2">
+                      <figure th:style="'background-image: url(' + ${menu.image} + '); background-size: cover; background-repeat: no-repeat;'">
+                          <img class="h-56 w-full lg:w-80 object-contain backdrop-blur-xl" th:src="${menu.image}" alt="Menu Image" />
+                      </figure>
+                  </td>
+                  <td class="border px-4 py-2">
+                      <div class="card-body p-2 lg:w-fit">
+                          <h2 class="card-title" th:text="${menu.title}">Menu Title</h2>
+                          <h2 class="id-menu" th:text="${menu.id}">Menu Title</h2>
+                          <p class="overflow-y-auto font-light text-sm" th:text="${menu.description}">Menu Description</p>
+                          <div class="rating">
+                              <input type="radio" th:name="'rating-' + ${menu.id}" class="hidden" th:checked="${menu.averageRating >= 0}" disabled />
+                              <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 1}" disabled />
+                              <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 2}" disabled />
+                              <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 3}" disabled />
+                              <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 4}" disabled />
+                              <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 5}" disabled />
+                          </div>
+                          <div class="flex justify-between">
+                              <div class="flex gap-2 items-center">
+                                  <h2 class="font-bold line-through" th:text="${'Rp ' + menu.price}">Rp 12.000</h2>
+                                  <h2 class="font-bold text-red-600" th:if="${menu.discount != null}" th:text="${'Rp ' + (menu.price - (menu.price * menu.discount / 100))}">Rp 6.000</h2>
+                                  <div class="badge bg-red-600 text-white gap-2" th:if="${menu.discount > 0}" th:text="${'Diskon ' + menu.discount + '%'}">
+                                      Diskon 50%
+                                  </div>
+                              </div>
+                              <div class="card-actions justify-between">
+                                  <div class="flex gap-2">
+                                      <a th:href="@{/admin/menu/{id}/review(id=${menu.id})}" class="btn btn-sm btn-outline">Lihat Review</a>
+                                      <a th:href="@{/admin/menu/{id}/edit(id=${menu.id})}" class="btn btn-sm btn-outline">Edit</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
     </div>
 
+    <script>
+        // Ambil data menu dari HTML yang diberikan
+        const menuCards = document.querySelectorAll('.card');
+        const menus = Array.from(menuCards).map(card => {
+            const id = card.querySelector('.id-menu').textContent;
+            const title = card.querySelector('.card-title').textContent;
+            const description = card.querySelector('.font-light').textContent;
+            const averageRating = parseFloat(Array.from(card.querySelectorAll('input[type="radio"]:checked')).pop()?.name.split('-')[1] || '0');
+            const price = parseInt(card.querySelector('.font-bold:not(.line-through)').textContent.replace(/[^0-9]/g, ''));
+            const discount = card.querySelector('.badge')?.textContent.replace(/[^0-9]/g, '') || 0;
+            const image = card.querySelector('img').src;
     
+            return {id,title, description, averageRating, price, discount, image
+           };
+       });
+    
+       const tableBody = document.getElementById('tableBody');
+       let currentSortColumn = null;
+       let currentSortOrder = 1;
+       let filteredMenus = menus;
+    
+       // Fungsi untuk merender data menu ke dalam tabel
+       function renderMenus() {
+    tableBody.innerHTML = '';
+    filteredMenus.forEach(menu => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="border px-4 py-2">${menu.id}</td>
+            <td class="border px-4 py-2">${menu.title}</td>
+            <td class="border px-4 py-2">${menu.description}</td>
+            <td class="border px-4 py-2">
+                <div class="rating">
+                    <input type="radio" name="review-rating-${menu.title.replace(/\s/g, '')}" class="mask mask-star-2 bg-orange-400" ${menu.averageRating >= 1 ? 'checked' : ''} disabled />
+                    <input type="radio" name="review-rating-${menu.title.replace(/\s/g, '')}" class="mask mask-star-2 bg-orange-400" ${menu.averageRating >= 2 ? 'checked' : ''} disabled />
+                    <input type="radio" name="review-rating-${menu.title.replace(/\s/g, '')}" class="mask mask-star-2 bg-orange-400" ${menu.averageRating >= 3 ? 'checked' : ''} disabled />
+                    <input type="radio" name="review-rating-${menu.title.replace(/\s/g, '')}" class="mask mask-star-2 bg-orange-400" ${menu.averageRating >= 4 ? 'checked' : ''} disabled />
+                    <input type="radio" name="review-rating-${menu.title.replace(/\s/g, '')}" class="mask mask-star-2 bg-orange-400" ${menu.averageRating >= 5 ? 'checked' : ''} disabled />
+                </div>
+            </td>
+            <td class="border px-4 py-2">Rp ${menu.price.toLocaleString()}</td>
+            <td class="border px-4 py-2">${menu.discount > 0 ? `${menu.discount}%` : '-'}</td>
+            <td class="border px-4 py-2">
+                <button class="btn btn-sm btn-outline mr-2">Lihat Review</button>
+                <a href="menu/${menu.id}/edit"><button class="btn btn-sm btn-outline">Edit</button></a>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });}
+    // Fungsi untuk mengurutkan tabel
+   function sortTable(columnIndex) {
+    const sortedMenus = [...filteredMenus].sort((menuA, menuB) => {
+        let valueA, valueB;
+
+        if (columnIndex === 2) { // Rating
+        valueA = menuA.averageRating;
+        valueB = menuB.averageRating;
+        } else if (columnIndex === 3) { // Price
+        valueA = menuA.price;
+        valueB = menuB.price;
+        } else if (columnIndex === 4) { // Discount
+        valueA = menuA.discount;
+        valueB = menuB.discount;
+        } else {
+        valueA = menuA[columnNames[columnIndex]].toLowerCase();
+        valueB = menuB[columnNames[columnIndex]].toLowerCase();
+        }
+
+        if (valueA < valueB) return -currentSortOrder;
+        if (valueA > valueB) return currentSortOrder;
+        return 0;
+    });
+
+    filteredMenus = sortedMenus;
+    renderMenus();
+
+    const sortIcons = document.querySelectorAll('th svg');
+    sortIcons.forEach(icon => {
+        icon.style.transform = 'rotate(0deg)';
+    });
+
+    const currentSortIcon = document.getElementById(`${columnNames[columnIndex]}Sort`);
+    currentSortIcon.style.transform = `rotate(${currentSortOrder * 180}deg)`;
+
+    if (currentSortColumn === columnIndex) {
+        currentSortOrder = -currentSortOrder;
+    } else {
+        currentSortColumn = columnIndex;
+        currentSortOrder = 1;
+    }
+    }
+
+   const columnNames = ['id', 'title', 'description', 'rating', 'price', 'discount'];
+
+   // Fungsi untuk memfilter menu
+   function filterMenus() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+const ratingFilter = document.getElementById('ratingFilter').value;
+const discountFilter = document.getElementById('discountFilter').value;
+const promoFilter = document.getElementById('promoFilter').value;
+
+filteredMenus = menus.filter(menu => {
+    const title = menu.title.toLowerCase();
+    const description = menu.description.toLowerCase();
+    const hasDiscount = menu.discount > 0;
+    const hasPromo = true; // Ganti sesuai dengan logika promo Anda
+
+    if (searchTerm && !title.includes(searchTerm) && !description.includes(searchTerm)) {
+        return false;
+    }
+
+    if (ratingFilter && menu.averageRating !== parseFloat(ratingFilter)) {
+        return false;
+    }
+
+    if (discountFilter === 'true' && !hasDiscount) {
+        return false;
+    }
+
+    if (discountFilter === 'false' && hasDiscount) {
+        return false;
+    }
+
+    if (promoFilter === 'true' && !hasPromo) {
+        return false;
+    }
+
+    if (promoFilter === 'false' && hasPromo) {
+        return false;
+    }
+
+    return true;
+});
+
+renderMenus();
+   }
+
+   // Event listeners untuk filter dan search
+   document.getElementById('searchInput').addEventListener('input', filterMenus);
+   document.getElementById('ratingFilter').addEventListener('change', filterMenus);
+   document.getElementById('discountFilter').addEventListener('change', filterMenus);
+   document.getElementById('promoFilter').addEventListener('change', filterMenus);
+
+   // Render data menu awal
+   renderMenus();   
+    </script>
+
+
+
+   </content>
+  </div>
 </body>
 </html>

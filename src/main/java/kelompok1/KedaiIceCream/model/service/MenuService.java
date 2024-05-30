@@ -1,15 +1,22 @@
 package kelompok1.KedaiIceCream.model.service;
 
+import jakarta.persistence.criteria.Root;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import kelompok1.KedaiIceCream.model.entity.Menu;
 import kelompok1.KedaiIceCream.model.entity.MenuCategory;
+import kelompok1.KedaiIceCream.model.entity.MenuReply;
+import kelompok1.KedaiIceCream.model.entity.MenuReview;
 import kelompok1.KedaiIceCream.model.repository.MenuCategoryRepository;
+import kelompok1.KedaiIceCream.model.repository.MenuReplyRepository;
 import kelompok1.KedaiIceCream.model.repository.MenuRepository;
+import kelompok1.KedaiIceCream.model.repository.MenuReviewRepository;
 import kelompok1.KedaiIceCream.util.FileUploadUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,12 +37,18 @@ public class MenuService {
     @Autowired
     private MenuCategoryRepository menuCategoryRepository;
 
+    @Autowired
+    private MenuReviewRepository menuReviewRepository;
+
+    @Autowired
+    private MenuReplyRepository menuReplyRepository;
+
 
     @Autowired
     private HttpServletRequest request;
 
-    public List<Menu> getAllMenus() {
-        return menuRepository.findAll();
+    public Page<Menu> getAllMenus(Pageable pageable) {
+        return menuRepository.findAll(pageable);
     }
 
     public Menu getMenuById(Long id) {
@@ -69,7 +82,12 @@ public class MenuService {
         menuRepository.deleteById(id);
     }
 
-    public List<MenuCategory> getAllCategories() {
+    public Page<Menu> getAllBlog(Pageable pageable) {
+        return menuRepository.findAll(pageable);
+    }
+
+    // category
+    public List<MenuCategory> getAllMenuCategories() {
         return menuCategoryRepository.findAll();
     }
 
@@ -96,6 +114,23 @@ public class MenuService {
     public void deleteCategory(Long id) {
         menuCategoryRepository.deleteById(id);
     }
+
+    // review
+    public Page<MenuReview> getMenuReviewsByMenuId(Long menuId, Pageable pageable) {
+        return menuReviewRepository.findByMenuId(menuId, pageable);
+    }
+
+    public MenuReview saveReview(MenuReview review) {
+        review.setCreatedAt(LocalDateTime.now());
+        review.setUpdatedAt(LocalDateTime.now());
+        return menuReviewRepository.save(review);
+    }
+
+    public MenuReply saveReply(MenuReply reply) {
+        reply.setCreatedAt(LocalDateTime.now());
+        reply.setUpdatedAt(LocalDateTime.now());
+    return menuReplyRepository.save(reply);
+}
 
     private void handleFileUpload(Menu menu, MultipartFile file) {
         if (!file.isEmpty()) {

@@ -5,20 +5,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite",
-    "build": "vite build"
+    "dev": "npx tailwindcss -i ./src/main/resources/static/input.css -o ./src/main/resources/static/output.css --watch",
+    "build": "vite build",
+    "minify": "npx tailwindcss -o ./src/main/resources/static/output.css --minify"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
-    "autoprefixer": "^10.4.18",
+    "autoprefixer": "^10.4.19",
     "daisyui": "^4.9.0",
-    "postcss": "^8.4.35",
+    "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
-    "tailwindcss": "^3.4.1",
-    "vite": "^5.2.11"
+    "tailwindcss": "^3.4.3",
+    "vite": "^5.2.12"
   },
   "dependencies": {
     "quill": "^2.0.2",

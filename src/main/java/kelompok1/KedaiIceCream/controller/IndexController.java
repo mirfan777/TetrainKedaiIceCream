@@ -22,12 +22,12 @@ public class IndexController {
 
     @GetMapping("contact")
     public String viewContact() {
-        return "pages/guest/about";
+        return "pages/guest/contact";
     }
 
     @GetMapping("menus")
     public String viewMenus() {
-        return "pages/guest/about";
+        return "pages/guest/menus/menu";
     }
 
 

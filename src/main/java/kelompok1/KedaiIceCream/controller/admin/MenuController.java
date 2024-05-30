@@ -3,10 +3,12 @@ package kelompok1.KedaiIceCream.controller.admin;
 import kelompok1.KedaiIceCream.model.entity.Menu;
 import kelompok1.KedaiIceCream.model.entity.MenuCategory;
 import kelompok1.KedaiIceCream.model.service.MenuService;
-import kelompok1.KedaiIceCream.util.FileUploadUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,21 +33,27 @@ public class MenuController {
     @Autowired
     private MenuService menuService;
 
-    @GetMapping
-    public String viewMenu(Model model) {
-        List<Menu> menus = menuService.getAllMenus();
-        model.addAttribute("menus", menus);
+    @GetMapping()
+    public String viewMenu(Model model, @RequestParam(defaultValue = "1") int page) {
+        int pageSize = 10; // Ukuran halaman yang diinginkan
+        Pageable pageable = PageRequest.of(page - 1, pageSize);
+        Page<Menu> menuPage = menuService.getAllMenus(pageable);
+
+        model.addAttribute("menus", menuPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", menuPage.getTotalPages());
         model.addAttribute("activeUrl", "/admin/menu");
         model.addAttribute("pageTitle", "MENU");
+
         return "pages/admin/menu/menu";
     }
 
     @GetMapping("create")
     public String viewCreateMenu(Model model, @ModelAttribute("menu") Menu menu, BindingResult bindingResult) {
-    List<MenuCategory> categories = menuService.getAllCategories();
+    List<MenuCategory> categories = menuService.getAllMenuCategories();
     if (bindingResult.hasErrors()) {
         // Add categories to the model
-        model.addAttribute("categories", menuService.getAllCategories());
+        model.addAttribute("categories", menuService.getAllMenuCategories());
         return "pages/admin/blog/edit"; // Return the same view to display errors
     }
     model.addAttribute("categories", categories);
@@ -63,7 +71,7 @@ public class MenuController {
     @GetMapping("{id}/edit")
     public String viewEditMenu(@PathVariable Long id, Model model) {
         Menu menu = menuService.getMenuById(id);
-        List<MenuCategory> categories = menuService.getAllCategories();
+        List<MenuCategory> categories = menuService.getAllMenuCategories();
 
         model.addAttribute("menu", menu);
         model.addAttribute("categories", categories);
@@ -76,7 +84,7 @@ public class MenuController {
     public String updateMenu(@PathVariable Long id , @ModelAttribute Menu menu, BindingResult bindingResult, @RequestParam(value = "imageFile", required = false) MultipartFile file, Model model ,RedirectAttributes redirectAttributes, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             // Add categories to the model
-            model.addAttribute("categories",menuService.getAllCategories());
+            model.addAttribute("categories",menuService.getAllMenuCategories());
             return "pages/admin/blog/edit"; // Return the same view to display errors
         }
 

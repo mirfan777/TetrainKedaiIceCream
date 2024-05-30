@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link th:href="@{/output.css}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+      <div  th:replace="~{components/layout :: layout(~{::content})}">
+        <content>
+          <div class="flex justify-center mt-56">
+            <div class="card lg:card-side bg-base-100 shadow-xl w-full m-2 h-[500px] lg:w-2/3 border">
+              <figure class="rounded-lg w-full h-[500px]"  th:style="'background-image: url(' + ${menu.image} + '); background-size: cover; background-repeat: no-repeat;'"><img class="w-full h-full object-contain backdrop-blur-xl" th:src="${menu.image}" alt="menu Image" /></figure>
+              <div class="flex flex-col w-full p-5 card-body gap-5">
+                <div class="flex flex-col gap-5">
+                  <div class="flex gap-2">
+                    <div class="badge badge-outline " th:text="${menu.category.title}">Ice Shop</div>
+                  </div>
+                  <h2 class="card-title text-3xl" th:text="${menu.title}">Mochi Banana</h2>
+                  <p th:text="${menu.description}"></p>
+                </div>
+                <div class="rating grow">
+                  <input type="radio" th:name="'rating-' + ${menu.id}" class="hidden" th:checked="${menu.averageRating >= 0}" disabled />
+                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 1}" disabled />
+                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 2}" disabled />
+                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 3}" disabled />
+                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 4}" disabled />
+                  <input type="radio" th:name="'rating-' + ${menu.id}" class="mask mask-star-2 bg-orange-400" th:checked="${menu.averageRating >= 5}" disabled />
+                </div>
+                <div class="flex w-full flex-col lg:flex-row lg:justify-between lg:items-center lg:mt-10">
+                    <div class="flex flex-col">
+                      <div class="badge bg-red-600 text-white gap-2" th:if="${menu.discount > 0}" th:text="${'Diskon ' + menu.discount + '%'}"></div>
+                      <div class="flex flex-row gap-2">
+                          <h2 class="font-bold line-through  " th:text="${'Rp ' + menu.price}">Rp 12.000</h2>
+                          <h2 class="font-bold text-red-600 " th:if="${menu.discount != null}" th:text="${'Rp ' + (menu.price - (menu.price * menu.discount / 100))}">Rp 6.000</h2>
+                      </div>
+                    </div>
+                    <div class="mt-10">
+                      <button class="btn btn-primary btn-outline w-40 ">Kunjungi Lokasi ></button>
+                    </div>
+                  </div> 
+                </div>
+            </div>
+            </div>
+            
+            <div class="join">
+              <a th:href="@{/admin/menu/review(page=${currentPage - 1})}" th:if="${currentPage > 1}" class="join-item btn btn-md">Previous</a>
+              <span th:each="pageNum : ${#numbers.sequence(1, totalPages != null ? totalPages : 1)}" class="join-item" th:if="${currentPage > 1}">
+                <a th:href="@{/admin/menu/review(page=${pageNum})}" th:class="${currentPage == pageNum} ? 'btn btn-md btn-active' : 'btn btn-md'" th:text="${pageNum}"></a>
+            </span>
+              <a th:href="@{/menu/review(page=${currentPage + 1})}" th:if="${currentPage < totalPages}" class="join-item btn btn-md">Next</a>
+            </div>
+            <!-- Review -->
+            <div class="flex justify-center m-2 w-full">
+              <div class="card bg-white border w-full lg:w-2/3 mt-10">
+                <div class="card-body">
+                  <h2 class="card-title">Reviews</h2>
+                  <div>
+                    <!-- Form untuk menambahkan review baru -->
+                    <form th:action="@{/menu/review}" th:object="${newReview}" method="post">
+                      <input type="hidden" th:field="*{menu.id}" />
+                      <div class="form-control">
+                        <label class="label">
+                          <span class="label-text">Rating</span>
+                        </label>
+                      </div>
+                      <div class="rating" name="rating" id="rating">
+                        <input type="radio" th:field="*{rating}" value="1" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" th:field="*{rating}" value="2" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" th:field="*{rating}" value="3" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" th:field="*{rating}" value="4" class="mask mask-star-2 bg-orange-400" checked/>
+                        <input type="radio" th:field="*{rating}" value="5" class="mask mask-star-2 bg-orange-400" />
+                      </div>
+                      <div class="form-control">
+                        <label class="label">
+                          <span class="label-text">Name</span>
+                        </label>
+                        <input type="text" th:field="*{name}" class="input input-bordered" />
+                      </div>
+                      <div class="form-control">
+                        <label class="label">
+                          <span class="label-text">Comment</span>
+                        </label>
+                        <textarea th:field="*{body}" class="textarea textarea-bordered" placeholder="Write your review"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary mt-4">Submit Review</button>
+                    </form>
+                  </div>
+                  <div class="divider"></div>
+                  <div>
+                    <!-- Daftar review -->
+                    <div th:each="review : ${menu.menuReviews}" class="mb-4 gap-5">
+                      <div class="flex flex-col justify-center">
+                        <div th:text="${review.name}" class="font-bold"></div>
+                        <div class="rating">
+                          <input type="radio" th:name="'review-rating-' + ${review.id}" class="mask mask-star-2 bg-orange-400" th:checked="${review.rating >= 1}" disabled />
+                          <input type="radio" th:name="'review-rating-' + ${review.id}" class="mask mask-star-2 bg-orange-400" th:checked="${review.rating >= 2}" disabled />
+                          <input type="radio" th:name="'review-rating-' + ${review.id}" class="mask mask-star-2 bg-orange-400" th:checked="${review.rating >= 3}" disabled />
+                          <input type="radio" th:name="'review-rating-' + ${review.id}" class="mask mask-star-2 bg-orange-400" th:checked="${review.rating >= 4}" disabled />
+                          <input type="radio" th:name="'review-rating-' + ${review.id}" class="mask mask-star-2 bg-orange-400" th:checked="${review.rating >= 5}" disabled />
+                        </div>
+                      </div>
+                      <div th:text="${review.body}"></div>
+                      <div th:if="${review.menuReply != null}" class="mt-2">
+                        <div class="font-bold">Admin Reply:</div>
+                        <div th:text="${review.menuReply.body}"></div>
+                      </div>
+                      <div th:if="${review.menuReply == null}">
+                        <!-- Form untuk membalas review sebagai admin -->
+                        <!-- <form th:action="@{/menu/review/reply}" th:object="${newReply}" method="post">
+                          <input type="hidden" th:field="*{menuReview.id}" />
+                          <div class="form-control">
+                            <label class="label">
+                              <span class="label-text">Reply as Admin</span>
+                            </label>
+                            <textarea th:field="*{body}" class="textarea textarea-bordered" placeholder="Write your reply"></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary mt-2">Reply</button>
+                        </form> -->
+                      </div>
+                      <div class="divider"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>  
+        </content>
+      </div>
+  </body>
+</html>

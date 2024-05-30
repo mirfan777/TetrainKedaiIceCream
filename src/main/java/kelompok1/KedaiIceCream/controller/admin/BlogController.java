@@ -27,7 +27,6 @@ import kelompok1.KedaiIceCream.model.service.BlogService;
 import kelompok1.KedaiIceCream.util.FileUploadUtil;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -79,10 +78,8 @@ public class BlogController {
         if (!file.isEmpty()) {
             // Generate unique filename
             String fileName = FileUploadUtil.generateUniqueFileName(file.getOriginalFilename());
-
             // Get the ServletContext to get the real path of the project
             ServletContext servletContext = request.getServletContext();
-
             // Set the upload directory to "public/images/" relative to the real path of the project
             String uploadDir = servletContext.getRealPath("") + File.separator + "images";
 
