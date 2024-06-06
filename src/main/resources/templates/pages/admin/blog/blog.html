@@ -11,27 +11,52 @@
         <content class="px-10">
             <a class="btn btn-primary mb-5" th:href="@{/admin/blog/create}">+ tambah data</a>
             <!-- Search and Filter -->
-            <div class="flex flex-col gap-5 rounded-lg mb-5">
-                <div class="flex gap-5">
-                    <input type="text" placeholder="Type here" class="input input-bordered w-full" />
-                    <button class="btn btn-primary">Search</button>
-                </div>
-                <div class="flex items-center gap-5">
-                    <div class="flex gap-2">
-                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25" />
-                        </svg>
-                        <p class="font-semibold">filter</p>
+            <div class="flex w-full mb-10">
+                <div class="join">
+                  <div class="indicator">
+                    <button class="btn btn-outline btn-success join-item">Search</button>
+                  </div>
+                  <div>
+                    <div>
+                      <input class="input input-bordered join-item w-96 lg:w-[1000px]" placeholder="Search"/>
                     </div>
-                    <select class="select select-bordered select-sm">
-                        <option disabled selected>Small</option>
-                        <option>Small Apple</option>
-                        <option>Small Orange</option>
-                        <option>Small Tomato</option>
-                    </select>
-                    <!-- Add more filter dropdowns if needed -->
+                  </div>
+                  <div class="dropdown dropdown-bottom dropdown-end">
+                    <div tabindex="0" role="button" class="btn join-item">
+                      <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25"/>
+                    </svg>
+                    <p class="font-semibold">filter</p>
+                    </div>
+                    <ul tabindex="0" class="dropdown-content z-[1] menu p-5 gap-2 shadow bg-base-100 rounded-box w-64">
+                      <li>
+                        <select class="select select-bordered ">
+                          <option disabled selected>Small</option>
+                          <option>Small Apple</option>
+                          <option>Small Orange</option>
+                          <option>Small Tomato</option>
+                        </select>
+                      </li>
+                      <li>
+                        <select class="select select-bordered ">
+                          <option disabled selected>Small</option>
+                          <option>Small Apple</option>
+                          <option>Small Orange</option>
+                          <option>Small Tomato</option>
+                        </select>
+                      </li>
+                      <li>
+                        <select class="select select-bordered ">
+                          <option disabled selected>Small</option>
+                          <option>Small Apple</option>
+                          <option>Small Orange</option>
+                          <option>Small Tomato</option>
+                        </select>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-            </div>
+              </div>
 
             <!-- Pagination -->
             <div class="flex justify-center mt-5">
@@ -45,9 +70,9 @@
             </div>
 
             <!-- List of Blog Cards -->
-            <div class="flex justify-center w-full mt-5">
-                <div class="grid 2xl:grid-cols-4 md:grid-cols-2 place-content-center place-items-center 2xl gap-10 w-full">
-                    <div class="card card-compact w-full lg:w-72 lg:h-96 bg-base-100 shadow-xl" th:each="blog : ${blogs}">
+            <div class="flex justify-center  w-full mt-5">
+                <div class="flex justify-start flex-wrap gap-10 w-full">
+                    <div class="card card-compact  w-80 lg:w-96 lg:h-[400px] bg-base-100 shadow-xl" th:each="blog : ${blogs}">
                         <figure  th:style="'background-image: url(' + ${blog.image} + '); background-size: cover; background-repeat: no-repeat;'"><img class="h-40 w-full object-contain backdrop-blur-xl" th:src="${blog.image}" alt="Blog Image" /></figure>
                         <div class="card-body">
                             <h2 class="card-title" th:text="${blog.title}">Blog Title</h2>
@@ -60,6 +85,8 @@
                     </div>
                 </div>
             </div>
+
+            
         </content>
     </div>
 </body>

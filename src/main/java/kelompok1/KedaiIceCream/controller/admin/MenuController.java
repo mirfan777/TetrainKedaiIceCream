@@ -37,7 +37,7 @@ public class MenuController {
     public String viewMenu(Model model, @RequestParam(defaultValue = "1") int page) {
         int pageSize = 10; // Ukuran halaman yang diinginkan
         Pageable pageable = PageRequest.of(page - 1, pageSize);
-        Page<Menu> menuPage = menuService.getAllMenus(pageable);
+        Page<Menu> menuPage = menuService.getAllMenusPages(pageable);
 
         model.addAttribute("menus", menuPage.getContent());
         model.addAttribute("currentPage", page);

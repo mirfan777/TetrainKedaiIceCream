@@ -9,7 +9,7 @@
 <body>
 <div th:replace="~{components/admin_layout :: adminLayout(~{::content})}">
     <content class="px-10">
-        <form th:action="@{/admin/main}" th:object="${mainData}" method="post" id="menu-form">
+        <form th:action="@{/admin/main}" th:object="${mainData}" method="post" id="menu-form" class="w-1/3">
             <!-- contact_phone -->
             <label class="form-control w-full">
                 <div class="label">

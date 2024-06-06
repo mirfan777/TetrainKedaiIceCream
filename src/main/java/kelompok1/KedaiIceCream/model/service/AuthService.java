@@ -37,7 +37,7 @@ public class AuthService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setName(request.getName());
         user.setEmail(request.getEmail());
-        user.setRole(0); // Set the default role for new users
+        user.setRole("ADMIN"); // Set the default role for new users
         userRepository.save(user);
     }
 
@@ -97,17 +97,9 @@ public class AuthService implements UserDetailsService {
         );
     }
 
-    private Collection<SimpleGrantedAuthority> getAuthorities(Integer role) {
+    private Collection<SimpleGrantedAuthority> getAuthorities(String role) {
          List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-    if (role == 1) {
-        authorities.add(new SimpleGrantedAuthority("ROLE_SUPERADMIN"));
-    } else if (role == 2) {
-        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-    } else {
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    return authorities;
+        return authorities;
     }
 }

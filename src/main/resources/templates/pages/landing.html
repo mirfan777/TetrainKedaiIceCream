@@ -4,78 +4,81 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link th:href="output.css" rel="stylesheet" />
+    <link th:href="@{/output.css}" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body >
       <div  th:replace="~{components/layout :: layout(~{::content})}">
         <content>
             <!-- hero -->
-          <div class="flex lg:flex-row items-center justify-center  pt-40 gap-20 lg:gap-40 flex-col-reverse bg-strawberry-900">
-            <div class="flex flex-col justify-center lg:items-start items-center lg:w-[600px] gap-10 text-black">
-              <h1 class="text font-bold text-7xl">Selamat datang di Kedai Ice Cream!</h1>
-              <p class="text-wrap text-xl lg:text-left">Nikmati sensasi segar dan lezat dengan berbagai pilihan eskrim premium kami</p>
+          <div class="flex lg:flex-row items-center justify-center  pt-40 gap-20 lg:gap-40 flex-col-reverse bg-strawberry-500 px-5 ">
+            <div class="flex flex-col justify-center lg:items-start  lg:w-[600px] gap-10 text-chocolate-950">
+              <h1 class="text font-bold text-5xl lg:text-7xl text-center lg:text-left">Selamat datang di Kedai Ice Cream!</h1>
+              <p class="text-wrap text-xl lg:text-4xl text-center lg:text-left">Nikmati sensasi segar dan lezat dengan berbagai pilihan eskrim premium kami</p>
             </div>
-            <div class="">
+            <div>
               <img width="500" height="500" th:src="@{/images/image/hero2.png}" alt="">
             </div>
           </div>
-          <img class="w-full absolute" th:src="@{/images/svg/wave-haikei.svg}" alt="">
+          <svg class="w-full fill-strawberry-500 absolute shadow-inner " id="visual" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 140L18.8 137.3C37.7 134.7 75.3 129.3 112.8 114.2C150.3 99 187.7 74 225.2 66.7C262.7 59.3 300.3 69.7 337.8 84.7C375.3 99.7 412.7 119.3 450.2 120.2C487.7 121 525.3 103 562.8 98.3C600.3 93.7 637.7 102.3 675.2 98.3C712.7 94.3 750.3 77.7 787.8 80.8C825.3 84 862.7 107 881.3 118.5L900 130L900 0L881.3 0C862.7 0 825.3 0 787.8 0C750.3 0 712.7 0 675.2 0C637.7 0 600.3 0 562.8 0C525.3 0 487.7 0 450.2 0C412.7 0 375.3 0 337.8 0C300.3 0 262.7 0 225.2 0C187.7 0 150.3 0 112.8 0C75.3 0 37.7 0 18.8 0L0 0Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
           <!-- endHero -->
 
           <!-- promo -->
-          <div class="pt-36 lg:pt-96  bg-mocha-900" >
+          <div class="pt-36 lg:pt-96  bg-mocha-500" >
             <div class="flex justify-center mb-28">
               <h2 class="text-3xl font-bold text-white">Lagi ada promo nih ...<span class="text-error text-5xl">!</span></h2>
             </div>
             <div  class="relative flex flex-col lg:flex-row items-center justify-center gap-5 ">
-              <div class="indicator  card lg:w-96 w-80 mt-5 h-[500px] bg-white shadow-2xl">
-                <figure class="bg-latte-900"><img th:src="@{/images/image/waffle.png}" alt="Shoes" /></figure>
+              <div class="indicator  card lg:w-96 w-80 mt-5 h-[450px] bg-white shadow-2xl drop-shadow-2xl">
+                <figure class="bg-latte-300"><img th:src="@{/images/image/waffle.png}" alt="Shoes" /></figure>
                 <div class="card-body">
                   <h2 class="card-title text-3xl">Waffle Cup</h2>
                   <p class="text-xl">Rp 6.000</p>
                   <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Buy Now</button>
+                    <button class="btn text-white bg-chocolate-900 hover:bg-chocolate-950">Buy Now</button>
                   </div>
                 </div>
-                <span class="indicator-item indicator-top indicator-center badge bg-cherry-900 border-none text-white h-12 font-bold p-5">PROMO BELI 1 GRATIS 1</span>
+                <span class="indicator-item indicator-top indicator-center badge bg-cherry-600 border-none text-white h-12 font-bold p-5">PROMO BELI 1 GRATIS 1</span>
               </div>
-              <div class="relative indicator lg:bottom-16  card lg:w-96 w-80 mt-5 h-[500px] bg-white shadow-2xl ">
-                <figure class="bg-latte-900"><img th:src="@{/images/image/cone.png}" alt="Shoes" /></figure>
+              <div class="relative indicator lg:bottom-16  card lg:w-96 w-80 mt-5 h-[450px] bg-white shadow-2xl drop-shadow-2xl">
+                <figure class="bg-latte-300"><img th:src="@{/images/image/cone.png}" alt="Shoes" /></figure>
                 <div class="card-body">
                   <h2 class="card-title text-3xl">Cone Ice Cream</h2>
                   <p class="text-xl">Rp 3.000</p>
                   <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Buy Now</button>
+                    <button class="btn text-white bg-chocolate-900 hover:bg-chocolate-950">Buy Now</button>
                   </div>
                 </div>
-                <span class="indicator-item indicator-top indicator-center badge bg-cherry-900 border-none text-white h-12 font-bold p-5">PROMO BELI 1 GRATIS 1</span>
+                <span class="indicator-item indicator-top indicator-center badge bg-cherry-600 border-none text-white h-12 font-bold p-5">PROMO BELI 1 GRATIS 1</span>
               </div>
              
-              <div class="relative indicator card lg:w-96 w-80 mt-5 h-[500px]  bg-white shadow-2xl ">
-                <figure class="bg-latte-900"><img th:src="@{/images/image/soda.png}" alt="Shoes" /></figure>
+              <div class="relative indicator card lg:w-96 w-80 mt-5 h-[450px]  bg-white shadow-xl drop-shadow-2xl">
+                <figure class="bg-latte-300"><img th:src="@{/images/image/soda.png}" alt="Shoes" /></figure>
                 <div class="card-body">
                   <h2 class="card-title text-3xl">Soda Float</h2>
                   <p class="text-xl">Rp 6.000</p>
                   <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Buy Now</button>
+                    <button class="btn text-white bg-chocolate-900 hover:bg-chocolate-950">Buy Now</button>
                   </div>
                 </div>
-                <span class="indicator-item indicator-top indicator-center badge bg-cherry-900 border-none text-white h-12 font-bold p-5">PROMO BELI 1 GRATIS 1</span>
+                <span class="indicator-item indicator-top indicator-center badge bg-cherry-600 border-none text-white h-12 font-bold p-5">PROMO BELI 1 GRATIS 1</span>
               </div>
             </div>
             <div class="flex justify-center pt-16 ">
               <a class="text-2xl font-bold text-white flex justify-center"  href="menu" >Lihat Produk Selengkapnya...</a>
             </div>
           </div>
-          <img class="w-full absolute" th:src="@{/images/svg/wave-haikei2.svg}" alt="">
+          <svg id="visual" viewBox="0 0 900 600" class="w-full fill-mocha-500 absolute shadow-inner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 87L21.5 84.5C43 82 86 77 128.8 89C171.7 101 214.3 130 257.2 134.8C300 139.7 343 120.3 385.8 105.5C428.7 90.7 471.3 80.3 514.2 83.3C557 86.3 600 102.7 642.8 108.3C685.7 114 728.3 109 771.2 117C814 125 857 146 878.5 156.5L900 167L900 0L878.5 0C857 0 814 0 771.2 0C728.3 0 685.7 0 642.8 0C600 0 557 0 514.2 0C471.3 0 428.7 0 385.8 0C343 0 300 0 257.2 0C214.3 0 171.7 0 128.8 0C86 0 43 0 21.5 0L0 0Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
 
 
           <!-- About Section Start -->
-        <section id="about"  class="pt-36 lg:pt-96 bg-[#fffbe9] flex flex-col items-center " >
+        <section id="about"  class="pt-36 lg:pt-96 bg-vanilla-100 flex flex-col items-center " >
           <div class="lg:w-1/2 flex flex-col items-center px-10 pt-10">
             <h2 class="text-3xl font-bold text-center mb-10">
-              <span class="text-chocolate-900">About</span> Kedai Ice Cream
+              <span class="text-chocolate-800">About</span> Kedai Ice Cream
             </h2>
             <div class="w-full flex flex-wrap justify-center">
               <div class="flex justify-center lg:w-1/2 p-4">
@@ -86,36 +89,36 @@
                 />
               </div>
               <div class="lg:w-1/2 p-4">
-                <h3 class="text-2xl font-bold mb-2 text-chocolate-900">Sejarah Kedai Ice Cream</h3>
-                <p class="text-lg mb-4 font-light leading-relaxed text-chocolate-900">
+                <h3 class="text-2xl font-bold mb-2 text-chocolate-800">Sejarah Kedai Ice Cream</h3>
+                <p class="text-lg mb-4 font-light leading-relaxed text-chocolate-800">
                   Kedai Ice Cream berdiri pada bulan September 2022, pendirinya Ibu Elfi Endah Lestari
                 </p>
-                <p class="text-lg mb-4 font-light leading-relaxed text-chocolate-900">
+                <p class="text-lg mb-4 font-light leading-relaxed text-chocolate-800">
                   Dipilih menu ice cream karena ice cream di sukai oleh semua kalangam dari anak kecil
                   sampai orang dewasa, dan semua orang bisa makan es cream enak dengan harga murah dan
                   terjangkau
                 </p>
-                <h3 class="text-2xl font-bold mb-2 text-chocolate-900">Alamat Toko</h3>
-                <p class="text-lg mb-4 font-light leading-relaxed text-chocolate-900">
+                <h3 class="text-2xl font-bold mb-2 text-chocolate-800">Alamat Toko</h3>
+                <p class="text-lg mb-4 font-light leading-relaxed text-chocolate-800">
                   Jl. Kumbang No.33 RT 02 RW 04 Bogor, Babakan Kecamatan Bogor Tengah, Kota Bogor, Provinsi
                   Jawa Barat 16128
                 </p>
-                <h3 class="text-2xl font-bold mb-2 text-chocolate-900">Kontak Admin</h3>
-                <p class="text-lg mb-4 font-light leading-relaxed text-chocolate-900">Ibu Ria 089603378704</p>
-                <h3 class="text-2xl font-bold mb-2 text-chocolate-900">Waktu Buka</h3>
-                <p class="text-lg mb-4 font-light leading-relaxed text-chocolate-900">Jam 09.00 - 18.00 WIB</p>
+                <h3 class="text-2xl font-bold mb-2 text-chocolate-800">Kontak Admin</h3>
+                <p class="text-lg mb-4 font-light leading-relaxed text-chocolate-800">Ibu Ria 089603378704</p>
+                <h3 class="text-2xl font-bold mb-2 text-chocolate-800">Waktu Buka</h3>
+                <p class="text-lg mb-4 font-light leading-relaxed text-chocolate-800">Jam 09.00 - 18.00 WIB</p>
               </div>
             </div>
           </div>
         </section>
-        <img class="w-full absolute" th:src="@{/images/svg/wave-haikei3.svg}" alt="">
+        <svg id="visual" viewBox="0 0 900 600" width="100%" class="absolute fill-vanilla-100 shadow-inner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 147L9.3 149C18.7 151 37.3 155 56.2 143.2C75 131.3 94 103.7 112.8 90C131.7 76.3 150.3 76.7 169 84.5C187.7 92.3 206.3 107.7 225 109.8C243.7 112 262.3 101 281.2 91.7C300 82.3 319 74.7 337.8 86.3C356.7 98 375.3 129 394 139.2C412.7 149.3 431.3 138.7 450 131.8C468.7 125 487.3 122 506.2 128.3C525 134.7 544 150.3 562.8 140.7C581.7 131 600.3 96 619 90.5C637.7 85 656.3 109 675 109.7C693.7 110.3 712.3 87.7 731.2 79C750 70.3 769 75.7 787.8 84.8C806.7 94 825.3 107 844 112.7C862.7 118.3 881.3 116.7 890.7 115.8L900 115L900 0L890.7 0C881.3 0 862.7 0 844 0C825.3 0 806.7 0 787.8 0C769 0 750 0 731.2 0C712.3 0 693.7 0 675 0C656.3 0 637.7 0 619 0C600.3 0 581.7 0 562.8 0C544 0 525 0 506.2 0C487.3 0 468.7 0 450 0C431.3 0 412.7 0 394 0C375.3 0 356.7 0 337.8 0C319 0 300 0 281.2 0C262.3 0 243.7 0 225 0C206.3 0 187.7 0 169 0C150.3 0 131.7 0 112.8 0C94 0 75 0 56.2 0C37.3 0 18.7 0 9.3 0L0 0Z" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
         
         <section id="location" class="pt-36 lg:pt-80 pb-56 flex flex-col items-center mt-10" th:style="'background-image: url(' + @{/images/svg/wafer.svg} + '); background-size: cover; background-repeat: no-repeat;'">
           <div class="bg-[#fffbe9]/70 p-5 w-1/2 flex flex-col items-center rounded-2xl">
             <h2 class="text-3xl font-bold text-center mb-4">
-              <span class="text-chocolate-900 bg-">Lokasi</span> Toko
+              <span class="text-chocolate-800 bg-">Lokasi</span> Toko
             </h2>
-            <p class="text-lg text-center my-4 font-bold leading-relaxed text-chocolate-900">
+            <p class="text-lg text-center my-4 font-bold leading-relaxed text-chocolate-800">
               Temukan lokasi toko kami dengan mudah! Gunakan peta di bawah ini. Jika Anda butuh bantuan,
               jangan ragu untuk menghubungi kami. Kami siap membantu!
             </p>

@@ -2,24 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body th:fragment="adminLayout(content)">
     <!-- loading -->
-    <!-- <script>
-      window.onload = function() {
-         hideLoader();
-         showContent();
-     }
- 
-     function hideLoader() {
-         document.querySelector("#loader").style.display = "none";
-     }
- 
-     function showContent() {
-         document.querySelector("#main").style.display = "block";
-     }
-     </script>
- 
-     <div rel="preload" id="loader" class=" absolute min-h-screen w-full z-50 flex justify-center items-center" style="background-color: #f9728b">
-       <img rel="preload" width="100px" height="100px" th:src="@{/images/gif/tr-load.gif}" alt="" />
-     </div> -->
 
     <!-- alert -->
     <div th:replace="~{components/alert_modal :: alert()}"></div>
@@ -45,7 +27,7 @@
         </div>
         <div class="drawer-side min-h-full">
             <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-            <ul class="sticky menu menu-lg border-0 p-4 pr-0 w-96 h-full shadow-lg border-solid bg-cherry-900 lg:backdrop-blur-sm  text-white stroke-black  [&_li>*:not(ul):not(.menu-title):not(details):active]:bg-white [&_li>*:not(ul):not(.menu-title):not(details):active]:text-cherry-900 [&_li>*:not(ul):not(.menu-title):not(details).active]:bg-white [&_li>*:not(ul):not(.menu-title):not(details).active]:text-[#E58A94] [&_li>details>li:active]:bg-white [&_li>details>li:active]:text-[#E58A94]" >
+            <ul class="sticky menu menu-lg border-0 p-4 pr-0 w-96 h-full shadow-lg border-solid bg-cherry-600 lg:backdrop-blur-sm  text-white stroke-black  [&_li>*:not(ul):not(.menu-title):not(details):active]:bg-white [&_li>*:not(ul):not(.menu-title):not(details):active]:text-cherry-600 [&_li>*:not(ul):not(.menu-title):not(details).active]:bg-white [&_li>*:not(ul):not(.menu-title):not(details).active]:text-[#E58A94] [&_li>details>li:active]:bg-white [&_li>details>li:active]:text-[#E58A94]" >
                 <!-- Sidebar content here -->
                 <div class="flex justify-center active">
                 <img width="150" th:src="@{/images/image/logo.png}" alt="">
@@ -79,6 +61,12 @@
                         </svg>
                         Menu</a></li>
                       <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/menu/create'} ? 'active'" href="/admin/menu/create"><span class="font-bold">+</span> Tambah Menu</a></li>
+                      <li><a class="rounded-tr-none rounded-br-none" th:classappend="${activeUrl == '/admin/review'} ? 'active'" href="/admin/review">
+                        <svg  width="25px" height="25px" viewBox="0 0 24 24"   xmlns="http://www.w3.org/2000/svg">
+                          <path  fill="#ffffff" th:style="${activeUrl == '/admin/review'} ? 'fill:#D54252' : 'fill:#ffffff'" d="M10.968 18.769C15.495 18.107 19 14.434 19 9.938a8.49 8.49 0 0 0-.216-1.912C20.718 9.178 22 11.188 22 13.475a6.1 6.1 0 0 1-1.113 3.506c.06.949.396 1.781 1.01 2.497a.43.43 0 0 1-.36.71c-1.367-.111-2.485-.426-3.354-.945A7.434 7.434 0 0 1 15 19.95a7.36 7.36 0 0 1-4.032-1.181z" />
+                          <path  fill="#ffffff" th:style="${activeUrl == '/admin/review'} ? 'fill:#D54252' : 'fill:#ffffff'" d="M7.625 16.657c.6.142 1.228.218 1.875.218 4.142 0 7.5-3.106 7.5-6.938C17 6.107 13.642 3 9.5 3 5.358 3 2 6.106 2 9.938c0 1.946.866 3.705 2.262 4.965a4.406 4.406 0 0 1-1.045 2.29.46.46 0 0 0 .386.76c1.7-.138 3.041-.57 4.022-1.296z" />
+                        </svg>
+                        Menu</a></li>
                   </ul>
                 </li>
             </ul>

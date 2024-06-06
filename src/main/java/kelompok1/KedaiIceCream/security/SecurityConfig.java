@@ -42,7 +42,6 @@ public class SecurityConfig {
                 .loginPage("/auth/login")
                 .defaultSuccessUrl("/")
                 .permitAll()
-                .failureHandler(new AuthenticationFailureHandlerUtil())
 )
             .logout(logout -> logout.permitAll());
 

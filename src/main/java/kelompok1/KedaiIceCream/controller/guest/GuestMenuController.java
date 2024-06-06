@@ -1,5 +1,7 @@
 package kelompok1.KedaiIceCream.controller.guest;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,9 +21,11 @@ import kelompok1.KedaiIceCream.model.entity.Menu;
 import kelompok1.KedaiIceCream.model.entity.MenuReply;
 import kelompok1.KedaiIceCream.model.entity.MenuReview;
 import kelompok1.KedaiIceCream.model.service.MenuService;
+import kelompok1.KedaiIceCream.util.FilterBadword;
+import lombok.extern.slf4j.Slf4j;
 
 
-
+@Slf4j
 @Controller
 @RequestMapping("/menu")
 public class GuestMenuController {
@@ -32,7 +36,7 @@ public class GuestMenuController {
         public String viewmenu(Model model, @RequestParam(defaultValue = "1") int page) {
         int pageSize = 12;
         Pageable pageable = PageRequest.of(page - 1, pageSize);
-        Page<Menu> menuPage = menuService.getAllMenus(pageable);
+        Page<Menu> menuPage = menuService.getAllMenusPages(pageable);
 
         model.addAttribute("activeUrl", "/admin/menu");
         model.addAttribute("pageTitle", "menuS");
@@ -78,6 +82,12 @@ public class GuestMenuController {
                 return "redirect:/menu/" + menuReview.getMenu().getId();
             }
 
+            if (FilterBadword.isBadWord(menuReview.getBody())) {
+                redirectAttributes.addFlashAttribute("status", false);
+                redirectAttributes.addFlashAttribute("statusMessage", "Gak Sopan Le");
+                return "redirect:/menu/" + menuReview.getMenu().getId();
+            }
+
             // Simpan review baru
             menuService.saveReview(menuReview);
             redirectAttributes.addFlashAttribute("status", true);
@@ -86,16 +96,25 @@ public class GuestMenuController {
         }
 
         @PostMapping("/review/reply")
-        public String saveReply(@ModelAttribute("newReply") MenuReply menuReply, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        public String saveReply(@ModelAttribute("newReply") MenuReply menuReply, @RequestParam("review_id") Long reviewId, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
             if (bindingResult.hasErrors()) {
                 // Jika terdapat error validasi, kembalikan ke halaman detail menu
-                redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.newReply", bindingResult);
                 redirectAttributes.addFlashAttribute("newReply", menuReply);
                 return "redirect:/menu/" + menuReply.getMenuReview().getMenu().getId();
             }
 
+            Optional<MenuReview> optionalReview = menuService.getMenuReviewById(reviewId);
+            if (!optionalReview.isPresent()) {
+                log.info("Review not found.");
+                redirectAttributes.addFlashAttribute("status", false);
+                redirectAttributes.addFlashAttribute("statusMessage", "Review not found.");
+                return "redirect:/menu";
+            }
+            MenuReview existingReview = optionalReview.get();
+            menuReply.setMenuReview(existingReview);
+
             // Simpan balasan review
-            menuService.saveReply(menuReply);
+            menuService.saveReply(menuReply  , reviewId);
             redirectAttributes.addFlashAttribute("status", true);
             redirectAttributes.addFlashAttribute("statusMessage", "Balasan berhasil ditambahkan.");
             return "redirect:/menu/" + menuReply.getMenuReview().getMenu().getId();

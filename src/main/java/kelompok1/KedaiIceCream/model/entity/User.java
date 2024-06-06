@@ -28,7 +28,7 @@ public class User implements Serializable{
     private String email;
 
     @Column(name = "role", nullable = false)
-    private Integer role;
+    private String role;
 
     @Column(name = "token", nullable = true, unique = true)
     private String token;

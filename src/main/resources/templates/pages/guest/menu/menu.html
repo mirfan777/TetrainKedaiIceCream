@@ -11,19 +11,26 @@
       <div  th:replace="~{components/layout :: layout(~{::content})}">
         <content >
         <!-- banner -->
-        <div class="flex flex-col items-center justify-start mt-28">
-            <div class="flex justify-center lg:w-3/4 w-full p-2">
-                <div class=" w-full">
-                    <a class="text-5xl font-bold mt-5 hover:text-blue-500 underline visited:via-violet-500" th:href="@{'/menu/'+ ${menus[0].id}}" th:text="${menus[0].title}"></a>
-                    <p class="text-2xl font-bold mt-5" th:text="${#temporals.format( menus[0].createdAt , 'dd-MMM-yyyy')}"></p>
-                </div>
-            </div>
-            <div class="flex justify-center lg:w-3/4 w-full h-[50vw] lg:h-[20vw]">
-                <figur class="w-full h-full" th:style="'background-image: url(' + ${menus[0].image} + '); background-size: cover; background-repeat: no-repeat;'"><img class="w-full h-full  object-scale-down backdrop-blur-xl" th:src="${menus[0].image}" alt="menu Image" /></figure>
+        <div>
+            <img th:src="@{/images/svg/banner-product.svg}" alt="Banner" class="object-cover object-center w-screen h-[800px] shadow-2xl shadow-strawberry-500"/>
+        </div>
+        <div class="flex justify-center relative bg-vanilla-50 pb-56">
+            <div class="absolute bg-cherry-600 w-3/4 lg:w-1/2 h-56 -top-28 rounded-3xl flex items-center justify-center">
+                <div class="carousel carousel-end  space-x-20  rounded-box">
+                    <div class="carousel-item w-36 h-36 hover:opacity-50">
+                      <a href=""><img th:src="@{/images/svg/menu-drink.svg}" class="rounded-box" /></a>
+                    </div> 
+                    <div class="carousel-item  w-36 h-36 hover:opacity-50">
+                        <a href=""><img th:src="@{/images/svg/menu-ice.svg}" class="rounded-box" /></a>
+                    </div> 
+                    <div class="carousel-item  w-36 h-36 hover:opacity-50">
+                        <a href=""><img th:src="@{/images/svg/menu-snacks.svg}" class="rounded-box" /></a>
+                    </div>  
+                  </div>
             </div>
         </div>
-        <h1 class="flex justify-center font-bold text-black text-center text-4xl mt-10">Produk kita</h1>
-        <div class="flex flex-col lg:flex-row justify-center items-center gap-5 mt-10">
+        
+        <div class="flex flex-col lg:flex-row justify-center items-center gap-5  bg-vanilla-50">
             <div class="flex flex-col items-center">
                 <div class="flex w-3/4 mb-10">
                     <div class="w-full">
@@ -52,24 +59,12 @@
                        </div>
                     </div>
                  </div>
-    
-                <!-- Pagination -->
-                <div class="flex justify-center mt-5">
-                    <div class="join">
-                        <a th:href="@{/admin/menu(page=${currentPage - 1})}" th:if="${currentPage > 1}" class="join-item btn btn-md">Previous</a>
-                        <span th:each="pageNum : ${#numbers.sequence(1, totalPages)}" class="join-item"  th:if="${currentPage > 1}">
-                            <a th:href="@{/admin/menu(page=${pageNum})}" th:class="${currentPage == pageNum} ? 'btn btn-md btn-active' : 'btn btn-md'" th:text="${pageNum}"></a>
-                        </span>
-                        <a th:href="@{/menu(page=${currentPage + 1})}" th:if="${currentPage < totalPages}" class="join-item btn btn-md">Next</a>
-                    </div>
-                </div>
-
 
                 <!-- List of menu Cards -->
                 <div class="flex justify-center">
-                    <div class="grid 2xl:grid-cols-2 grid-cols-1 place-content-center place-items-center gap-16 w-3/4">
-                        <div class="card lg:card-side bg-base-100 lg:h-72 lg:w-full flex items-center" th:each="menu : ${menus}">
-                            <figure class="rounded-lg w-96 h-56"  th:style="'background-image: url(' + ${menu.image} + '); background-size: cover; background-repeat: no-repeat;'"><img class="w-full h-full object-contain backdrop-blur-xl" th:src="${menu.image}" alt="menu Image" /></figure>
+                    <div class="grid 2xl:grid-cols-2 grid-cols-1 place-content-center place-items-center gap-16 w-3/4 ">
+                        <div class="card lg:card-side lg:h-72 lg:w-full flex items-center bg-vanilla-50" th:each="menu : ${menus}">
+                            <figure class="rounded-lg w-96 h-56"  th:style="'background-image: url(' + ${menu.image} + '); background-size: cover; background-repeat: no-repeat;'"><img class="w-full h-full object-cover backdrop-blur-xl" th:src="${menu.image}" alt="menu Image" /></figure>
                             <div class="card-body p-2 lg:w-fit">
                                 <div class=" text-white bg-slate-500  rounded-lg p-2 " style="width: 100px; height: 40px; text-align: center;" th:text="${menu.category.title}"></div>
                                 <a class="card-title text-ellipsis text-nowrap underline hover:text-black visited:text-violet-500 text-blue-500 "  th:href="@{'/menu/'+ ${menu.id}}" th:text="${menu.title}">Ice Cream One Scoop</a>
